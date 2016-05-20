@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 public class Statics {
     static public int WIDTH = 1366;
     static public int HEIGHT = 768;
+    static public int ACTION_COUNT = 10;
 
     public static AssetManager assetManager ;
 
@@ -17,7 +18,6 @@ public class Statics {
     public static void createAssets(){
         assetManager = new AssetManager();
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
-
 
         while(!assetManager.update()){
             System.out.println(assetManager.getProgress());

@@ -2,7 +2,9 @@ package screens;
 
 import Actors.buttons.AbstractButton;
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,7 +16,6 @@ import com.mygdx.game.Statics;
  * Created by Marcin on 2016-05-20.
  */
 public class Menu  implements  AbstractScreen {
-
 
     TextureAtlas atlas = null;
     Skin skin = null;
@@ -47,6 +48,10 @@ public class Menu  implements  AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
         game.draw();
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new OutSide());
+        }
+
     }
 
     @Override

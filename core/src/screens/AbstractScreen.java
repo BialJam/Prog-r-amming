@@ -18,6 +18,4 @@ public  interface AbstractScreen extends Screen{
     Stage gui = new Stage();
     Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);;
     InputMultiplexer inputMultiplexer = new InputMultiplexer(game,gui);
-
-
 }
