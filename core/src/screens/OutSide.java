@@ -25,6 +25,7 @@ public class OutSide extends MyScreen implements Screen{
     Skin skin = null;
     int action = 10;
 
+    ActorString writing;
     private BitmapFont fontBlue;
 
     @Override
@@ -36,7 +37,8 @@ public class OutSide extends MyScreen implements Screen{
         //tworzenie czcionki
         fontBlue = new BitmapFont();
         fontBlue.setColor(Color.RED);
-        ActorString writing = new ActorString(fontBlue, "dziala", 200, 200, game);
+
+        writing = new ActorString(fontBlue, "action=10", 200, 200, game);
         game.addActor(writing);
         fontBlue.setColor(0.5f, 0.4f, 0, 1);
 
@@ -57,7 +59,10 @@ public class OutSide extends MyScreen implements Screen{
         game.draw();
         if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             queue();
+            writing.changeString(action);
         }
+        game.draw();
+
     }
 
     @Override
