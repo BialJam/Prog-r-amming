@@ -3,42 +3,42 @@ Paczka1.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Dres2_head
+Dres_head0
   rotate: false
   xy: 1, 1
   size: 302, 600
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_head
+Dres_head1
   rotate: false
   xy: 305, 1
   size: 302, 600
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_legs
+Dres_legs0
   rotate: false
   xy: 609, 1
   size: 302, 600
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_legs2
+Dres_legs1
   rotate: false
   xy: 913, 1
   size: 302, 600
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_torso
+Dres_torso0
   rotate: false
   xy: 1217, 1
   size: 302, 600
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_torso2
+Dres_torso1
   rotate: false
   xy: 1521, 1
   size: 302, 600
