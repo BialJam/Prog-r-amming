@@ -1,22 +1,25 @@
 package screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Statics;
 
 /**
- * Created by Marcin on 2016-05-20.
+ * Created by sury on 20.05.16.
  */
-public  interface AbstractScreen extends Screen{
+public class MyScreen {
+    protected Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);;
+    protected Stage game = new Stage(viewport);
+    protected Stage gui = new Stage(viewport);
 
-    Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);;
-    Stage game = new Stage(viewport);
-    Stage gui = new Stage(viewport);
 
     InputMultiplexer inputMultiplexer = new InputMultiplexer(game,gui);
+
+    public MyScreen() {
+        Gdx.input.setInputProcessor(inputMultiplexer);
+    }
 }

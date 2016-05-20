@@ -5,6 +5,7 @@ import Actors.buttons.AbstractButton;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,14 +19,13 @@ import com.mygdx.game.Statics;
 /**
  * Created by Michalina on 2016-05-20.
  */
-public class OutSide implements AbstractScreen {
+public class OutSide extends MyScreen implements Screen{
 
     TextureAtlas atlas = null;
     Skin skin = null;
-    AbstractButton butStart;
     int action = 10;
+
     ActorString writing;
-    private Stage stage;
     private BitmapFont fontBlue;
 
     @Override
@@ -34,12 +34,15 @@ public class OutSide implements AbstractScreen {
     }
 
     public OutSide() {
-
+        super();
         //tworzenie czcionki
         fontBlue = new BitmapFont();
         fontBlue.setColor(Color.RED);
+
         writing = new ActorString(fontBlue, "action=10", 200, 200, game);
         game.addActor(writing);
+        fontBlue.setColor(0.5f, 0.4f, 0, 1);
+
     }
 
     private void queue() {
@@ -51,10 +54,10 @@ public class OutSide implements AbstractScreen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
-        fontBlue.setColor(0.5f, 0.4f, 0, 1);
+        game.draw();
         if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             queue();
             writing.changeString(action);
