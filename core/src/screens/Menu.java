@@ -1,5 +1,6 @@
 package screens;
 
+import Actors.MyActor;
 import Actors.buttons.AbstractButton;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -19,12 +20,14 @@ public class Menu  implements  AbstractScreen {
     TextureAtlas atlas = null;
     Skin skin = null;
     AbstractButton butStart;
+    MyActor actor;
 
     public Menu() {
 
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
         skin = new Skin(atlas);
         butStart = new AbstractButton("ButtonUp9",game);
+        actor = new MyActor();
         butStart.setPosition(300,300);
         butStart.setMyOwnClickListener(new ClickListener(){
             @Override
@@ -47,6 +50,7 @@ public class Menu  implements  AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
         game.draw();
+        actor.draw(game.getBatch(), (float) 1.0);
     }
 
     @Override
