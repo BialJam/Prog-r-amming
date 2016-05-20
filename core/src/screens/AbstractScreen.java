@@ -14,8 +14,9 @@ import com.mygdx.game.Statics;
  */
 public  interface AbstractScreen extends Screen{
 
-    Stage game = new Stage();;
-    Stage gui = new Stage();
     Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);;
+    Stage game = new Stage(viewport);
+    Stage gui = new Stage(viewport);
+
     InputMultiplexer inputMultiplexer = new InputMultiplexer(game,gui);
 }
