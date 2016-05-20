@@ -18,7 +18,7 @@ public abstract class MyActor extends Actor {
     protected Skin skin;
     protected Stage stageIBelongTo;
     protected Image image;
-    protected int x, y;
+    protected int x=0, y=0;
 
 //      set image and stage
 //      add this actor and his image to stage

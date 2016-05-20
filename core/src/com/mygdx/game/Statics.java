@@ -3,6 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import screens.InSide;
+import screens.Menu;
+import screens.OutSide;
 
 /**
  * Created by Marcin on 2016-05-20.

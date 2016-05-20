@@ -14,12 +14,14 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 
 /**
  * Created by Michalina on 2016-05-20.
  */
 public class OutSide extends MyScreen implements Screen{
+    MyGdxGame root;
 
     TextureAtlas atlas = null;
     Skin skin = null;
@@ -28,13 +30,15 @@ public class OutSide extends MyScreen implements Screen{
     ActorString writing;
     private BitmapFont fontBlue;
 
+
     @Override
     public void show() {
 
     }
 
-    public OutSide() {
+    public OutSide(MyGdxGame root) {
         super();
+        this.root = root;
         //tworzenie czcionki
         fontBlue = new BitmapFont();
         fontBlue.setColor(Color.RED);
@@ -48,7 +52,7 @@ public class OutSide extends MyScreen implements Screen{
     private void queue() {
         action--;
         if (action == 0) {
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu());
+            ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
     }
 
@@ -90,4 +94,8 @@ public class OutSide extends MyScreen implements Screen{
     public void dispose() {
 
     }
+
+
+
+
 }
