@@ -1,6 +1,11 @@
 package screens;
 
 import Actors.buttons.AbstractButton;
+import Actors.people.Out.Badass;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,14 +24,17 @@ public class Menu extends MyScreen implements Screen {
     TextureAtlas atlas = null;
     Skin skin = null;
     AbstractButton butStart;
+    Badass badass;
     AbstractButton butQuit;
-    public Menu() {
 
+    public Menu() {
+        super();
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
         skin = new Skin(atlas);
-
+        for(int i=0;i<10;i++) {
+            badass = new Badass(game);
+        }
         initButtons();
-
     }
 
     @Override
@@ -39,6 +47,7 @@ public class Menu extends MyScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
+
         game.draw();
 
     }
@@ -81,6 +90,9 @@ public class Menu extends MyScreen implements Screen {
 
 
 //--------------------------------------------CRAP ---------------------------------------------
+//     INIT BUttons
+//     Set Position
+//     Only look at clicked after super
     private void initButtons(){
         butStart = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
         butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
@@ -103,10 +115,6 @@ public class Menu extends MyScreen implements Screen {
                 Gdx.app.exit();
             }
         });
-
-
-
-
     }
 
 

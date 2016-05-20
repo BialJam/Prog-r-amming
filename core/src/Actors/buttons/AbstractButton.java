@@ -13,9 +13,19 @@ import com.mygdx.game.Statics;
  * Created by Marcin on 2016-05-20.
  */
 public class AbstractButton extends MyActor {
-
     Image imagePressed;
 
+    public AbstractButton(String buttonImage, Stage stage) {
+        super(stage);
+        atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
+        skin = new Skin(atlas);
+        this.image = new Image(skin.getDrawable(buttonImage));
+        stage.addActor(image);
+    }
+
+    public AbstractButton(Stage stage) {
+        super(stage);
+    }
 
     public AbstractButton(Image image, Stage stage) {
         super(image, stage);
