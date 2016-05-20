@@ -51,14 +51,11 @@ public class Menu  implements  AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
         game.draw();
-<<<<<<< HEAD
+
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(new OutSide());
         }
 
-=======
-        actor.draw(game.getBatch(), (float) 1.0);
->>>>>>> 908fb00176f9a77a05ca8b6b279d03c7161a2deb
     }
 
     @Override
