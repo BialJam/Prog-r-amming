@@ -1,5 +1,7 @@
 package Actors;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,11 +18,24 @@ public abstract class MyActor extends Actor {
     protected Skin skin;
     protected Stage stageIBelongTo;
     protected Image image;
+    protected int x, y;
 
 
+    public MyActor(Image image, Stage stage) {
+        this.image = image;
+        this.stageIBelongTo =  stage;
+        stageIBelongTo.addActor(image);
+        stageIBelongTo.addActor(this);
+    }
 
 
     public abstract void setMyOwnClickListener(ClickListener listener);
 
+
+    public void setPosition(int x, int y){
+        image.setPosition(x, y);
+    }
+
+    public abstract void setPositionNotNormall(int x,int y);
 
 }

@@ -18,10 +18,7 @@ public class AbstractButton extends MyActor {
 
 
     public AbstractButton(Image image, Stage stage) {
-        this.image = image;
-        this.stageIBelongTo =  stage;
-        stage.addActor(image);
-        stage.addActor(this);
+        super(image, stage);
     }
 
     @Override
@@ -29,10 +26,17 @@ public class AbstractButton extends MyActor {
         image.addListener(listener);
     }
 
+
     @Override
     public void act(float delta) {}
 
     public void setPosition(int x,int y){
         image.setPosition(x,y);
     }
+
+    @Override
+    public void setPositionNotNormall(int x, int y) {
+
+    }
+
 }
