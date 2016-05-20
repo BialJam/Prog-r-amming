@@ -32,15 +32,13 @@ public class ActorString extends Actor {
         this.y = y;
         this.stage = stage;
     }
-    public void changeString(float x, float y){
-        toWrite = "x="+x+" y="+y;
+    public void changeString(int action){
+        toWrite = "Action="+action;
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        //super.draw(batch, parentAlpha);
         Vector3 newPoints = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
         newPoints = stage.getViewport().unproject(newPoints);
-        changeString(newPoints.x, newPoints.y);
-        font.draw(batch,toWrite,newPoints.x,newPoints.y);
+        font.draw(batch,toWrite,this.x,this.y);
     }
 }

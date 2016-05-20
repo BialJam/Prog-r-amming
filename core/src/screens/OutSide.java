@@ -24,7 +24,7 @@ public class OutSide implements AbstractScreen {
     Skin skin = null;
     AbstractButton butStart;
     int action = 10;
-
+    ActorString writing;
     private Stage stage;
     private BitmapFont fontBlue;
 
@@ -38,20 +38,7 @@ public class OutSide implements AbstractScreen {
         //tworzenie czcionki
         fontBlue = new BitmapFont();
         fontBlue.setColor(Color.RED);
-
-        atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
-        skin = new Skin(atlas);
-        butStart = new AbstractButton("ButtonUp9", game);
-        butStart.setPosition(300, 300);
-        butStart.setMyOwnClickListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                System.out.println("CLicked__");
-            }
-        });
-
-        ActorString writing = new ActorString(fontBlue, "dziala", 200, 200, game);
+        writing = new ActorString(fontBlue, "action=10", 200, 200, game);
         game.addActor(writing);
     }
 
@@ -70,8 +57,8 @@ public class OutSide implements AbstractScreen {
         fontBlue.setColor(0.5f, 0.4f, 0, 1);
         if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             queue();
+            writing.changeString(action);
         }
-
         game.draw();
 
     }
