@@ -10,13 +10,18 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 public class Statics {
     static public int WIDTH = 1366;
     static public int HEIGHT = 768;
+    static public int ACTION_COUNT = 10;
 
-    public static AssetManager assetManager = new AssetManager();
+    public static AssetManager assetManager ;
 
 
     public static void createAssets(){
-//        assetManager.load("MenueButton.atlas", TextureAtlas.class);
-        assetManager.load("badlogic.jpg", Texture.class);
+        assetManager = new AssetManager();
+        assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
+
+        while(!assetManager.update()){
+            System.out.println(assetManager.getProgress());
+        }
         int x = 0;
     }
 }
