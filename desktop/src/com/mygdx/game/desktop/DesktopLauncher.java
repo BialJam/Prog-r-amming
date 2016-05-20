@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = Statics.WIDTH;
 		config.height = Statics.HEIGHT;
-		Statics.createAssets();
+
 		new LwjglApplication(new MyGdxGame(), config);
 	}
 }
