@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 /**
  * Created by Marcin on 2016-05-20.
  */
-public class AbstractPerson extends MyActor {
+public class AbstractOutPerson extends MyActor {
     protected Image head;
     protected Image body;
     protected Image legs;
@@ -17,6 +17,11 @@ public class AbstractPerson extends MyActor {
     protected int drunk;
     protected int angry;
 
+    public AbstractOutPerson(){
+        super();
+        health = 100;
+        happines = 50;
+    }
 
     public void setMyOwnClickListener(ClickListener listener){
         head.addListener(listener);
@@ -28,6 +33,14 @@ public class AbstractPerson extends MyActor {
         head.setPosition(x,y);
         body.setPosition(x,y);
         legs.setPosition(x,y);
+    }
+
+    public void drink(){
+        drunk += 15;
+    }
+
+    public void dance(){
+        happines += 15;
     }
 
 }
