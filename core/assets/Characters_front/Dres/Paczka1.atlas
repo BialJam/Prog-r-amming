@@ -17,7 +17,7 @@ Dres_head
   orig: 302, 600
   offset: 0, 0
   index: -1
-Dres_legs
+Dres_legs 
   rotate: false
   xy: 609, 1
   size: 302, 600

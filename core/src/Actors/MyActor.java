@@ -22,4 +22,25 @@ public class MyActor extends Actor {
     public void setPosition(int x, int y){
         image.setPosition(x, y);
     }
+    public MyActor() {
+
+    }
+    public MyActor(Stage stage){
+        this.stageIBelongTo = stage;
+        initOtherFields();
+        setImages();
+        setStatistics();
+    }
+
+    public void initOtherFields(){
+
+    }
+
+    public void setImages(){
+
+    }
+
+    public void setStatistics(){
+
+    }
 }
