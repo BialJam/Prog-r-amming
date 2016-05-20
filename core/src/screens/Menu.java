@@ -20,13 +20,12 @@ public class Menu extends MyScreen implements Screen {
     Skin skin = null;
     AbstractButton butStart;
     AbstractButton butQuit;
-    public Menu() {
 
+    public Menu() {
+        super();
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
         skin = new Skin(atlas);
-
         initButtons();
-
     }
 
     @Override
@@ -81,6 +80,9 @@ public class Menu extends MyScreen implements Screen {
 
 
 //--------------------------------------------CRAP ---------------------------------------------
+//     INIT BUttons
+//     Set Position
+//     Only look at clicked after super
     private void initButtons(){
         butStart = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
         butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
@@ -103,10 +105,6 @@ public class Menu extends MyScreen implements Screen {
                 Gdx.app.exit();
             }
         });
-
-
-
-
     }
 
 

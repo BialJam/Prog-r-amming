@@ -20,7 +20,8 @@ public abstract class MyActor extends Actor {
     protected Image image;
     protected int x, y;
 
-
+//      set image and stage
+//      add this actor and his image to stage
     public MyActor(Image image, Stage stage) {
         this.image = image;
         this.stageIBelongTo =  stage;
@@ -28,14 +29,14 @@ public abstract class MyActor extends Actor {
         stageIBelongTo.addActor(this);
     }
 
-
+//    write new click listener and add it by this metod
     public abstract void setMyOwnClickListener(ClickListener listener);
 
 
     public void setPosition(int x, int y){
         image.setPosition(x, y);
     }
-
+// if you need some stragne position setting
     public abstract void setPositionNotNormall(int x,int y);
 
 }

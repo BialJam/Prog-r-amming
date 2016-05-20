@@ -34,6 +34,7 @@ public class OutSide extends MyScreen implements Screen{
     }
 
     public OutSide() {
+        super();
         //tworzenie czcionki
         fontBlue = new BitmapFont();
         fontBlue.setColor(Color.RED);
