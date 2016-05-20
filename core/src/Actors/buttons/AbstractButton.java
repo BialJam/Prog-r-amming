@@ -15,21 +15,14 @@ import com.mygdx.game.Statics;
 public class AbstractButton extends MyActor {
     Image imagePressed;
 
-    public AbstractButton(String buttonImage, Stage stage) {
-        super(stage);
-        atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
-        skin = new Skin(atlas);
-        this.image = new Image(skin.getDrawable(buttonImage));
-        stage.addActor(image);
+    public AbstractButton(Image image, Stage stage) {
+        super(image,stage);
     }
 
     public AbstractButton(Stage stage) {
         super(stage);
     }
 
-    public AbstractButton(Image image, Stage stage) {
-        super(image, stage);
-    }
 
     @Override
     public void setMyOwnClickListener(ClickListener listener){

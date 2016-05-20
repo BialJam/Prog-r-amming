@@ -9,9 +9,9 @@ import com.mygdx.game.Statics;
 /**
  * Created by Marcin on 2016-05-20.
  */
-public class Badass extends AbstractOutPerson{
+public class BadassOut extends AbstractOutPerson{
 
-    public Badass(Stage stage){
+    public BadassOut(Stage stage){
         super(stage);
     }
 
@@ -27,6 +27,7 @@ public class Badass extends AbstractOutPerson{
             img.setPosition(i,j);
             stageIBelongTo.addActor(img);
         }
+
          
     }
 

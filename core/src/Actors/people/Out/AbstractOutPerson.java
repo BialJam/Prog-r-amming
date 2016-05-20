@@ -14,8 +14,8 @@ import java.util.Random;
  * Created by Marcin on 2016-05-20.
  */
 public class AbstractOutPerson extends MyActor {
-    protected Array<Image> images;
-    protected Random rand;
+    public Array<Image> images;
+    public Random rand;
 
     public AbstractOutPerson(Stage stage){
         super(stage);

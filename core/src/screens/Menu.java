@@ -1,15 +1,11 @@
 package screens;
 
 import Actors.buttons.AbstractButton;
-import Actors.people.Out.Badass;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -24,16 +20,12 @@ public class Menu extends MyScreen implements Screen {
     TextureAtlas atlas = null;
     Skin skin = null;
     AbstractButton butStart;
-    Badass badass;
     AbstractButton butQuit;
 
     public Menu() {
         super();
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
         skin = new Skin(atlas);
-        for(int i=0;i<10;i++) {
-            badass = new Badass(game);
-        }
         initButtons();
     }
 
