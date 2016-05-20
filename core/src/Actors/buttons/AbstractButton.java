@@ -14,22 +14,23 @@ import com.mygdx.game.Statics;
  */
 public class AbstractButton extends MyActor {
 
-    public AbstractButton(String buttonImage, Stage stage) {
-        atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
-        skin = new Skin(atlas);
-        this.image = new Image(skin.getDrawable(buttonImage));
+    Image imagePressed;
+
+
+    public AbstractButton(Image image, Stage stage) {
+        this.image = image;
         this.stageIBelongTo =  stage;
         stage.addActor(image);
+        stage.addActor(this);
     }
 
+    @Override
     public void setMyOwnClickListener(ClickListener listener){
         image.addListener(listener);
     }
 
     @Override
-    public void act(float delta) {
-
-    }
+    public void act(float delta) {}
 
     public void setPosition(int x,int y){
         image.setPosition(x,y);
