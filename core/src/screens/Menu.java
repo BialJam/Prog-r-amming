@@ -85,7 +85,7 @@ public class Menu extends MyScreen implements Screen {
         butStart = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
         butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
 
-        butStart.setPosition(5,5);
+        butStart.setPosition(500,500);
         butQuit.setPosition(100,100);
 
         butStart.setMyOwnClickListener(new ClickListener(){
