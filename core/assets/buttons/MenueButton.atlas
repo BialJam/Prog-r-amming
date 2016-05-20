@@ -1,0 +1,21 @@
+
+MenueButton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ButtonUp9
+  rotate: false
+  xy: 1, 1
+  size: 40, 40
+  split: 2, 3, 2, 3
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+ButtonDown9
+  rotate: false
+  xy: 43, 1
+  size: 40, 40
+  split: 2, 3, 2, 3
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
