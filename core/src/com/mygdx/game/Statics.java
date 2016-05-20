@@ -21,7 +21,7 @@ public class Statics {
         assetManager.load("Characters_front/Dres/Paczka1.atlas", TextureAtlas.class);
 
         while(!assetManager.update()){
-            System.out.println(assetManager.getProgress());
+            //System.out.println(assetManager.getProgress());
         }
         int x = 0;
     }
