@@ -61,6 +61,7 @@ public class InSide extends MyScreen implements Screen {
     World world;
     ActorString moneyString;
     BitmapFont font, font_bttn;
+    float fixed_timer;
 
     Array<AbstractInPerson> persons;
     Array<JustLights> parket = new Array<JustLights>();
@@ -76,13 +77,12 @@ public class InSide extends MyScreen implements Screen {
         this.root = root;
 
         font_bttn = new BitmapFont();
-        font_bttn.setColor(Color.GREEN);
-        //font_bttn.getData().setScale(3, 3);
+        font_bttn.setColor(Color.BLACK);
 
-        alcoString = new ActorString(font_bttn, "alco", 1250, 578, gui);
-        foodString = new ActorString(font_bttn, "food", 1250, 477, gui);
-        securityString = new ActorString(font_bttn, "security", 1250, 376, gui);
-        cleanerString = new ActorString(font_bttn, "cleaner", 1250, 275, gui);
+        alcoString = new ActorString(font_bttn, "alco", 1100, 598, gui);
+        foodString = new ActorString(font_bttn, "food", 1100, 497, gui);
+        securityString = new ActorString(font_bttn, "security", 1100, 396, gui);
+        cleanerString = new ActorString(font_bttn, "cleaner", 1100, 295, gui);
 
         alcoString.setVisible(false);
         foodString.setVisible(false);
@@ -97,6 +97,7 @@ public class InSide extends MyScreen implements Screen {
         clock = new Clock(gui);
         deltatime = 0;
         time = 60;
+        fixed_timer = 0;
 
         font = new BitmapFont();
         font.setColor(Color.GREEN);
@@ -134,7 +135,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        //moneyString.changeString(root.getMoney());
+        moneyString.changeString(root.getMoney());
 
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -147,6 +148,11 @@ public class InSide extends MyScreen implements Screen {
         timer();
         game.act();
         gui.act();
+
+        alcoString.changeString(root.getAlco());
+        foodString.changeString(root.getFood());
+        cleanerString.changeString(root.getCleaner());
+        securityString.changeString(root.getSecurity());
 
         game.act();
         game.draw();
@@ -193,7 +199,6 @@ public class InSide extends MyScreen implements Screen {
     public void dispose() {
 
     }
-
 
     public void addPerson(AbstractInPerson person) {
         persons.add(person);
@@ -275,6 +280,9 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś alco");
+                root.setMoney(-50);
+                if (root.getMoneyInt()>0)  root.setAlco(10);
+                else root.setMoney(50);
             }
         });
 
@@ -283,6 +291,9 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś żarcie");
+                root.setMoney(-50);
+                if (root.getMoneyInt()>0)  root.setFood(10);
+                else root.setMoney(50);
             }
         });
 
@@ -291,6 +302,9 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś guarda");
+                root.setMoney(-(root.getSecurityInt()+1)*20);
+                if (root.getMoneyInt()>0)  root.setSecurity(1);
+                else root.setMoney((root.getSecurityInt()+1)*20);
             }
         });
 
@@ -299,6 +313,9 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś sprzatanie");
+                root.setMoney(-(root.getCleanerInt()+1)*20);
+                if (root.getMoneyInt()>0)  root.setCleaner(1);
+                else root.setMoney((root.getSecurityInt()+1)*20);
             }
         });
     }
@@ -371,6 +388,12 @@ public class InSide extends MyScreen implements Screen {
 
     public void timer() {
         deltatime += Gdx.graphics.getDeltaTime();
+        fixed_timer += Gdx.graphics.getDeltaTime();
+        System.out.println(fixed_timer);
+        if (fixed_timer*6 > 1){
+            fixed_timer = 0;
+            clock.act(0.f);
+        }
         if (deltatime > 1) {
             deltatime = 0;
             time--;

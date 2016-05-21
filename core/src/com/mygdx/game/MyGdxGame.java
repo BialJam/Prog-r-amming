@@ -13,30 +13,62 @@ import screens.Menu;
 import screens.OutSide;
 
 public class MyGdxGame extends Game {
-	public Menu menu;
-	public OutSide outside;
-	public InSide inside;
+    public Menu menu;
+    public OutSide outside;
+    public InSide inside;
 
-	private int money = 200;
+    private int money = 200;
+    private int alco = 10, food = 10, security = 1, cleaner = 0;
 
-	
-	@Override
-	public void create () {
-		Statics.createAssets();
-		Statics.createWorld();
-		menu = new Menu(this);
-		outside = new OutSide(this);
-		inside = new InSide(this);
-		setScreen(outside);
-	}
+    @Override
+    public void create() {
+        Statics.createAssets();
+        Statics.createWorld();
+        menu = new Menu(this);
+        outside = new OutSide(this);
+        inside = new InSide(this);
+        setScreen(outside);
+    }
 
-	public String getMoney(){
-		return money+"$";
-	}
 
-	public void setMoney(int change){
-		money += change;
-	}
+    public String getMoney() {
+        return money + "$";
+    }
+
+    public String getCleaner() {
+        return "Ammount: " + cleaner + "   cost: " + ((cleaner+1) * 20) + " $";
+    }
+
+    public String getAlco() {
+        return "Ammount: " + alco + "   cost: " + 50 + " $";
+    }
+
+    public String getFood() {
+        return "Ammount: " + food + "   cost: " + 50 + " $";
+    }
+
+    public String getSecurity() {
+        return "Ammount: " + security + "   cost: " + ((security+1) * 25) + " $";
+    }
+
+
+    public int getMoneyInt(){return money;}
+    public int getAlcoInt(){return alco;}
+    public int getFoodInt(){return food;}
+    public int getSecurityInt(){return security;}
+    public int getCleanerInt(){return cleaner;}
+
+    public void setMoney(int change) {
+        money += change;
+    }
+    public void setAlco(int change) {alco += change;}
+    public void setFood(int change) {food += change;}
+    public void setSecurity(int change) {
+        security += change;
+    }
+    public void setCleaner(int change) {
+        cleaner += change;
+    }
 
 
 }
