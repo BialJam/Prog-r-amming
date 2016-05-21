@@ -45,11 +45,15 @@ public class QueueCreator {
 
         for(int iteration = 0 ; iteration<persons.size; iteration++){
             randx = MathUtils.random(-70,70);
-            persons.get(persons.size - 1 - iteration).setPosition(400 +randx,(iteration+1)*70);
+            persons.get(persons.size - 1 - iteration).setPosition(600 +randx - (iteration+1) *(30),(iteration+1)*70);
             persons.get(persons.size - 1 - iteration).setScale(0.5f,0.5f);
         }
-        for (AbstractOutPerson per : persons){
-            per.createClickListener();
+
+        persons.get(persons.size-1).createClickListener();
+        for(int iterator = 0;iterator < persons.size; iterator++){
+            if (iterator<6){
+                persons.get(iterator).image.setVisible(false);
+            }
         }
 
     }
@@ -89,6 +93,13 @@ public class QueueCreator {
     public static void MoveQueue(){
         for(AbstractOutPerson per : persons){
             per.moveFront();
+        }
+        persons.removeIndex(persons.size-1);
+        if (persons.size>=1){
+            persons.get(persons.size-1).createClickListener();
+        }
+        if (persons.size>6){
+            persons.get(persons.size-6).image.setVisible(true);
         }
     }
 
