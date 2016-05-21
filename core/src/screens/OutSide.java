@@ -74,7 +74,6 @@ public class OutSide extends MyScreen implements Screen{
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) || action==0) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
-
     }
 
     @Override
@@ -84,25 +83,17 @@ public class OutSide extends MyScreen implements Screen{
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
     }
-
-
-
-
 }
