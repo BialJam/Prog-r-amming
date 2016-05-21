@@ -1,0 +1,68 @@
+
+Characters_out.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ziomek1
+  rotate: false
+  xy: 1, 1194
+  size: 340, 587
+  orig: 340, 587
+  offset: 0, 0
+  index: -1
+dres1
+  rotate: false
+  xy: 1, 576
+  size: 305, 616
+  orig: 305, 616
+  offset: 0, 0
+  index: -1
+ziomek2
+  rotate: false
+  xy: 343, 1217
+  size: 317, 564
+  orig: 317, 564
+  offset: 0, 0
+  index: -1
+dres3
+  rotate: false
+  xy: 1, 3
+  size: 221, 571
+  orig: 221, 571
+  offset: 0, 0
+  index: -1
+loszka2
+  rotate: false
+  xy: 662, 1218
+  size: 225, 563
+  orig: 225, 563
+  offset: 0, 0
+  index: -1
+geek1
+  rotate: false
+  xy: 224, 1
+  size: 200, 573
+  orig: 200, 573
+  offset: 0, 0
+  index: -1
+geek2
+  rotate: false
+  xy: 308, 629
+  size: 198, 563
+  orig: 198, 563
+  offset: 0, 0
+  index: -1
+loszka1
+  rotate: false
+  xy: 508, 677
+  size: 187, 538
+  orig: 187, 538
+  offset: 0, 0
+  index: -1
+dres2
+  rotate: false
+  xy: 697, 686
+  size: 220, 530
+  orig: 220, 530
+  offset: 0, 0
+  index: -1
