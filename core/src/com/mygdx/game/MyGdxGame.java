@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+//Version 0.1.0
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
