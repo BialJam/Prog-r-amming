@@ -20,6 +20,7 @@ public class QueueCreator {
     static MathUtils math =  new MathUtils();
     static int classes = 4;
     static int desscount = 3;
+    static int startQueueSize = 10;
     static Stage stage;
     static Array<AbstractOutPerson> persons;
     static Array<AbstractOutPerson> inPersons = new Array<AbstractOutPerson>();
@@ -37,7 +38,7 @@ public class QueueCreator {
     }
 
     private static void createAndQueuePerson(Array<AbstractOutPerson> persons) {
-        for(int i = 0; i < 10 + lvl * queueMultiplayer; i++){
+        for(int i = 0; i < startQueueSize + lvl * queueMultiplayer; i++){
             persons.add(createPerson());
         }
         int randx;
@@ -50,7 +51,7 @@ public class QueueCreator {
 
         persons.get(persons.size-1).createClickListener();
         for(int iterator = 0;iterator < persons.size; iterator++){
-            if (iterator<6){
+            if (iterator<startQueueSize - 3){
                 persons.get(iterator).image.setVisible(false);
             }
         }
@@ -102,8 +103,8 @@ public class QueueCreator {
         if (persons.size>=1){
             persons.get(persons.size-1).createClickListener();
         }
-        if (persons.size>6){
-            persons.get(persons.size-6).image.setVisible(true);
+        if (persons.size>5){
+            persons.get(persons.size-5).image.setVisible(true);
         }
     }
 
