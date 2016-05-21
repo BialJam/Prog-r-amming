@@ -35,12 +35,11 @@ public class OutSide extends MyScreen implements Screen{
 
     Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
 
-
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
-        action = 10;
+        action = 10  + (root.getSecurityInt()*2);
+        persons = QueueCreator.CreateQueue(persons, game, root);
     }
 
     public OutSide(MyGdxGame root) {
