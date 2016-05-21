@@ -23,6 +23,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
@@ -83,6 +84,7 @@ public class InSide extends MyScreen implements Screen {
         initBox2d();
         createDemFuckingWalls();
         createDemLights();
+        createTables(game);
     }
 
     private void initBox2d() {
@@ -102,15 +104,17 @@ public class InSide extends MyScreen implements Screen {
 
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Statics.world.step(1 / 60f, 6, 2);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z)){
+            for(AbstractInPerson per : persons){
+                per.applyForce();
+            }
+        }
 
         timer();
         game.act();
         gui.act();
 
-        for(AbstractInPerson person: persons){
-            person.move();
-            person.act(delta);
-        }
 
 
         game.act();
@@ -174,6 +178,7 @@ public class InSide extends MyScreen implements Screen {
         new JustABodyWall(10,140,1353,640,0);
         new JustABodyWall(20,230,15,535,0);
         new JustABodyWall(670,10,690,760,0);
+        new JustABodyWall(155,40,1123,330,45,true);
 
     }
 
@@ -231,6 +236,17 @@ public class InSide extends MyScreen implements Screen {
             }
 
         }
+    }
+
+    private void createTables(Stage stage){
+        TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");//table1
+        Skin skin = new Skin(atlas);
+        Image image = new Image(skin.getDrawable("table1"));
+        image.setPosition(1050,190);
+        image.rotateBy(45);
+        image.scaleBy(1.0f,0.2f);
+        stage.addActor(image);
+
     }
 
 }

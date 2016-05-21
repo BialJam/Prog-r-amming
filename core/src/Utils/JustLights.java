@@ -32,10 +32,11 @@ public class JustLights {
 //        lightBody.createFixture(fixtureDef);
 //        setPosition(posx,posy);
 
-        Statics.world.step(1 / 60f, 6, 2);
-        light =  new PointLight(Statics.rayHandler,25,colo,radius,posx,posy);
+        light =  new PointLight(Statics.rayHandler,50,colo,radius,posx,posy);
         light.getColor().a=0.8f;
         light.setColor(light.getColor());
+        light.setContactFilter((short)1,(short)1,(short)1);
+
 
     }
 
