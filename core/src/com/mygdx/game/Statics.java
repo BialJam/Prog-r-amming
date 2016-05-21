@@ -27,7 +27,7 @@ public class Statics {
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
         assetManager.load("Characters_in/Characters_in.pack", TextureAtlas.class);
         assetManager.load("Characters_out/Characters_out.pack", TextureAtlas.class);
-
+        assetManager.load("Other/Other.pack", TextureAtlas.class);
 
         while(!assetManager.update()){
             //System.out.println(assetManager.getProgress());

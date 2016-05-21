@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Statics;
 
@@ -15,20 +16,21 @@ import com.mygdx.game.Statics;
  */
 public class AbstractInPerson extends MyActor {
 
-    protected Image image;
     protected int health;
     protected int happines;
     protected int drunk;
     protected int angry;
 
+    private int animate = 0;
     private float deltatime;
     private boolean tick = false;
     private int rotate = 1;
 
     protected boolean moveRotate = true;
-    protected float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle;
+    protected float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
 
     public AbstractInPerson(Stage stage) {
+
         super(stage);
         x = 100;
         y = 100;
@@ -38,8 +40,17 @@ public class AbstractInPerson extends MyActor {
         drunk = 0;
         angle = 0;
         prev_angle = 0;
-        speedX *= (1 + Math.random()%20);
-        speedY *= (1 + Math.random()%20);
+        maxSpeed=400;
+        animate=0;
+        image.setOrigin(image.getWidth()/2, image.getHeight()/2);
+        randomize_direct();
+    }
+
+    public void randomize_direct(){
+        System.out.println(Math.random()%20);
+        speedX = (float)((Math.random() * (Math.sqrt(maxSpeed))*2) - (Math.sqrt(maxSpeed)));
+        speedY = (float)Math.sqrt( (maxSpeed - speedX*speedX));
+        System.out.println(maxSpeed + "+" + speedX + " " + speedY);
     }
 
     @Override
@@ -52,20 +63,28 @@ public class AbstractInPerson extends MyActor {
 
     }
 
+    private void animate(){
+        animate++;
+        if (animate == 13)
+            animate = -12;
+        if (animate % 3 == 0)
+        image.rotateBy(animate);
+    }
     
     public void move() {
         float dt = Gdx.graphics.getDeltaTime();
 
-        x += speedX * dt* 100;
-        y += speedY * dt * 100;
+        x += speedX * dt* 15;
+        y += speedY * dt* 15;
 
-        if(x > Statics.WIDTH){speedX *= -1;}
-        if(y > Statics.HEIGHT){speedY *= -1;}
-        if(x < 0.0f){speedX *= -1 ;}
-        if(y < 0.0f){speedY *= -1;}
+        if(x >= Statics.WIDTH){speedX *= -1;}
+        if(y >= Statics.HEIGHT){speedY *= -1;}
+        if(x <= 0.0f){speedX *= -1;}
+        if(y <= 0.0f){speedY *= -1;}
     
         setAngle();
-        
+        animate();
+
         setPosition(x, y);
     }
 
@@ -88,6 +107,10 @@ public class AbstractInPerson extends MyActor {
 
     public void setPosition(int x, int y) {
         image.setPosition(x, y);
+    }
+
+    public void setImages(String name){
+        setImages("Characters_in/Characters_in.pack", name);
     }
 
 }
