@@ -23,9 +23,10 @@ public class QueueCreator {
     static int startQueueSize = 10;
     static Stage stage;
     static Array<AbstractOutPerson> persons;
-    static Array<AbstractOutPerson> inPersons = new Array<AbstractOutPerson>();
+    static Array<AbstractOutPerson> inPersons;
 
     public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage){
+        inPersons = new Array<AbstractOutPerson>();
         QueueCreator.persons = previousPersons;
         clearPreviousTable(previousPersons);
         QueueCreator.stage = stage;

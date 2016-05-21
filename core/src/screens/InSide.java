@@ -1,7 +1,9 @@
 package screens;
 
 import Actors.ActorString;
+import Actors.Background;
 import Actors.people.In.BadassIn;
+import Utils.JustABodyWall;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,13 +11,17 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Statics;
 
 /**
  * Created by Marcin on 2016-05-21.
@@ -33,6 +39,7 @@ public class InSide extends MyScreen implements Screen {
 
     public InSide(MyGdxGame root){
         super();
+        createBacground();
         this.root = root;
         badass = new BadassIn(game);
         deltatime = 0;
@@ -42,8 +49,11 @@ public class InSide extends MyScreen implements Screen {
         timerString = new ActorString(font, "3:00", 1200, 600, game);
         game.addActor(timerString);
 
-        world = new World(new Vector2(0,0), true);
         debugRenderer = new Box2DDebugRenderer();
+        world = Statics.world;
+        debugMatrix =  game.getBatch().getProjectionMatrix();
+        JustABodyWall wall = new JustABodyWall(100,100,200,200);
+
     }
 
     @Override
@@ -60,12 +70,12 @@ public class InSide extends MyScreen implements Screen {
         game.act();
         badass.act(delta);
 
-        debugMatrix =  game.getBatch().getProjectionMatrix().cpy();
+
 
         game.draw();
-
-
         debugRenderer.render(world, debugMatrix);
+
+
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
             badass.randomize_direct();
@@ -111,5 +121,11 @@ public class InSide extends MyScreen implements Screen {
             }
 
         }
+    }
+
+    private void createBacground(){
+        TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");
+        Skin skin = new Skin(atlas);
+        new Background(new Image(skin.getDrawable("bg_in")),game);
     }
 }

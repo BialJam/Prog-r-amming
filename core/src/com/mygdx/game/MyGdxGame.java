@@ -21,10 +21,11 @@ public class MyGdxGame extends Game {
 	@Override
 	public void create () {
 		Statics.createAssets();
+		Statics.createWorld();
 		menu = new Menu(this);
 		outside = new OutSide(this);
 		inside = new InSide(this);
-		setScreen(new Menu(this));
+		setScreen(inside);
 
 	}
 
