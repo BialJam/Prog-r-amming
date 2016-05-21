@@ -43,8 +43,8 @@ public class OutSide extends MyScreen implements Screen{
         new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
         persons = QueueCreator.CreateQueue(persons, game, root);
+        QueueCreator.shade();
     }
-
 
     @Override
     public void render(float delta) {
