@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.Statics;
 
 /**
  * Created by Marcin on 2016-05-20.
@@ -54,6 +55,12 @@ public abstract class MyActor extends Actor {
 
     public void setImages(){
 
+    }
+    public void setImages(String path, String name){
+        atlas = Statics.assetManager.get(path);
+        skin = new Skin(atlas);
+        image = new Image(skin.getDrawable(name));
+        stageIBelongTo.addActor(image);
     }
 
     public void setStatistics(){

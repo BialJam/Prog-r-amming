@@ -14,10 +14,6 @@ public class DudeOut extends AbstractOutPerson {
     }
 
     public void setImages(){
-        atlas = Statics.assetManager.get("Characters_out/Characters_out.pack");
-        skin = new Skin(atlas);
-        int randomized = Math.abs(rand.nextInt())%2+1;
-        image = new Image(skin.getDrawable("ziomek"+randomized));
-        stageIBelongTo.addActor(image);
+        setImages("ziomek");
     }
 }

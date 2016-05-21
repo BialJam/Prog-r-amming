@@ -79,6 +79,11 @@ public class AbstractOutPerson extends MyActor {
         });
     }
 
+    public void setImages(String name){
+        int randomized = Math.abs(rand.nextInt())%2+1;
+        setImages("Characters_out/Characters_out.pack", name+randomized);
+    }
+
     public void moveFront(){
         image.addAction(Actions.moveBy(30,-70,0.2f));
     }

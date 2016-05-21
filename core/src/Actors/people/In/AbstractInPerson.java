@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Statics;
 
@@ -15,7 +16,6 @@ import com.mygdx.game.Statics;
  */
 public class AbstractInPerson extends MyActor {
 
-    protected Image image;
     protected int health;
     protected int happines;
     protected int drunk;
@@ -95,6 +95,10 @@ public class AbstractInPerson extends MyActor {
 
     public void setPosition(int x, int y) {
         image.setPosition(x, y);
+    }
+
+    public void setImages(String name){
+        setImages("Characters_in/Characters_in.pack", name);
     }
 
 }
