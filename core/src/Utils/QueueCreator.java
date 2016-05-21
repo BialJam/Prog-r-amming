@@ -23,7 +23,7 @@ public class QueueCreator {
     static int desscount = 3;
     static Stage stage;
     static Array<AbstractOutPerson> persons;
-    static Array<AbstractOutPerson> inPersons;
+    static Array<AbstractOutPerson> inPersons = new Array<AbstractOutPerson>();
 
     public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage){
         QueueCreator.persons = previousPersons;
