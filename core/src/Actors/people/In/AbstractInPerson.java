@@ -169,7 +169,7 @@ public class AbstractInPerson extends MyActor {
         animate();
         randomizeWant();
         need.doIt();
-        
+
 
 //
 //        setPosition(x, y);
