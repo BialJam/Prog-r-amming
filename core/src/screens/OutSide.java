@@ -29,8 +29,8 @@ import java.awt.*;
  */
 public class OutSide extends MyScreen implements Screen{
     MyGdxGame root;
-    int action = 10;
-    ActorString moneyString;
+    public int action = 10;
+    ActorString moneyString, pointString;
     BitmapFont font = new BitmapFont();
 
     Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
@@ -40,6 +40,7 @@ public class OutSide extends MyScreen implements Screen{
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
+        action = 10;
     }
 
     public OutSide(MyGdxGame root) {
@@ -49,17 +50,20 @@ public class OutSide extends MyScreen implements Screen{
         new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
         persons = QueueCreator.CreateQueue(persons, game, root);
+        QueueCreator.shade();
 
         font.setColor(Color.GREEN);
         font.getData().setScale(3,3);
         moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        pointString = new ActorString(font, "Move: " + 10, 1150, 640, gui);
         gui.addActor(moneyString);
+        gui.addActor(pointString);
     }
-
 
     @Override
     public void render(float delta) {
         moneyString.changeString(root.getMoney());
+        pointString.changeString("Move: "+root.outside.action);
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
@@ -67,7 +71,7 @@ public class OutSide extends MyScreen implements Screen{
         gui.act();
         gui.draw();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C) || action==0) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
 

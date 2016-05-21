@@ -95,7 +95,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-
+        time = 60;
     }
 
     @Override
@@ -114,8 +114,6 @@ public class InSide extends MyScreen implements Screen {
         timer();
         game.act();
         gui.act();
-
-
 
         game.act();
         game.draw();
@@ -230,11 +228,11 @@ public class InSide extends MyScreen implements Screen {
             deltatime = 0;
             time--;
             clock.act(0.f);
+            System.out.println(time);
             if (time == 0){
-                root.outside.action = 2;
+                root.outside.action = 10;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
             }
-
         }
     }
 
@@ -246,7 +244,5 @@ public class InSide extends MyScreen implements Screen {
         image.rotateBy(45);
         image.scaleBy(1.0f,0.2f);
         stage.addActor(image);
-
     }
-
 }
