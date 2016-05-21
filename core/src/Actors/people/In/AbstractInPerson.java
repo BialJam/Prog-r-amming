@@ -28,12 +28,12 @@ import java.util.Collection;
  */
 public class AbstractInPerson extends MyActor {
 
-    protected int health;
-    protected int happines;
-    protected int drunk;
-    protected int angry;
+    public int health;
+    public int happines;
+    public int drunk;
+    public int angry;
     protected int want = 0;
-    protected boolean finishedWant = true;
+    public boolean finishedWant = true;
     protected Need need;
     protected Array<Need> allNeeds;
 
@@ -168,10 +168,9 @@ public class AbstractInPerson extends MyActor {
     public void move() {
         animate();
         randomizeWant();
-
         need.doIt();
+        
 
-        moveTotarget(new Vector2(700,600));
 //
 //        setPosition(x, y);
 
@@ -226,5 +225,9 @@ public class AbstractInPerson extends MyActor {
         vector.x = vector.x * 10000000;
         vector.y = vector.y * 10000000;
         body.body.setLinearVelocity(vector);
+    }
+
+    public Vector2 getPersonVector(){
+        return new Vector2(this.image.getX(), this.image.getY());
     }
 }

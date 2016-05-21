@@ -45,7 +45,7 @@ public class InSide extends MyScreen implements Screen {
 
     Clock clock;
 
-    int time;
+    static int time;
     float timeLights = 0;
 
     double deltatime;
@@ -230,7 +230,6 @@ public class InSide extends MyScreen implements Screen {
             deltatime = 0;
             time--;
             clock.act(0.f);
-            System.out.println(time);
             if (time == 0){
                 root.outside.action = 10;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
@@ -246,5 +245,9 @@ public class InSide extends MyScreen implements Screen {
         image.rotateBy(45);
         image.scaleBy(1.0f,0.2f);
         stage.addActor(image);
+    }
+
+    public static int getTime(){
+        return time;
     }
 }

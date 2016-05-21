@@ -1,9 +1,11 @@
 package Actors.people.In.needs;
 
 import Actors.people.In.AbstractInPerson;
-import Utils.Places;
+import Utils.Vectors;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Statics;
+import screens.InSide;
 
 /**
  * 0 - losowe chodzenie po planszy
@@ -15,9 +17,19 @@ public class MoveRandomly extends Need {
         super(person);
     }
 
-
     @Override
     public void doIt() {
-        p.moveTotarget(Places.getRandom()); 
+        if(target == null || Vectors.vectorLength(new Vector2(p.image.getX(), p.image.getY()), target) < 40){
+            target = Vectors.getRandom();
+        }
+        if(time != InSide.getTime()){
+            count --;
+            time = InSide.getTime();
+        }
+        if(count == 0){
+            count = 10;
+            p.finishedWant = true;
+        }
+            p.moveTotarget(target);
     }
 }
