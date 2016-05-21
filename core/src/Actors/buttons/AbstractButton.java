@@ -14,13 +14,14 @@ import com.mygdx.game.Statics;
  */
 public class AbstractButton extends MyActor {
 
+    public AbstractButton(Image image, Stage stage) {
+        super(image,stage);
+    }
+
     public AbstractButton(Stage stage) {
         super(stage);
     }
 
-    public AbstractButton(Image image, Stage stage) {
-        super(image, stage);
-    }
 
     @Override
     public void setMyOwnClickListener(ClickListener listener) {

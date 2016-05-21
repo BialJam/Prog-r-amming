@@ -1,39 +1,35 @@
 package screens;
 
 import Actors.buttons.AbstractButton;
-import Actors.people.Out.Badass;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 
 /**
  * Created by Marcin on 2016-05-20.
  */
 public class Menu extends MyScreen implements Screen {
+    MyGdxGame root;
 
     TextureAtlas atlas = null;
     Skin skin = null;
     AbstractButton butStart;
-    Badass badass;
     AbstractButton butQuit;
 
-    public Menu() {
+
+    public Menu(MyGdxGame root) {
         super();
+        this.root = root;
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
         skin = new Skin(atlas);
-        for(int i=0;i<10;i++) {
-            badass = new Badass(game);
-        }
         initButtons();
     }
 
@@ -104,7 +100,8 @@ public class Menu extends MyScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new OutSide());
+                root.outside.action = 2;
+                ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
             }
         });
 

@@ -12,14 +12,15 @@ import com.mygdx.game.Statics;
  * Created by sury on 20.05.16.
  */
 public class MyScreen {
-    protected Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);;
+    protected Viewport viewport = new ExtendViewport(Statics.WIDTH,Statics.HEIGHT);
     protected Stage game = new Stage(viewport);
     protected Stage gui = new Stage(viewport);
-
 
     InputMultiplexer inputMultiplexer = new InputMultiplexer(game,gui);
 
     public MyScreen() {
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
+
+
 }

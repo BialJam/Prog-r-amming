@@ -3,6 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import screens.InSide;
+import screens.Menu;
+import screens.OutSide;
 
 /**
  * Created by Marcin on 2016-05-20.
@@ -18,11 +21,12 @@ public class Statics {
     public static void createAssets(){
         assetManager = new AssetManager();
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
-        assetManager.load("Characters_front/Dres/Paczka1.atlas", TextureAtlas.class);
+        assetManager.load("Characters_front/Dres/Dres_out.pack", TextureAtlas.class);
+        assetManager.load("Characters_in/Dresy_in.pack", TextureAtlas.class);
+
 
         while(!assetManager.update()){
             //System.out.println(assetManager.getProgress());
         }
-        int x = 0;
     }
 }
