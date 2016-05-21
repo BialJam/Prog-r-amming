@@ -1,6 +1,7 @@
 package Actors.people.In.needs;
 
 import Actors.people.In.AbstractInPerson;
+import Utils.Places;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Statics;
 
@@ -9,7 +10,6 @@ import com.mygdx.game.Statics;
  * Created by Marcin on 2016-05-21.
  */
 public class MoveRandomly extends Need {
-    AbstractInPerson p;
 
     public MoveRandomly(AbstractInPerson person) {
         super(person);
@@ -18,6 +18,6 @@ public class MoveRandomly extends Need {
 
     @Override
     public void doIt() {
-
+        p.moveTotarget(Places.getRandom()); 
     }
 }
