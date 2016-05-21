@@ -4,6 +4,7 @@ import Actors.MyActor;
 import Actors.buttons.AbstractButton;
 import Utils.QueueCreator;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -55,7 +56,6 @@ public class AbstractOutPerson extends MyActor {
                 MathUtils math = new MathUtils();
                 if(math.random(0,1) == 0)
                     image.addAction(Actions.parallel(Actions.fadeOut(0.8f),Actions.moveBy(400,200,1f)));
-
                 else
                     image.addAction(Actions.parallel(Actions.fadeOut(0.8f),Actions.moveBy(-400,200,1f)));
             }
@@ -74,6 +74,7 @@ public class AbstractOutPerson extends MyActor {
                 else
                     allow = false;
                 AbstractOutPerson.this.moveToRightLeft(allow);
+                QueueCreator.shade();
                 return super.touchDown(event, x, y, pointer, button);
             }
         });

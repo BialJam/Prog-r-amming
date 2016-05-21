@@ -19,25 +19,25 @@ public class Statics {
     static public int ACTION_COUNT = 10;
     static public World world;
     static public RayHandler rayHandler;
-    public static AssetManager assetManager ;
+    public static AssetManager assetManager;
 
 
-    public static void createAssets(){
+    public static void createAssets() {
         assetManager = new AssetManager();
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
         assetManager.load("Characters_in/Characters_in.pack", TextureAtlas.class);
         assetManager.load("Characters_out/Characters_out.pack", TextureAtlas.class);
         assetManager.load("Other/Other.pack", TextureAtlas.class);
 
-        while(!assetManager.update()){
+        while (!assetManager.update()) {
             //System.out.println(assetManager.getProgress());
         }
     }
 
-    public static void createWorld(){
-        world =new World(new Vector2(0, 0), true);
+    public static void createWorld() {
+        world = new World(new Vector2(0, 0), true);
         rayHandler = new RayHandler(world);
-        }
+    }
 
 
 }
