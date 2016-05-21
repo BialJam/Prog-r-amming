@@ -21,6 +21,7 @@ public class AbstractInPerson extends MyActor {
     protected int drunk;
     protected int angry;
 
+    private int animate = 0;
     private float deltatime;
     private boolean tick = false;
     private int rotate = 1;
@@ -39,8 +40,10 @@ public class AbstractInPerson extends MyActor {
         angle = 0;
         prev_angle = 0;
         maxSpeed=400;
+        animate=0;
+        image.setOrigin(image.getWidth()/2, image.getHeight()/2);
         randomize_direct();
-        }
+    }
 
     public void randomize_direct(){
         System.out.println(Math.random()%20);
@@ -59,6 +62,13 @@ public class AbstractInPerson extends MyActor {
 
     }
 
+    private void animate(){
+        animate++;
+        if (animate == 13)
+            animate = -12;
+        if (animate % 3 == 0)
+        image.rotateBy(animate);
+    }
     
     public void move() {
         float dt = Gdx.graphics.getDeltaTime();
@@ -72,7 +82,8 @@ public class AbstractInPerson extends MyActor {
         if(y <= 0.0f){speedY *= -1;}
     
         setAngle();
-        
+        animate();
+
         setPosition(x, y);
     }
 
