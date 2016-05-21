@@ -21,11 +21,12 @@ public class Statics {
     public static void createAssets(){
         assetManager = new AssetManager();
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
+        assetManager.load("Characters_front/Dres/Dres_out.pack", TextureAtlas.class);
         assetManager.load("Characters_front/Dres/Paczka1.atlas", TextureAtlas.class);
+
 
         while(!assetManager.update()){
             System.out.println(assetManager.getProgress());
         }
-        int x = 0;
     }
 }
