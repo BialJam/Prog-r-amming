@@ -3,8 +3,10 @@ package Utils;
 import Actors.people.AbstractPerson;
 import Actors.people.Out.AbstractOutPerson;
 import Actors.people.Out.BadassOut;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -20,11 +22,14 @@ public class QueueCreator {
     static int classes = 4;
     static int desscount = 3;
     static Stage stage;
+    static Array<AbstractOutPerson> persons;
+    static Array<AbstractOutPerson> inPersons;
 
     public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage){
+        QueueCreator.persons = previousPersons;
         clearPreviousTable(previousPersons);
         QueueCreator.stage = stage;
-        Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
+        QueueCreator.persons = new Array<AbstractOutPerson>();
 
         createAndQueuePerson(persons);
 
@@ -36,15 +41,17 @@ public class QueueCreator {
         for(int i = 0; i < 10 + lvl * queueMultiplayer; i++){
             persons.add(createPerson());
         }
-        int randx = 0;
-        int randy = 0;
+        int randx;
 
         for(int iteration = 0 ; iteration<persons.size; iteration++){
-            randx = MathUtils.random(-30,30);
-            randy = MathUtils.random(-30,30);
-            persons.get(persons.size - 1 - iteration).setPosition((iteration%5+1)*90 +randx,(iteration/5+1)*100 +randy);
+            randx = MathUtils.random(-70,70);
+            persons.get(persons.size - 1 - iteration).setPosition(400 +randx,(iteration+1)*70);
             persons.get(persons.size - 1 - iteration).setScale(0.5f,0.5f);
         }
+        for (AbstractOutPerson per : persons){
+            per.createClickListener();
+        }
+
     }
 
     private static AbstractOutPerson createPerson(){
@@ -77,7 +84,16 @@ public class QueueCreator {
             per.image.remove();
 
         }
+    }
 
+    public static void MoveQueue(){
+        for(AbstractOutPerson per : persons){
+            per.moveFront();
+        }
+    }
+
+    public static void getPersonIn(AbstractOutPerson per){
+        inPersons.add(per);
     }
 
 }

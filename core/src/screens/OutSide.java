@@ -31,7 +31,7 @@ public class OutSide extends MyScreen implements Screen{
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     public OutSide(MyGdxGame root) {
@@ -56,7 +56,7 @@ public class OutSide extends MyScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width,height);
     }
 
     @Override

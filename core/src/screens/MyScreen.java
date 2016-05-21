@@ -19,7 +19,6 @@ public class MyScreen {
     InputMultiplexer inputMultiplexer = new InputMultiplexer(game,gui);
 
     public MyScreen() {
-        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
 
