@@ -15,9 +15,9 @@ public class BadassIn extends AbstractInPerson {
     }
 
     public void setImages(){
-        atlas = Statics.assetManager.get("Characters_front/Dres/Paczka1.atlas");
+        atlas = Statics.assetManager.get("Characters_in/Dresy_in.pack");
         skin = new Skin(atlas);
-        image = new Image(skin.getDrawable("Dres_head1"));
+        image = new Image(skin.getDrawable("dres1"));
         stageIBelongTo.addActor(image);
     }
 }
