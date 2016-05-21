@@ -50,9 +50,9 @@ public class JustABodyWall {
         fixtureDef.density = 1f;//gestosc
         fixtureDef.friction = 0.9f;//poziom tarcia
         fixtureDef.restitution = 0.2f; // Make it bounce a little bit
-        fixtureDef.filter.categoryBits = (short)0;
-        fixtureDef.filter.groupIndex = (short)0;
-        fixtureDef.filter.maskBits = (short)0;
+        fixtureDef.filter.categoryBits = (short)2;
+        fixtureDef.filter.groupIndex = (short)2;
+        fixtureDef.filter.maskBits = (short)3;
         wallBody.createFixture(fixtureDef);
         setPosition(posx,posy,rota);
     }

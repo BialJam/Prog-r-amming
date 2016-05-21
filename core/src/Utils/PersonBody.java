@@ -11,11 +11,12 @@ import com.mygdx.game.Statics;
  * Created by sury on 21.05.16.
  */
 public class PersonBody {
+
     public Body body;
 
     public PersonBody(Image image) {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(400, 400);
+        bodyDef.position.set(700, 400);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         body = Statics.world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
@@ -28,7 +29,10 @@ public class PersonBody {
         fixtureDef.density = 0.000000000001f;//gestosc
         fixtureDef.friction = 0.2f;//poziom tarcia
         fixtureDef.restitution = 0.7f; // Make it bounce a little bit
+        fixtureDef.filter.categoryBits = (short)1;
+        fixtureDef.filter.groupIndex = (short)1;
+        fixtureDef.filter.maskBits = (short)3;
         body.createFixture(fixtureDef);
-        body.setTransform(400,400,0);
+        body.setTransform(900,400,0);
     }
 }

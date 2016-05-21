@@ -36,7 +36,7 @@ public class JustLights {
         light.getColor().a=0.8f;
         light.setColor(light.getColor());
         light.setContactFilter((short)1,(short)1,(short)1);
-
+//1
 
     }
 
