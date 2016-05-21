@@ -29,13 +29,11 @@ import java.awt.*;
  */
 public class OutSide extends MyScreen implements Screen{
     MyGdxGame root;
-    int action = 10;
+    public int action = 10;
     ActorString moneyString;
     BitmapFont font = new BitmapFont();
 
     Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
-
-
 
     @Override
     public void show() {
@@ -67,10 +65,9 @@ public class OutSide extends MyScreen implements Screen{
         gui.act();
         gui.draw();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || action==0 ) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
-
     }
 
     @Override
@@ -97,8 +94,4 @@ public class OutSide extends MyScreen implements Screen{
     public void dispose() {
 
     }
-
-
-
-
 }

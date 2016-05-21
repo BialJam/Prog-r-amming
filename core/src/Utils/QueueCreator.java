@@ -140,6 +140,7 @@ public class QueueCreator {
     }
 
     public static void MoveQueue() {
+        root.outside.action -- ;
         for (AbstractOutPerson per : persons) {
             per.moveFront();
         }
