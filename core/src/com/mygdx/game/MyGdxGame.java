@@ -17,6 +17,8 @@ public class MyGdxGame extends Game {
 	public OutSide outside;
 	public InSide inside;
 
+	private int money = 200;
+
 	
 	@Override
 	public void create () {
@@ -26,6 +28,14 @@ public class MyGdxGame extends Game {
 		outside = new OutSide(this);
 		inside = new InSide(this);
 		setScreen(outside);
+	}
+
+	public String getMoney(){
+		return money+"$";
+	}
+
+	public void setMoney(int change){
+		money += change;
 	}
 
 

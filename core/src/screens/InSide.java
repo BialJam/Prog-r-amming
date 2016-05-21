@@ -46,6 +46,7 @@ public class InSide extends MyScreen implements Screen {
     Box2DDebugRenderer debugRenderer;
     Matrix4 debugMatrix;
     World world;
+    ActorString moneyString;
 
     public InSide(MyGdxGame root){
         super();
@@ -54,11 +55,13 @@ public class InSide extends MyScreen implements Screen {
         clock = new Clock(game);
         deltatime = 0;
         time = 60;
-        font = new BitmapFont();
-        font.setColor(Color.BLACK);
-        timerString = new ActorString(font, "1:00", 1200, 600, game);
-        game.addActor(timerString);
         persons = new Array<>();
+
+        font = new BitmapFont();
+        font.setColor(Color.GREEN);
+        font.getData().setScale(3,3);
+        moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        gui.addActor(moneyString);
 
         debugRenderer = new Box2DDebugRenderer();
         world = Statics.world;
@@ -79,6 +82,7 @@ public class InSide extends MyScreen implements Screen {
 
         timer();
         game.act();
+        gui.act();
         for(AbstractInPerson person: persons){
             person.move();
             person.act(delta);
@@ -87,6 +91,7 @@ public class InSide extends MyScreen implements Screen {
 
 
         game.draw();
+        gui.draw();
         debugRenderer.render(world, debugMatrix);
 
 
@@ -126,7 +131,6 @@ public class InSide extends MyScreen implements Screen {
         if(deltatime > 1){
             deltatime = 0;
             time--;
-            timerString.changeString(time/60 + ":" + time%60);
             clock.act(0.f);
             if (time == 0){
                 root.outside.action = 2;
