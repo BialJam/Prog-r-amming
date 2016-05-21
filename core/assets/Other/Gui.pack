@@ -1,0 +1,54 @@
+
+Gui.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+guiBody
+  rotate: false
+  xy: 1, 515
+  size: 495, 430
+  orig: 495, 430
+  offset: 0, 0
+  index: -1
+guiAlcoBtn
+  rotate: false
+  xy: 1, 258
+  size: 413, 255
+  orig: 413, 255
+  offset: 0, 0
+  index: -1
+guiCleanerBtn
+  rotate: false
+  xy: 498, 690
+  size: 413, 255
+  orig: 413, 255
+  offset: 0, 0
+  index: -1
+guiFoodBtn
+  rotate: false
+  xy: 1, 1
+  size: 413, 255
+  orig: 413, 255
+  offset: 0, 0
+  index: -1
+guiSecurityBtn
+  rotate: false
+  xy: 498, 433
+  size: 413, 255
+  orig: 413, 255
+  offset: 0, 0
+  index: -1
+guiCloseBtn
+  rotate: false
+  xy: 416, 172
+  size: 142, 259
+  orig: 142, 259
+  offset: 0, 0
+  index: -1
+guiOpenBtn
+  rotate: false
+  xy: 560, 172
+  size: 142, 259
+  orig: 142, 259
+  offset: 0, 0
+  index: -1
