@@ -30,6 +30,7 @@ public class AbstractInPerson extends MyActor {
     protected float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
 
     public AbstractInPerson(Stage stage) {
+
         super(stage);
         x = 100;
         y = 100;

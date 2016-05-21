@@ -1,7 +1,12 @@
 package screens;
 
 import Actors.ActorString;
+import Actors.Clock;
+
+import Actors.people.In.AbstractInPerson;
+
 import Actors.Background;
+
 import Actors.people.In.BadassIn;
 import Utils.JustABodyWall;
 import Utils.JustLights;
@@ -20,9 +25,13 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+
+import com.badlogic.gdx.utils.Array;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 
@@ -31,68 +40,73 @@ import com.mygdx.game.Statics;
  */
 public class InSide extends MyScreen implements Screen {
     MyGdxGame root;
-    BadassIn badass;
+
+
+    Clock clock;
 
     int time;
     float timeLights = 0;
 
     double deltatime;
     ActorString timerString;
-    private BitmapFont font;
     Box2DDebugRenderer debugRenderer;
     Matrix4 debugMatrix;
     World world;
+
+    Array<AbstractInPerson> persons;
     Array<JustLights> parket = new Array<JustLights>();
     Array<JustLights> parket2 = new Array<JustLights>();
 
     public InSide(MyGdxGame root){
         super();
         createBacground();
-        this.root = root;
-        badass = new BadassIn(game);
-        deltatime = 0;
-        time = 180;
-        font = new BitmapFont();
-        font.setColor(Color.BLACK);
-        timerString = new ActorString(font, "3:00", 1200, 600, game);
-        game.addActor(timerString);
 
+        this.root = root;
+
+        clock = new Clock(gui);
+        deltatime = 0;
+        time = 60;
+
+        persons = new Array<AbstractInPerson>();
+
+        initBox2d();
+        createDemFuckingWalls();
+        createDemLights();
+    }
+
+    private void initBox2d() {
         debugRenderer = new Box2DDebugRenderer();
         world = Statics.world;
         debugMatrix =  game.getBatch().getProjectionMatrix();
-
-        createDemFuckingWalls();
-        createDemLights();
     }
 
     @Override
     public void show() {
 
-    } 
-    
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        badass.move();
+
         timer();
+
+        for(AbstractInPerson person: persons){
+            person.move();
+            person.act(delta);
+        }
+
+
         game.act();
-        badass.act(delta);
-
-
-
         game.draw();
         debugRenderer.render(world, debugMatrix);
         Statics.rayHandler.setCombinedMatrix(game.getCamera().combined);
         Statics.rayHandler.updateAndRender();
 
-
-
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-            badass.randomize_direct();
-        }
         SwitchLights();
+        gui.act();
+        gui.draw();
 
     }
 
@@ -122,18 +136,9 @@ public class InSide extends MyScreen implements Screen {
     }
 
 
-    public void timer(){
-        deltatime += Gdx.graphics.getDeltaTime();
-        if(deltatime > 1){
-            deltatime = 0;
-            time--;
-            timerString.changeString(time/60 + ":" + time%60);
-            if (time == 0){
-                root.outside.action = 2;
-                ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
-            }
 
-        }
+    public void addPerson(AbstractInPerson person) {
+        persons.add(person);
     }
 
     private void createBacground(){
@@ -176,7 +181,7 @@ public class InSide extends MyScreen implements Screen {
             lgt.light.setActive(false);
         }
     }
-
+    //Policz czas i co 1 sec wylaczaj i wlaczaj swiatla
     private void SwitchLights(){
         timeLights += Gdx.graphics.getDeltaTime();
         if(timeLights>1.0){
@@ -197,4 +202,19 @@ public class InSide extends MyScreen implements Screen {
             timeLights =0;
         }
     }
+
+    public void timer(){
+        deltatime += Gdx.graphics.getDeltaTime();
+        if(deltatime > 1){
+            deltatime = 0;
+            time--;
+            clock.act(0.f);
+            if (time == 0){
+                root.outside.action = 2;
+                ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
+            }
+
+        }
+    }
+
 }
