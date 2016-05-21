@@ -50,7 +50,7 @@ public class AbstractOutPerson extends MyActor {
             if (allowed){
                 isAllowedIn = true;
                 image.addAction(Actions.sequence(Actions.fadeOut(0.4f),Actions.moveBy(1500,0.05f)));
-                QueueCreator.getPersonIn(this);
+                QueueCreator.addPersonIn(this);
             }else{
                 MathUtils math = new MathUtils();
                 if(math.random(0,1) == 0)
@@ -77,6 +77,11 @@ public class AbstractOutPerson extends MyActor {
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+    }
+
+    public void setImages(String name){
+        int randomized = Math.abs(rand.nextInt())%2+1;
+        setImages("Characters_out/Characters_out.pack", name+randomized);
     }
 
     public void moveFront(){

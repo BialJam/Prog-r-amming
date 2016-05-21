@@ -16,12 +16,7 @@ public class BadassOut extends AbstractOutPerson{
     }
 
     public void setImages(){
-        atlas = Statics.assetManager.get("Characters_out/Characters_out.pack");
-        skin = new Skin(atlas);
-        int randomized = Math.abs(rand.nextInt())%3+1;
-        image = new Image(skin.getDrawable("dres"+randomized));
-        stageIBelongTo.addActor(image);
-
+        setImages("dres");
     }
 
          
