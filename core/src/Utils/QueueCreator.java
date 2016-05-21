@@ -36,7 +36,8 @@ public class QueueCreator {
     static Array<AbstractOutPerson> persons;
 
 
-    static HashMap<Class<?>, Class<?>> inMap = new HashMap<Class<?>, Class<?>>() {{
+
+    static HashMap<Class<?>, Class<?>> inMap = new HashMap<Class<?>, Class<?>>(){{
         this.put(BadassOut.class, BadassIn.class);
         this.put(DudeOut.class, DudeIn.class);
         this.put(GirlOut.class, GirlIn.class);
@@ -163,6 +164,7 @@ public class QueueCreator {
         try {
             con = newPerson.getConstructor(Stage.class);
             root.inside.addPerson((AbstractInPerson) con.newInstance(root.inside.getGameStage()));
+            root.setMoney(10);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }

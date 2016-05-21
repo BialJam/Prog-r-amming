@@ -1,5 +1,6 @@
 package screens;
 
+import Actors.ActorString;
 import Actors.Background;
 import Actors.people.AbstractPerson;
 import Actors.people.Out.AbstractOutPerson;
@@ -8,7 +9,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -20,12 +22,16 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 import com.badlogic.gdx.utils.Array;
 
+import java.awt.*;
+
 /**
  * Created by Michalina on 2016-05-20.
  */
 public class OutSide extends MyScreen implements Screen{
     MyGdxGame root;
     int action = 10;
+    ActorString moneyString;
+    BitmapFont font = new BitmapFont();
 
     Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
 
@@ -44,14 +50,22 @@ public class OutSide extends MyScreen implements Screen{
         this.root = root;
         persons = QueueCreator.CreateQueue(persons, game, root);
         QueueCreator.shade();
+
+        font.setColor(Color.GREEN);
+        font.getData().setScale(3,3);
+        moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        gui.addActor(moneyString);
     }
 
     @Override
     public void render(float delta) {
+        moneyString.changeString(root.getMoney());
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
         game.draw();
+        gui.act();
+        gui.draw();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
