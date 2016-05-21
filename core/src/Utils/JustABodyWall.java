@@ -1,5 +1,6 @@
 package Utils;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -12,9 +13,9 @@ import com.mygdx.game.Statics;
  */
 public class JustABodyWall {
     private Body wallBody;
+    private static MathUtils math = new MathUtils();
 
-
-    public JustABodyWall(int width, int height, int posx, int posy ) {
+    public JustABodyWall(int width, int height, int posx, int posy,float rota ) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(700, 700);
@@ -26,12 +27,15 @@ public class JustABodyWall {
         fixtureDef.shape = shape;//przypisanie ciala
         fixtureDef.density = 1f;//gestosc
         fixtureDef.friction = 0.9f;//poziom tarcia
-        fixtureDef.restitution = 0.0f; // Make it bounce a little bit
+        fixtureDef.restitution = 0.2f; // Make it bounce a little bit
         wallBody.createFixture(fixtureDef);
-        setPosition(posx,posy);
+        setPosition(posx,posy,rota);
     }
 
-    public void setPosition(float x,float y){
-        wallBody.setTransform(new Vector2(x,y),0);
+    public void setPosition(float x,float y,float rota){
+        rota = math.degreesToRadians * rota;
+        wallBody.setTransform(new Vector2(x,y),rota);
     }
+
+
 }
