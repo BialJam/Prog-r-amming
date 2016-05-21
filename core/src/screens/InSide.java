@@ -60,6 +60,7 @@ public class InSide extends MyScreen implements Screen {
     World world;
     ActorString moneyString;
     BitmapFont font, font_bttn;
+    float fixed_timer;
 
     Array<AbstractInPerson> persons;
     Array<JustLights> parket = new Array<JustLights>();
@@ -92,6 +93,7 @@ public class InSide extends MyScreen implements Screen {
         clock = new Clock(gui);
         deltatime = 0;
         time = 60;
+        fixed_timer = 0;
 
         font = new BitmapFont();
         font.setColor(Color.GREEN);
@@ -365,10 +367,15 @@ public class InSide extends MyScreen implements Screen {
 
     public void timer() {
         deltatime += Gdx.graphics.getDeltaTime();
+        fixed_timer += Gdx.graphics.getDeltaTime();
+        System.out.println(fixed_timer);
+        if (fixed_timer*6 > 1){
+            fixed_timer = 0;
+            clock.act(0.f);
+        }
         if (deltatime > 1) {
             deltatime = 0;
             time--;
-            clock.act(0.f);
             System.out.println(time);
             if (time == 0) {
                 root.outside.action = 10;
