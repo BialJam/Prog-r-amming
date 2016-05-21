@@ -33,10 +33,10 @@ public class JustLights {
 //        setPosition(posx,posy);
 
         light =  new PointLight(Statics.rayHandler,50,colo,radius,posx,posy);
-        light.getColor().a=0.8f;
+        light.getColor().a=0.75f;
         light.setColor(light.getColor());
         light.setContactFilter((short)1,(short)1,(short)1);
-
+//1
 
     }
 

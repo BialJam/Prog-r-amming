@@ -122,7 +122,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        moneyString.changeString(root.getMoney());
+        //moneyString.changeString(root.getMoney());
 
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -311,6 +311,7 @@ public class InSide extends MyScreen implements Screen {
         new JustLights(1250, 730, 800, Color.WHITE);
         new JustLights(700, 730, 800, Color.WHITE);
         new JustLights(50, 300, 250, Color.WHITE);
+
 
 //        Disco Ligths
         parket.add(new JustLights(400, 150, 400, Color.GOLD));
