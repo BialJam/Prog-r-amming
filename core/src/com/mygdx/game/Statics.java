@@ -21,6 +21,7 @@ public class Statics {
     static public RayHandler rayHandler;
     public static AssetManager assetManager;
     public static int cleaner_count=1, guard_count=3, alco_count=10, food_count=10;
+    public static boolean debug = true;
 
 
     public static void createAssets() {

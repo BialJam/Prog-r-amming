@@ -1,10 +1,14 @@
 package Actors.people.In;
 
+import Actors.ActorString;
 import Actors.MyActor;
+import Actors.people.In.needs.*;
 import Utils.PersonBody;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.btree.decorator.Random;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.RandomXS128;
@@ -27,12 +31,14 @@ import java.util.Collection;
  */
 public class AbstractInPerson extends MyActor {
 
-    protected int health;
-    protected int happines;
-    protected int drunk;
-    protected int angry;
+    public int health;
+    public int happines;
+    public int drunk;
+    public int angry;
     protected int want = 0;
-    protected boolean finishedWant = true;
+    public boolean finishedWant = true;
+    protected Need need;
+    protected Array<Need> allNeeds;
 
     // 0 - losowo łazi po planszy
     // 1 - chce mu się chlać
@@ -50,14 +56,26 @@ public class AbstractInPerson extends MyActor {
     private int rotate = 1;
 
     protected boolean moveRotate = true;
-    protected float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
+    public float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
+
+    // DEBUG
+    BitmapFont font;
+    private ActorString debugNeedString;
+
+    private String makeDebugString(){
+        return  "Type:" + ((need==null)?"null":need.toString()) + "\n" +
+                "Happ: " + happines + "\n" +
+                "Najeb:" + drunk + "\n";
+    }
+
+    // END DEBUG
 
     public AbstractInPerson(Stage stage) {
         super(stage);
         x = 100;
         y = 100;
-        health = 1000;
-        happines = 500;
+        health = 100;
+        happines = 50;
         angry = 0;
         drunk = 0;
         angle = 0;
@@ -69,6 +87,22 @@ public class AbstractInPerson extends MyActor {
         stage.addActor(this);
         animate = 0;
         body = new PersonBody(image);
+
+        // inicjalizacja tablicy potrzeb
+        allNeeds = new Array<>();
+        allNeeds.add(new MoveRandomly(this));
+        allNeeds.add(new Drink(this));
+        allNeeds.add(new Dance(this));
+        allNeeds.add(new Fight(this));
+        allNeeds.add(new Vomit(this));
+        allNeeds.add(new Escape(this));
+
+        if(Statics.debug) {
+            font = new BitmapFont();
+            font.setColor(Color.BLACK);
+            debugNeedString = new ActorString(font, makeDebugString(), (int) (image.getX() + 10), (int) (image.getY()), stageIBelongTo);
+            stageIBelongTo.addActor(debugNeedString);
+        }
     }
 
     public void randomize_direct() {
@@ -78,9 +112,9 @@ public class AbstractInPerson extends MyActor {
         System.out.println(maxSpeed + "+" + speedX + " " + speedY);
     }
 
-    protected Array<Integer> newChances(Integer... coll){
+    protected Array<Integer> newChances(Integer... coll) {
         Array<Integer> array = new Array<Integer>();
-        for(Integer in: coll){
+        for (Integer in : coll) {
             array.add(in);
         }
         return array;
@@ -90,9 +124,9 @@ public class AbstractInPerson extends MyActor {
      * Inicjalizacja szans.
      * Tworzy pierwszą podstawową tablicę szans.
      */
-    public void initChances(){
+    public void initChances() {
         // Suma szans musi być równa 100.
-         chances = newChances(33,33,34,0,0,0);
+        chances = newChances(33, 33, 34, 0, 0, 0);
     }
 
     /**
@@ -100,14 +134,14 @@ public class AbstractInPerson extends MyActor {
      * W zależności od stanu postaci zmieniają się szansa na zachowanie.
      * Jeżeli stan postaci jest normalny (inny niż wymienione) to resetujemy (od nowa initChances)
      */
-    public void refreshChances(){
-        if(happines < 10){
-            chances = newChances(0,0,0,0,0,100);
-        }else if(drunk > 75){
-            chances = newChances(0,20,20,10,30,20);
-        }else if(angry > 80){
-            chances = newChances(0,20,20,10,30,20);
-        }else{
+    public void refreshChances() {
+        if (happines < 10) {
+            chances = newChances(0, 0, 0, 0, 0, 100);
+        } else if (drunk > 75) {
+            chances = newChances(0, 20, 20, 10, 30, 20);
+        } else if (angry > 80) {
+            chances = newChances(0, 20, 20, 10, 30, 20);
+        } else {
             initChances();
         }
     }
@@ -115,19 +149,20 @@ public class AbstractInPerson extends MyActor {
     public void randomizeWant() {
         refreshChances();
         if (finishedWant) { // jeżeli poprzednia potrzeba nie jest spełniona to nie losujemy następnej.
-            int rand = MathUtils.random(0,100);
+            int rand = MathUtils.random(0, 100);
             int sumChance = 0;
 
-            for(int i = 0;i< chances.size; i++){
-                if(rand>=sumChance && rand < sumChance + chances.get(i)){
+            for (int i = 0; i < chances.size; i++) {
+                if (rand >= sumChance && rand < sumChance + chances.get(i)) {
                     want = i;
                     finishedWant = false;
+                    need = allNeeds.get(i);
+                    System.out.println(i);
                     break;
-                }else{
+                } else {
                     sumChance += chances.get(i);
                 }
             }
-            System.out.println(want);
         }
     }
 
@@ -153,23 +188,20 @@ public class AbstractInPerson extends MyActor {
     }
 
     public void move() {
-
-//        float dt = Gdx.graphics.getDeltaTime();
-//
-//        x += speedX * dt* 15;
-//        y += speedY * dt* 15;
-//
-//        if(x >= Statics.WIDTH){speedX *= -1;}
-//        if(y >= Statics.HEIGHT){speedY *= -1;}
-//        if(x <= 0.0f){speedX *= -1;}
-//        if(y <= 0.0f){speedY *= -1;}
-//
-
         animate();
         randomizeWant();
-        moveTotarget(new Vector2(700,600));
-//
+        need.doIt();
+
+
+        if(Statics.debug){
+            debugNeedString.changeString(makeDebugString());
+            debugNeedString.x = (int)image.getX()+30;
+            debugNeedString.y = (int)image.getY();
+        }
+
+
 //        setPosition(x, y);
+
     }
 
     public void setAngle(Vector2 way) {
@@ -201,16 +233,16 @@ public class AbstractInPerson extends MyActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         Vector2 position = body.body.getPosition();
-        image.setPosition(position.x-image.getWidth()/2,position.y-image.getHeight()/3);
+        image.setPosition(position.x - image.getWidth() / 2, position.y - image.getHeight() / 3);
         setAngle(body.body.getLinearVelocity());
         move();
 
 
     }
 
-    public void applyForce(){
-        math.random(0,8);
-        body.body.applyForceToCenter(1000000f,3f,true);
+    public void applyForce() {
+        math.random(0, 8);
+        body.body.applyForceToCenter(1000000f, 3f, true);
 
     }
 
@@ -221,5 +253,9 @@ public class AbstractInPerson extends MyActor {
         vector.x = vector.x * 10000000;
         vector.y = vector.y * 10000000;
         body.body.setLinearVelocity(vector);
+    }
+
+    public Vector2 getPersonVector(){
+        return new Vector2(this.image.getX(), this.image.getY());
     }
 }
