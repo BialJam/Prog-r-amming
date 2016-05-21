@@ -37,9 +37,9 @@ public class ActorString extends Actor {
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        Vector3 newPoints = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
-        newPoints = stage.getViewport().unproject(newPoints);
-        toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
-        font.draw(batch,toWrite,newPoints.x,newPoints.y);
+        //Vector3 newPoints = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
+        //newPoints = stage.getViewport().unproject(newPoints);
+        //toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
+        font.draw(batch,toWrite,x,y);
     }
 }
