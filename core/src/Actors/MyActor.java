@@ -14,11 +14,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public abstract class MyActor extends Actor {
 
-    protected TextureAtlas atlas;
-    protected Skin skin;
-    protected Stage stageIBelongTo;
-    protected Image image;
-    protected int x, y;
+    public TextureAtlas atlas;
+    public Skin skin;
+    public Stage stageIBelongTo;
+    public Image image;
+    public int x, y;
 
 //      set image and stage
 //      add this actor and his image to stage
@@ -57,6 +57,10 @@ public abstract class MyActor extends Actor {
 
     public void setStatistics(){
 
+    }
+
+    public void setScale(float x, float y){
+        image.setScale(x,y);
     }
 
 // if you need some stragne position setting

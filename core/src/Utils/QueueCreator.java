@@ -21,15 +21,30 @@ public class QueueCreator {
     static int desscount = 3;
     static Stage stage;
 
-    public static Array<AbstractOutPerson> CreateQueue(Stage stage){
-
+    public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage){
+        clearPreviousTable(previousPersons);
         QueueCreator.stage = stage;
         Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
-        for(int i = 0; i < 10 + lvl * i * queueMultiplayer; i++){
-            persons.add(createPerson());
-        }
+
+        createAndQueuePerson(persons);
+
         lvl+=1;
         return persons;
+    }
+
+    private static void createAndQueuePerson(Array<AbstractOutPerson> persons) {
+        for(int i = 0; i < 10 + lvl * queueMultiplayer; i++){
+            persons.add(createPerson());
+        }
+        int randx = 0;
+        int randy = 0;
+
+        for(int iteration = 0 ; iteration<persons.size; iteration++){
+            randx = MathUtils.random(-30,30);
+            randy = MathUtils.random(-30,30);
+            persons.get(persons.size - 1 - iteration).setPosition((iteration%5+1)*90 +randx,(iteration/5+1)*100 +randy);
+            persons.get(persons.size - 1 - iteration).setScale(0.5f,0.5f);
+        }
     }
 
     private static AbstractOutPerson createPerson(){
@@ -53,15 +68,16 @@ public class QueueCreator {
 
     private static AbstractOutPerson returnExampleDress(){
         return new BadassOut(stage);
-    }
 
+    }
+    // Czysci poprzednie dni z Ludzi
     private static void clearPreviousTable(Array<AbstractOutPerson> toClearPersons){
         for(AbstractOutPerson per : toClearPersons){
             per.remove();
-            for(Image img : per.images){
-                img.remove();
-            }
+            per.image.remove();
+
         }
+
     }
 
 }
