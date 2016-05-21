@@ -30,7 +30,7 @@ public class Statics {
 
 
         while(!assetManager.update()){
-            System.out.println(assetManager.getProgress());
+            //System.out.println(assetManager.getProgress());
         }
     }
 
