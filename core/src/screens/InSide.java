@@ -4,6 +4,7 @@ import Actors.ActorString;
 import Actors.people.In.BadassIn;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -33,14 +34,13 @@ public class InSide extends MyScreen implements Screen {
         font.setColor(Color.BLACK);
         timerString = new ActorString(font, "3:00", 1200, 600, game);
         game.addActor(timerString);
-
     }
 
     @Override
     public void show() {
 
-    }
-
+    } 
+    
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 1, 1);
@@ -50,7 +50,6 @@ public class InSide extends MyScreen implements Screen {
         game.act();
         badass.act(delta);
         game.draw();
-
     }
 
     @Override

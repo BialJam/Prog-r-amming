@@ -13,7 +13,6 @@ import com.mygdx.game.Statics;
  * Created by Marcin on 2016-05-20.
  */
 public class AbstractButton extends MyActor {
-    Image imagePressed;
 
     public AbstractButton(Image image, Stage stage) {
         super(image,stage);
@@ -25,16 +24,17 @@ public class AbstractButton extends MyActor {
 
 
     @Override
-    public void setMyOwnClickListener(ClickListener listener){
+    public void setMyOwnClickListener(ClickListener listener) {
         image.addListener(listener);
     }
 
 
     @Override
-    public void act(float delta) {}
+    public void act(float delta) {
+    }
 
-    public void setPosition(int x,int y){
-        image.setPosition(x,y);
+    public void setPosition(int x, int y) {
+        image.setPosition(x, y);
     }
 
     @Override

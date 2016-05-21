@@ -1,4 +1,4 @@
-package Actors.people.In;
+package Actors.people.Out;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -8,16 +8,18 @@ import com.mygdx.game.Statics;
 /**
  * Created by Marcin on 2016-05-21.
  */
-public class BadassIn extends AbstractInPerson {
-
-    public BadassIn(Stage stage) {
+public class GirlOut extends AbstractOutPerson {
+    public GirlOut(Stage stage) {
         super(stage);
+
     }
 
     public void setImages(){
-        atlas = Statics.assetManager.get("Characters_in/Characters_in.pack");
+        atlas = Statics.assetManager.get("Characters_out/Characters_out.pack");
         skin = new Skin(atlas);
-        image = new Image(skin.getDrawable("dres1"));
+        int randomized = Math.abs(rand.nextInt())%2+1;
+        image = new Image(skin.getDrawable("loszka"+randomized));
         stageIBelongTo.addActor(image);
+
     }
 }

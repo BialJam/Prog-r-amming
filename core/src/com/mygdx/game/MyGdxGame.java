@@ -13,8 +13,6 @@ import screens.Menu;
 import screens.OutSide;
 
 public class MyGdxGame extends Game {
-	SpriteBatch batch;
-	Texture img;
 	public Menu menu;
 	public OutSide outside;
 	public InSide inside;

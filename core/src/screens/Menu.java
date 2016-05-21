@@ -35,7 +35,7 @@ public class Menu extends MyScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Menu extends MyScreen implements Screen {
         butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
 
         butStart.setPosition(500,500);
-        butQuit.setPosition(100,100);
+        butQuit.setPosition(500,400);
 
         butStart.setMyOwnClickListener(new ClickListener(){
             @Override
