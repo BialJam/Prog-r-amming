@@ -32,4 +32,8 @@ public class Fight extends Need {
         }
     }
 
+    public String toString(){
+        return "fight";
+    }
+
 }

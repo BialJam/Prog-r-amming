@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -65,6 +66,9 @@ public class InSide extends MyScreen implements Screen {
     Array<JustLights> parket = new Array<JustLights>();
     Array<JustLights> parket2 = new Array<JustLights>();
 
+    // Debug
+    ActorString mousePosition;
+
     public InSide(MyGdxGame root) {
         super();
         createBacground();
@@ -101,6 +105,14 @@ public class InSide extends MyScreen implements Screen {
         gui.addActor(moneyString);
 
         persons = new Array<AbstractInPerson>();
+
+        if (Statics.debug) {
+            Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            newPoints = game.getViewport().unproject(newPoints);
+            String toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
+            mousePosition = new ActorString(font, toWrite, (int)newPoints.x, (int)newPoints.y, game);
+            game.addActor(mousePosition);
+        }
 
         initBox2d();
         createDemFuckingWalls();
@@ -142,6 +154,15 @@ public class InSide extends MyScreen implements Screen {
         debugRenderer.render(world, debugMatrix);
         Statics.rayHandler.setCombinedMatrix(game.getCamera().combined);
         Statics.rayHandler.updateAndRender();
+
+        if(Statics.debug){
+            Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            newPoints = game.getViewport().unproject(newPoints);
+            String toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
+            mousePosition.changeString(toWrite);
+            mousePosition.x = (int)newPoints.x;
+            mousePosition.y = (int)newPoints.y;
+        }
 
         SwitchLights();
         gui.act();
@@ -372,7 +393,7 @@ public class InSide extends MyScreen implements Screen {
         stage.addActor(image);
     }
 
-    public static int getTime(){
+    public static int getTime() {
         return time;
     }
 }

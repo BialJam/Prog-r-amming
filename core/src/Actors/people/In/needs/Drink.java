@@ -35,4 +35,8 @@ public class Drink extends Need {
             p.happines += 20;
         }
     }
+
+    public String toString(){
+        return "drink";
+    }
 }

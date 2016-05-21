@@ -25,11 +25,16 @@ public class MoveRandomly extends Need {
         if(time != InSide.getTime()){
             count --;
             time = InSide.getTime();
+            p.happines -= 1;
         }
         if(count == 0){
             count = 10;
             p.finishedWant = true;
         }
             p.moveTotarget(target);
+    }
+
+    public String toString(){
+        return "move";
     }
 }

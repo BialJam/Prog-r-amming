@@ -29,8 +29,12 @@ public class Escape extends Need {
         }
         if(Vectors.vectorLength(p.getPersonVector(), target) < 100 && step){
             p.image.remove();
+            p.remove();
         }
         p.moveTotarget(target);
     }
 
+    public String toString(){
+        return "escape";
+    }
 }

@@ -14,4 +14,8 @@ public class Vomit extends Need {
     public void doIt() {
 
     }
+
+    public String toString(){
+        return "vomit";
+    }
 }

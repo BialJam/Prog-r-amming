@@ -1,11 +1,14 @@
 package Actors.people.In;
 
+import Actors.ActorString;
 import Actors.MyActor;
 import Actors.people.In.needs.*;
 import Utils.PersonBody;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.btree.decorator.Random;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.RandomXS128;
@@ -55,12 +58,24 @@ public class AbstractInPerson extends MyActor {
     protected boolean moveRotate = true;
     public float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
 
+    // DEBUG
+    BitmapFont font;
+    private ActorString debugNeedString;
+
+    private String makeDebugString(){
+        return  "Type:" + ((need==null)?"null":need.toString()) + "\n" +
+                "Happ: " + happines + "\n" +
+                "Najeb:" + drunk + "\n";
+    }
+
+    // END DEBUG
+
     public AbstractInPerson(Stage stage) {
         super(stage);
         x = 100;
         y = 100;
-        health = 1000;
-        happines = 500;
+        health = 100;
+        happines = 50;
         angry = 0;
         drunk = 0;
         angle = 0;
@@ -81,6 +96,13 @@ public class AbstractInPerson extends MyActor {
         allNeeds.add(new Fight(this));
         allNeeds.add(new Vomit(this));
         allNeeds.add(new Escape(this));
+
+        if(Statics.debug) {
+            font = new BitmapFont();
+            font.setColor(Color.BLACK);
+            debugNeedString = new ActorString(font, makeDebugString(), (int) (image.getX() + 10), (int) (image.getY()), stageIBelongTo);
+            stageIBelongTo.addActor(debugNeedString);
+        }
     }
 
     public void randomize_direct() {
@@ -171,7 +193,13 @@ public class AbstractInPerson extends MyActor {
         need.doIt();
 
 
-//
+        if(Statics.debug){
+            debugNeedString.changeString(makeDebugString());
+            debugNeedString.x = (int)image.getX()+30;
+            debugNeedString.y = (int)image.getY();
+        }
+
+
 //        setPosition(x, y);
 
     }

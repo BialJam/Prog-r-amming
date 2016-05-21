@@ -16,7 +16,7 @@ public class ActorString extends Actor {
 
     BitmapFont font;
     String toWrite;
-    int x,y;
+    public int x,y;
 
     /**
      *
@@ -37,12 +37,6 @@ public class ActorString extends Actor {
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        Vector3 newPoints = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
         font.draw(batch,toWrite,x,y);
-
-        // Test pozycji kursora
-        newPoints = stage.getViewport().unproject(newPoints);
-        toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
-        font.draw(batch,toWrite,newPoints.x,newPoints.y);
     }
 }

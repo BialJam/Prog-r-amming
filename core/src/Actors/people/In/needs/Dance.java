@@ -31,4 +31,8 @@ public class Dance extends Need{
             p.happines += 20;
         }
     }
+
+    public String toString(){
+        return "dance";
+    }
 }

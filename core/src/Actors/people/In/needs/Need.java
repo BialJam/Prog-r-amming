@@ -2,6 +2,7 @@ package Actors.people.In.needs;
 
 import Actors.people.In.AbstractInPerson;
 import com.badlogic.gdx.math.Vector2;
+import screens.InSide;
 
 /**
  * Created by Marcin on 2016-05-21.
@@ -16,6 +17,9 @@ public class Need {
         this.p = person;
     }
     public void doIt(){
-
+        if(time != InSide.getTime()){
+            time = InSide.getTime();
+            p.happines -= 5;
+        }
     }
 }
