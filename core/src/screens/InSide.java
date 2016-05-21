@@ -64,7 +64,13 @@ public class InSide extends MyScreen implements Screen {
 
         game.draw();
 
+
         debugRenderer.render(world, debugMatrix);
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            badass.randomize_direct();
+        }
+
     }
 
     @Override

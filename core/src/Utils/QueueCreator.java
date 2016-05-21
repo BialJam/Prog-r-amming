@@ -20,6 +20,7 @@ public class QueueCreator {
     static MathUtils math =  new MathUtils();
     static int classes = 4;
     static int desscount = 3;
+    static int startQueueSize = 10;
     static Stage stage;
     static Array<AbstractOutPerson> persons;
     static Array<AbstractOutPerson> inPersons = new Array<AbstractOutPerson>();
@@ -37,18 +38,22 @@ public class QueueCreator {
     }
 
     private static void createAndQueuePerson(Array<AbstractOutPerson> persons) {
-        for(int i = 0; i < 10 + lvl * queueMultiplayer; i++){
+        for(int i = 0; i < startQueueSize + lvl * queueMultiplayer; i++){
             persons.add(createPerson());
         }
         int randx;
 
         for(int iteration = 0 ; iteration<persons.size; iteration++){
             randx = MathUtils.random(-70,70);
-            persons.get(persons.size - 1 - iteration).setPosition(400 +randx,(iteration+1)*70);
+            persons.get(persons.size - 1 - iteration).setPosition(600 +randx - (iteration+1) *(30),(iteration+1)*70);
             persons.get(persons.size - 1 - iteration).setScale(0.5f,0.5f);
         }
-        for (AbstractOutPerson per : persons){
-            per.createClickListener();
+
+        persons.get(persons.size-1).createClickListener();
+        for(int iterator = 0;iterator < persons.size; iterator++){
+            if (iterator<startQueueSize - 3){
+                persons.get(iterator).image.setVisible(false);
+            }
         }
 
     }
@@ -93,6 +98,13 @@ public class QueueCreator {
     public static void MoveQueue(){
         for(AbstractOutPerson per : persons){
             per.moveFront();
+        }
+        persons.removeIndex(persons.size-1);
+        if (persons.size>=1){
+            persons.get(persons.size-1).createClickListener();
+        }
+        if (persons.size>5){
+            persons.get(persons.size-5).image.setVisible(true);
         }
     }
 

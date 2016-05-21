@@ -1,5 +1,6 @@
 package screens;
 
+import Actors.Background;
 import Actors.people.AbstractPerson;
 import Actors.people.Out.AbstractOutPerson;
 import Utils.QueueCreator;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.MyGdxGame;
@@ -36,6 +38,9 @@ public class OutSide extends MyScreen implements Screen{
 
     public OutSide(MyGdxGame root) {
         super();
+        TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");
+        Skin skin = new Skin(atlas);
+        new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
         persons = QueueCreator.CreateQueue(persons,game);
     }
