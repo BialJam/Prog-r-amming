@@ -1,0 +1,33 @@
+
+Other.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg_in
+  rotate: false
+  xy: 1, 88
+  size: 1366, 768
+  orig: 1366, 768
+  offset: 0, 0
+  index: -1
+bg_out
+  rotate: false
+  xy: 1369, 88
+  size: 1366, 768
+  orig: 1366, 768
+  offset: 0, 0
+  index: -1
+table1
+  rotate: false
+  xy: 1, 1
+  size: 160, 85
+  orig: 160, 85
+  offset: 0, 0
+  index: -1
+table2
+  rotate: false
+  xy: 2737, 771
+  size: 87, 85
+  orig: 87, 85
+  offset: 0, 0
+  index: -1
