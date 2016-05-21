@@ -196,7 +196,6 @@ public class AbstractInPerson extends MyActor {
         randomizeWant();
         need.doIt();
 
-
         if(Statics.debug){
             debugNeedString.changeString(makeDebugString());
             debugNeedString.x = (int)image.getX()+30;

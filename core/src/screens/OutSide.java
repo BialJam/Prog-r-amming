@@ -35,12 +35,11 @@ public class OutSide extends MyScreen implements Screen{
 
     Array<AbstractOutPerson> persons = new Array<AbstractOutPerson>();
 
-
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
-        action = 10;
+        action = 10  + (root.getSecurityInt()*2);
+        persons = QueueCreator.CreateQueue(persons, game, root);
     }
 
     public OutSide(MyGdxGame root) {
@@ -74,7 +73,6 @@ public class OutSide extends MyScreen implements Screen{
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) || action==0) {
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
-
     }
 
     @Override
@@ -84,25 +82,17 @@ public class OutSide extends MyScreen implements Screen{
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
     }
-
-
-
-
 }
