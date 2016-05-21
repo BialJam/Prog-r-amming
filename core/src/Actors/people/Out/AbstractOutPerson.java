@@ -14,8 +14,7 @@ import java.util.Random;
  * Created by Marcin on 2016-05-20.
  */
 public class AbstractOutPerson extends MyActor {
-    protected Array<Image> images;
-    protected Random rand;
+    public Random rand;
 
     public AbstractOutPerson(Stage stage){
         super(stage);
@@ -23,7 +22,6 @@ public class AbstractOutPerson extends MyActor {
 
     public void initOtherFields(){
         rand = new Random();
-        images = new Array<Image>();
     }
 
     @Override
@@ -32,14 +30,10 @@ public class AbstractOutPerson extends MyActor {
     }
 
     public void setMyOwnClickListener(ClickListener listener){
-        for(Image img: images){
-            img.addListener(listener);
-        }
+        image.addListener(listener);
     }
 
     public void setPosition(int x, int y){
-        for(Image img: images){
-            img.setPosition(x,y);
-        }
+        image.setPosition(x,y);
     }
 }
