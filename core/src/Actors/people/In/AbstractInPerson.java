@@ -1,6 +1,7 @@
 package Actors.people.In;
 
 import Actors.MyActor;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;

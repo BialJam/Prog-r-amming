@@ -52,6 +52,7 @@ public class OutSide extends MyScreen implements Screen{
     private void queue() {
         action--;
         if (action == 0) {
+            root.inside.time = 5;
             ((Game) Gdx.app.getApplicationListener()).setScreen(root.inside);
         }
     }
@@ -64,7 +65,7 @@ public class OutSide extends MyScreen implements Screen{
         game.draw();
         if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
             queue();
-            writing.changeString(action);
+            writing.changeString("Action=" + action);
         }
         game.draw();
 

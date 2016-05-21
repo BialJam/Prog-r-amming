@@ -32,8 +32,8 @@ public class ActorString extends Actor {
         this.y = y;
         this.stage = stage;
     }
-    public void changeString(int action){
-        toWrite = "Action="+action;
+    public void changeString(String string){
+        toWrite = string;
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
