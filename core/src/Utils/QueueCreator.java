@@ -1,8 +1,7 @@
 package Utils;
 
 import Actors.people.AbstractPerson;
-import Actors.people.Out.AbstractOutPerson;
-import Actors.people.Out.BadassOut;
+import Actors.people.Out.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -58,24 +57,29 @@ public class QueueCreator {
         int randomed = math.random(0,100);
         AbstractOutPerson person;
         if (randomed<=25){
-            //TODO LASKA
-            return  returnExampleDress();
+            return  returnExampleGirl();
         }
         if (randomed <= 50){
-            //TODO DRESS
             return returnExampleDress();
         }
         if (randomed<= 75){
-//            ToDO Ziom
-            return returnExampleDress();
+           return returnExampleDude();
         }
-//            TODO Geek
-        return returnExampleDress();
+        return returnExampleGeek();
     }
 
     private static AbstractOutPerson returnExampleDress(){
         return new BadassOut(stage);
+    }
 
+    private static AbstractOutPerson returnExampleGirl(){
+        return new GirlOut(stage);
+    }
+    private static AbstractOutPerson returnExampleDude(){
+        return new DudeOut(stage);
+    }
+    private static AbstractOutPerson returnExampleGeek(){
+        return new GeekOut(stage);
     }
     // Czysci poprzednie dni z Ludzi
     private static void clearPreviousTable(Array<AbstractOutPerson> toClearPersons){
