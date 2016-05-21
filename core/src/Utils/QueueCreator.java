@@ -31,7 +31,7 @@ public class QueueCreator {
     // Ostroznie, uzyty w zlym miejscu wywali NullPointerException
     static MyGdxGame root;
     static Array<AbstractOutPerson> persons;
-    static Array<AbstractInPerson> inPersons = new Array<AbstractInPerson>();
+
 
     static HashMap<Class<?>, Class<?>> inMap = new HashMap<Class<?>, Class<?>>(){{
         this.put(BadassOut.class, BadassIn.class);
