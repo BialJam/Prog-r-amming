@@ -117,7 +117,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-        time = 60;
+        time = 10;
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
