@@ -42,7 +42,7 @@ public class OutSide extends MyScreen implements Screen{
         Skin skin = new Skin(atlas);
         new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
-        persons = QueueCreator.CreateQueue(persons,game);
+        persons = QueueCreator.CreateQueue(persons, game, root);
     }
 
 

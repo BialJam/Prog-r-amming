@@ -1,6 +1,7 @@
 package screens;
 
 import Actors.ActorString;
+import Actors.people.In.AbstractInPerson;
 import Actors.people.In.BadassIn;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -23,6 +25,7 @@ import com.mygdx.game.MyGdxGame;
 public class InSide extends MyScreen implements Screen {
     MyGdxGame root;
     BadassIn badass;
+    Array<AbstractInPerson> persons;
     int time;
     double deltatime;
     ActorString timerString;
@@ -41,6 +44,7 @@ public class InSide extends MyScreen implements Screen {
         font.setColor(Color.BLACK);
         timerString = new ActorString(font, "3:00", 1200, 600, game);
         game.addActor(timerString);
+        persons = new Array<>();
 
         world = new World(new Vector2(0,0), true);
         debugRenderer = new Box2DDebugRenderer();
@@ -111,5 +115,9 @@ public class InSide extends MyScreen implements Screen {
             }
 
         }
+    }
+
+    public void addPerson(AbstractInPerson person){
+        persons.add(person);
     }
 }

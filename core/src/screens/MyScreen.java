@@ -22,5 +22,7 @@ public class MyScreen {
     public MyScreen() {
     }
 
-
+    public Stage getGameStage(){
+        return game;
+    }
 }
