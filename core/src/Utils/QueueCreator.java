@@ -80,6 +80,7 @@ public class QueueCreator {
             if (Y>520) X+=50;
 
             persons.get(persons.size - 1 - iteration).setPosition(X, Y);
+            persons.get(persons.size - 1 - iteration).image.addAction(Actions.);
             float val = ( 72 - ((persons.get(persons.size - 1 - iteration).image.getY())/8)) / (float)76;
             if (val<=0.1f) val = 0.1f;
             persons.get(persons.size - 1 - iteration).image.addAction(Actions.color(new Color(val, val, val, 1)));
@@ -140,7 +141,7 @@ public class QueueCreator {
     }
 
     public static void MoveQueue() {
-        root.outside.action -- ;
+        root.outside.action-- ;
         for (AbstractOutPerson per : persons) {
             per.moveFront();
         }

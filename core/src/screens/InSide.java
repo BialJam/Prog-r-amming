@@ -95,7 +95,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-
+        time = 60;
     }
 
     @Override
@@ -230,8 +230,9 @@ public class InSide extends MyScreen implements Screen {
             deltatime = 0;
             time--;
             clock.act(0.f);
+            System.out.println(time);
             if (time == 0){
-                root.outside.action = 2;
+                root.outside.action = 10;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
             }
 
