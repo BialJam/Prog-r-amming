@@ -168,7 +168,13 @@ public class AbstractInPerson extends MyActor {
     public void move() {
         animate();
         randomizeWant();
+
         need.doIt();
+
+        moveTotarget(new Vector2(700,600));
+//
+//        setPosition(x, y);
+
     }
 
     public void setAngle(Vector2 way) {
@@ -211,5 +217,14 @@ public class AbstractInPerson extends MyActor {
         math.random(0, 8);
         body.body.applyForceToCenter(1000000f, 3f, true);
 
+    }
+
+    public void moveTotarget(Vector2 target){
+        Vector2 start = body.body.getPosition();
+        Vector2 vector = new Vector2(target.x - start.x,target.y - start.y);
+        vector.nor();
+        vector.x = vector.x * 10000000;
+        vector.y = vector.y * 10000000;
+        body.body.setLinearVelocity(vector);
     }
 }
