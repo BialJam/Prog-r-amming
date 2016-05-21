@@ -17,7 +17,7 @@ public class Clock extends MyActor{
     private Image arrow;
     public Clock(Stage stage){
         super(stage);
-        setPosition(10,560);
+        setPosition(10,550);
     }
 
     public void setImages(){
@@ -26,7 +26,7 @@ public class Clock extends MyActor{
         image = new Image(skin.getDrawable("clockBody"));
         arrow = new Image(skin.getDrawable("clockArrow"));
         arrow.setOrigin(arrow.getWidth()/2, arrow.getHeight()/2);
-        arrow.setPosition(20,550);
+        arrow.setPosition(10,550);
         stageIBelongTo.addActor(image);
         stageIBelongTo.addActor(arrow);
     }
