@@ -37,5 +37,24 @@ public class JustABodyWall {
         wallBody.setTransform(new Vector2(x,y),rota);
     }
 
+    public JustABodyWall(int width, int height, int posx, int posy,float rota,boolean q ) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(700, 700);
+        wallBody = Statics.world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width, height);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;//przypisanie ciala
+        fixtureDef.density = 1f;//gestosc
+        fixtureDef.friction = 0.9f;//poziom tarcia
+        fixtureDef.restitution = 0.2f; // Make it bounce a little bit
+        fixtureDef.filter.categoryBits = (short)0;
+        fixtureDef.filter.groupIndex = (short)0;
+        fixtureDef.filter.maskBits = (short)0;
+        wallBody.createFixture(fixtureDef);
+        setPosition(posx,posy,rota);
+    }
 
 }
