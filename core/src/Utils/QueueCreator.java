@@ -136,7 +136,9 @@ public class QueueCreator {
         java.lang.reflect.Constructor<?> con;
         try {
             con = newPerson.getConstructor(Stage.class);
-            root.inside.addPerson((AbstractInPerson) con.newInstance(root.inside.getGameStage()));
+            AbstractInPerson person = (AbstractInPerson) con.newInstance(root.inside.getGameStage());
+            person.setImages(per.image.getDrawable().toString());
+            root.inside.addPerson(person);
             root.setMoney(10);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
