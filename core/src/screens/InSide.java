@@ -53,6 +53,8 @@ public class InSide extends MyScreen implements Screen {
     Box2DDebugRenderer debugRenderer;
     Matrix4 debugMatrix;
     World world;
+    ActorString moneyString;
+    BitmapFont font;
 
     Array<AbstractInPerson> persons;
     Array<JustLights> parket = new Array<JustLights>();
@@ -67,6 +69,15 @@ public class InSide extends MyScreen implements Screen {
         clock = new Clock(gui);
         deltatime = 0;
         time = 60;
+
+
+        font = new BitmapFont();
+        font.setColor(Color.GREEN);
+        font.getData().setScale(3,3);
+        moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        gui.addActor(moneyString);
+
+
 
         persons = new Array<AbstractInPerson>();
 
@@ -89,6 +100,8 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        moneyString.changeString(root.getMoney());
+
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Statics.world.step(1 / 60f, 6, 2);
@@ -99,11 +112,14 @@ public class InSide extends MyScreen implements Screen {
         }
 
         timer();
+        game.act();
+        gui.act();
 
 
 
         game.act();
         game.draw();
+        gui.draw();
         debugRenderer.render(world, debugMatrix);
         Statics.rayHandler.setCombinedMatrix(game.getCamera().combined);
         Statics.rayHandler.updateAndRender();
