@@ -24,7 +24,6 @@ import com.mygdx.game.MyGdxGame;
  */
 public class InSide extends MyScreen implements Screen {
     MyGdxGame root;
-    BadassIn badass;
     Array<AbstractInPerson> persons;
     int time;
     double deltatime;
@@ -37,7 +36,6 @@ public class InSide extends MyScreen implements Screen {
     public InSide(MyGdxGame root){
         super();
         this.root = root;
-        badass = new BadassIn(game);
         deltatime = 0;
         time = 180;
         font = new BitmapFont();
@@ -59,10 +57,13 @@ public class InSide extends MyScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        badass.move();
+
         timer();
         game.act();
-        badass.act(delta);
+        for(AbstractInPerson person: persons){
+            person.move();
+            person.act(delta);
+        }
 
         debugMatrix =  game.getBatch().getProjectionMatrix().cpy();
 
@@ -71,9 +72,7 @@ public class InSide extends MyScreen implements Screen {
 
         debugRenderer.render(world, debugMatrix);
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-            badass.randomize_direct();
-        }
+
 
     }
 
