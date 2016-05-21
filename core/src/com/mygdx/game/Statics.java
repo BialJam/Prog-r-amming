@@ -22,7 +22,7 @@ public class Statics {
         assetManager = new AssetManager();
         assetManager.load("buttons/MenueButton.atlas", TextureAtlas.class);
         assetManager.load("Characters_front/Dres/Dres_out.pack", TextureAtlas.class);
-        assetManager.load("Characters_front/Dres/Paczka1.atlas", TextureAtlas.class);
+        assetManager.load("Characters_in/Dresy_in.pack", TextureAtlas.class);
 
 
         while(!assetManager.update()){

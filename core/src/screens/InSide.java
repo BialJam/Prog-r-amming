@@ -8,6 +8,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -26,11 +28,12 @@ public class InSide extends MyScreen implements Screen {
         this.root = root;
         badass = new BadassIn(game);
         deltatime = 0;
-        time = 5;
+        time = 180;
         font = new BitmapFont();
         font.setColor(Color.BLACK);
         timerString = new ActorString(font, "3:00", 1200, 600, game);
         game.addActor(timerString);
+
     }
 
     @Override
@@ -44,8 +47,8 @@ public class InSide extends MyScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         badass.move();
         timer();
-
         game.act();
+        badass.act(delta);
         game.draw();
 
     }
@@ -86,6 +89,7 @@ public class InSide extends MyScreen implements Screen {
                 root.outside.action = 2;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
             }
+
         }
     }
 }
