@@ -29,8 +29,8 @@ public class PersonBody {
         fixtureDef.density = 0.000000000001f;//gestosc
         fixtureDef.friction = 0.2f;//poziom tarcia
         fixtureDef.restitution = 0.7f; // Make it bounce a little bit
-        fixtureDef.filter.categoryBits = (short)1;
-        fixtureDef.filter.groupIndex = (short)1;
+        fixtureDef.filter.categoryBits = (short)2;
+        fixtureDef.filter.groupIndex = (short)2;
         fixtureDef.filter.maskBits = (short)3;
         body.createFixture(fixtureDef);
         body.setTransform(900,400,0);

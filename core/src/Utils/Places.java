@@ -1,5 +1,7 @@
 package Utils;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -7,25 +9,17 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Places {
 
+    
+    private static MathUtils math = new MathUtils();
 
-    private static Array<Integer> bar;
-    private static Array<Integer> dance;
-    private static Array<Integer> fight;
-    private static Array<Integer> quit;
-
-    public static Array<Integer> getBar() {
-        return bar;
+    public static Vector2 getEat() {
+        return new Vector2(500 + math.random(-120,120),500 + math.random(-120,120));
     }
 
-    public static Array<Integer> getDance() {
-        return dance;
+    public static Vector2 getdance(){
+        return new Vector2(565 + math.random(-282,282),500 + math.random(-70,70));
     }
-
-    public static Array<Integer> getFight() {
-        return fight;
-    }
-
-    public static Array<Integer> getQuit() {
-        return quit;
+    public static Vector2 getquit(){
+        return new Vector2(530 ,560);
     }
 }
