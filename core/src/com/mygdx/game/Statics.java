@@ -20,6 +20,7 @@ public class Statics {
     static public World world;
     static public RayHandler rayHandler;
     public static AssetManager assetManager;
+    public static int cleaner_count=1, guard_count=3, alco_count=10, food_count=10;
 
 
     public static void createAssets() {
@@ -28,6 +29,7 @@ public class Statics {
         assetManager.load("Characters_in/Characters_in.pack", TextureAtlas.class);
         assetManager.load("Characters_out/Characters_out.pack", TextureAtlas.class);
         assetManager.load("Other/Other.pack", TextureAtlas.class);
+        assetManager.load("Other/Gui.pack", TextureAtlas.class);
 
         while (!assetManager.update()) {
             //System.out.println(assetManager.getProgress());
