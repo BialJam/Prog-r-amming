@@ -1,6 +1,7 @@
 package Utils;
 
 import Actors.people.AbstractPerson;
+import Actors.people.In.*;
 import Actors.people.Out.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,6 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.reflect.Constructor;
+import com.mygdx.game.MyGdxGame;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 
 /**
@@ -22,13 +28,24 @@ public class QueueCreator {
     static int desscount = 3;
     static int startQueueSize = 10;
     static Stage stage;
+    // Ostroznie, uzyty w zlym miejscu wywali NullPointerException
+    static MyGdxGame root;
     static Array<AbstractOutPerson> persons;
-    static Array<AbstractOutPerson> inPersons = new Array<AbstractOutPerson>();
 
-    public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage){
+
+    static HashMap<Class<?>, Class<?>> inMap = new HashMap<Class<?>, Class<?>>(){{
+        this.put(BadassOut.class, BadassIn.class);
+        this.put(DudeOut.class, DudeIn.class);
+        this.put(GirlOut.class, GirlIn.class);
+        this.put(GeekOut.class, GeekIn.class);
+    }};
+
+    public static Array<AbstractOutPerson> CreateQueue(Array<AbstractOutPerson> previousPersons,Stage stage, MyGdxGame root){
         QueueCreator.persons = previousPersons;
         clearPreviousTable(previousPersons);
+        // Nie mozna tego stage pobrac przez root.outside.getGameStage() bo wywala NullPointer przy odpalaniu programu
         QueueCreator.stage = stage;
+        QueueCreator.root = root;
         QueueCreator.persons = new Array<AbstractOutPerson>();
 
         createAndQueuePerson(persons);
@@ -76,7 +93,6 @@ public class QueueCreator {
     private static AbstractOutPerson returnExampleDress(){
         return new BadassOut(stage);
     }
-
     private static AbstractOutPerson returnExampleGirl(){
         return new GirlOut(stage);
     }
@@ -108,8 +124,21 @@ public class QueueCreator {
         }
     }
 
-    public static void getPersonIn(AbstractOutPerson per){
-        inPersons.add(per);
+    /**
+     * Funkcja do dodawania ludzi do kolejki wejscia.
+     * Kolejka ta jest potem przekazywana do screena InSide
+     *
+     * @param per Osoba ktora wpuscilismy
+     **/
+    public static void addPersonIn(AbstractOutPerson per){
+        Class<?> newPerson = inMap.get(per.getClass());
+        java.lang.reflect.Constructor<?> con;
+        try {
+            con = newPerson.getConstructor(Stage.class);
+            root.inside.addPerson((AbstractInPerson) con.newInstance(root.inside.getGameStage()));
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
     }
 
 }
