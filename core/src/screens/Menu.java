@@ -35,7 +35,7 @@ public class Menu extends MyScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
