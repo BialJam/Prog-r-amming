@@ -3,6 +3,7 @@ package Actors.people.In.needs;
 import Actors.people.In.AbstractInPerson;
 import Utils.Vectors;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MyGdxGame;
 import screens.InSide;
 
 /**
@@ -31,8 +32,21 @@ public class Drink extends Need {
         if(count == 0){
             count = 5;
             p.finishedWant = true;
-            p.drunk += 20;
-            p.happines += 20;
+            if (MyGdxGame.food>0 && MyGdxGame.alco>0){
+                p.drunk += 20;
+                p.happines += 20;
+                MyGdxGame.alco--;
+                MyGdxGame.food--;
+            }else if(MyGdxGame.alco > 0){
+                p.drunk += 30;
+                MyGdxGame.alco--;
+            }else{
+                p.happines -= 20;
+                p.angry += 40;
+            }
+        }
+        if(p.drunk > 90){
+            p.need = p.allNeeds.get(6);
         }
     }
 

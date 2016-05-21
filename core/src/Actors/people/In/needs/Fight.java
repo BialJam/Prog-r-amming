@@ -13,26 +13,37 @@ public class Fight extends Need {
         count = 5;
     }
 
+    private AbstractInPerson targetPerson;
+
     @Override
     public void doIt() {
-        target = Vectors.goFight();
+        if (targetPerson == null) {
+            targetPerson = InSide.persons.first();
+        }
 
-        if(Vectors.vectorLength(p.getPersonVector(), target) < 100){
-            if(time != InSide.getTime()) {
-                count--;
+        if (Vectors.vectorLength(p.getPersonVector(), targetPerson.getPersonVector()) < 100) {
+            if (time != InSide.getTime()) {
                 time = InSide.getTime();
+                if (time % 3 == 0) {
+                    p.health -= 20;
+                    targetPerson.health -= 40;
+                    p.angry -= 10;
+                    for (AbstractInPerson person : InSide.persons) {
+                        person.happines -= 10;
+                    }
+                    p.finishedWant = true;
+                }
             }
-        }else{
-            p.moveTotarget(target);
+        } else {
+            p.moveTotarget(targetPerson.getPersonVector());
         }
-        if(count == 0){
-            count = 5;
-            p.finishedWant = true;
-            p.drunk += 20;
+        if(p.health<=0){
+            p.need = p.allNeeds.get(6);
         }
+        //zmienia stan dopiero po interwencji ochrony
     }
 
-    public String toString(){
+    public String toString() {
         return "fight";
     }
 

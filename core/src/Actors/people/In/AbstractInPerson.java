@@ -37,8 +37,8 @@ public class AbstractInPerson extends MyActor {
     public int angry;
     protected int want = 0;
     public boolean finishedWant = true;
-    protected Need need;
-    protected Array<Need> allNeeds;
+    public Need need;
+    public Array<Need> allNeeds;
 
     // 0 - losowo łazi po planszy
     // 1 - chce mu się chlać
@@ -46,6 +46,7 @@ public class AbstractInPerson extends MyActor {
     // 3 - chce mu się napierdalać
     // 4 - chce sie rzygac
     // 5 - wychodzi z baru.
+    // 6 - nieprzytomny
     Array<Integer> chances;
     public PersonBody body;
 
@@ -65,7 +66,9 @@ public class AbstractInPerson extends MyActor {
     private String makeDebugString(){
         return  "Type:" + ((need==null)?"null":need.toString()) + "\n" +
                 "Happ: " + happines + "\n" +
-                "Najeb:" + drunk + "\n";
+                "Najeb:" + drunk + "\n" +
+                "angry:" + angry + "\n" +
+                "health" + health + "\n";
     }
 
     // END DEBUG
@@ -96,6 +99,7 @@ public class AbstractInPerson extends MyActor {
         allNeeds.add(new Fight(this));
         allNeeds.add(new Vomit(this));
         allNeeds.add(new Escape(this));
+        allNeeds.add(new Injured(this));
 
         if(Statics.debug) {
             font = new BitmapFont();

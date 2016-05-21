@@ -63,7 +63,7 @@ public class InSide extends MyScreen implements Screen {
     BitmapFont font, font_bttn;
     float fixed_timer;
 
-    Array<AbstractInPerson> persons;
+    static public Array<AbstractInPerson> persons;
     Array<JustLights> parket = new Array<JustLights>();
     Array<JustLights> parket2 = new Array<JustLights>();
 
@@ -173,6 +173,12 @@ public class InSide extends MyScreen implements Screen {
         SwitchLights();
         gui.act();
         gui.draw();
+
+        if(persons.size == 0){
+            // Koniec gry gdy 0 ludzi w srodku.
+            Gdx.app.exit();
+            // Zamienic na GameOver napis
+        }
     }
 
     @Override
@@ -281,7 +287,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś alco");
                 root.setMoney(-50);
-                if (root.getMoneyInt()>0)  root.setAlco(10);
+                if (root.getMoneyInt()>=0)  root.setAlco(10);
                 else root.setMoney(50);
             }
         });
@@ -292,7 +298,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś żarcie");
                 root.setMoney(-50);
-                if (root.getMoneyInt()>0)  root.setFood(10);
+                if (root.getMoneyInt()>=0)  root.setFood(10);
                 else root.setMoney(50);
             }
         });
@@ -303,7 +309,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś guarda");
                 root.setMoney(-(root.getSecurityInt()+1)*20);
-                if (root.getMoneyInt()>0)  root.setSecurity(1);
+                if (root.getMoneyInt()>=0)  root.setSecurity(1);
                 else root.setMoney((root.getSecurityInt()+1)*20);
             }
         });
@@ -314,7 +320,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś sprzatanie");
                 root.setMoney(-(root.getCleanerInt()+1)*20);
-                if (root.getMoneyInt()>0)  root.setCleaner(1);
+                if (root.getMoneyInt()>=0)  root.setCleaner(1);
                 else root.setMoney((root.getSecurityInt()+1)*20);
             }
         });
@@ -397,7 +403,6 @@ public class InSide extends MyScreen implements Screen {
         if (deltatime > 1) {
             deltatime = 0;
             time--;
-            clock.act(0.f);
 
             if (time == 0) {
                 root.outside.action = 10;

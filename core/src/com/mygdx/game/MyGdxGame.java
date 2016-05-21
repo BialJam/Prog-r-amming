@@ -17,8 +17,8 @@ public class MyGdxGame extends Game {
     public OutSide outside;
     public InSide inside;
 
-    private int money = 200;
-    private int alco = 10, food = 10, security = 1, cleaner = 0;
+    static public int money = 0;
+    static public int alco = 0, food = 0, security = 0, cleaner = 0;
 
     @Override
     public void create() {

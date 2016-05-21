@@ -17,7 +17,7 @@ public class Vectors {
     }
 
     public static Vector2 getDance() {
-        return new Vector2(565 + math.random(-282, 282), 500 + math.random(-70, 70));
+        return new Vector2(math.random(330, 860), math.random(100, 300));
     }
 
     public static Vector2 getQuit() {

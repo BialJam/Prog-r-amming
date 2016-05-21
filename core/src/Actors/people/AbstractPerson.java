@@ -14,10 +14,6 @@ public class AbstractPerson extends MyActor {
     protected Image head;
     protected Image body;
     protected Image legs;
-    protected int health;
-    protected int happines;
-    protected int drunk;
-    protected int angry;
 
     public AbstractPerson(Image image, Stage stage) {
         super(image, stage);
