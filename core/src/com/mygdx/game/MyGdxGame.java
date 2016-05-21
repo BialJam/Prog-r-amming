@@ -24,7 +24,7 @@ public class MyGdxGame extends Game {
 		menu = new Menu(this);
 		outside = new OutSide(this);
 		inside = new InSide(this);
-		setScreen(new Menu(this));
+		setScreen(inside);
 
 	}
 

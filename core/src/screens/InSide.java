@@ -1,6 +1,7 @@
 package screens;
 
 import Actors.ActorString;
+import Actors.Clock;
 import Actors.people.In.BadassIn;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -23,6 +24,8 @@ import com.mygdx.game.MyGdxGame;
 public class InSide extends MyScreen implements Screen {
     MyGdxGame root;
     BadassIn badass;
+
+    Clock clock;
     int time;
     double deltatime;
     ActorString timerString;
@@ -35,11 +38,12 @@ public class InSide extends MyScreen implements Screen {
         super();
         this.root = root;
         badass = new BadassIn(game);
+        clock = new Clock(game);
         deltatime = 0;
-        time = 180;
+        time = 60;
         font = new BitmapFont();
         font.setColor(Color.BLACK);
-        timerString = new ActorString(font, "3:00", 1200, 600, game);
+        timerString = new ActorString(font, "1:00", 1200, 600, game);
         game.addActor(timerString);
 
         world = new World(new Vector2(0,0), true);
@@ -105,6 +109,7 @@ public class InSide extends MyScreen implements Screen {
             deltatime = 0;
             time--;
             timerString.changeString(time/60 + ":" + time%60);
+            clock.act(0.f);
             if (time == 0){
                 root.outside.action = 2;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
