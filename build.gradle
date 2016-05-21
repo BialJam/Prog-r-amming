@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.1.0'
+		 classpath "com.badlogicgames.gdx:gdx-tools:1.9.3"
     }
 }
 
@@ -103,6 +104,34 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
     }
 }
+
+
+
+import com.badlogic.gdx.tools.texturepacker.TexturePacker
+task pack << {
+  TexturePacker.process(
+    'raw/game/pack',
+    'assets/game',
+    'sprites'
+  )
+    TexturePacker.process(
+    'raw/game/pack',
+    'assets/game',
+    'sprites'
+  )
+    TexturePacker.process(
+    'raw/game/pack',
+    'assets/game',
+    'sprites'
+  )
+    TexturePacker.process(
+    'raw/game/pack',
+    'assets/game',
+    'sprites'
+  )
+  
+}
+
 
 tasks.eclipse.doLast {
     delete ".project"
