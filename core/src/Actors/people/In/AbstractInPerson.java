@@ -156,6 +156,9 @@ public class AbstractInPerson extends MyActor {
 
     private void animate() {
         animate++;
+
+        image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
+
         if (animate == 13)
             animate = -12;
         if (animate % 3 == 0)
