@@ -8,7 +8,7 @@ import screens.InSide;
  * Created by Marcin on 2016-05-21.
  */
 public class Need {
-    AbstractInPerson p;
+    public AbstractInPerson p;
     protected int count = 10;
     protected int time = -1;
     protected Vector2 target;
@@ -21,5 +21,8 @@ public class Need {
             time = InSide.getTime();
             p.happines -= 5;
         }
+    }
+    public void clearNeed(){
+
     }
 }

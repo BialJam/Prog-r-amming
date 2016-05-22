@@ -195,7 +195,7 @@ public class AbstractInPerson extends MyActor {
         if (Statics.debug) {
             if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER)){
                 health = 100;
-                need = allNeeds.get(3);
+                need = allNeeds.get(4);
             }
 
             debugNeedString.changeString(makeDebugString());
@@ -242,5 +242,9 @@ public class AbstractInPerson extends MyActor {
 
     public Vector2 getPersonVector() {
         return new Vector2(this.image.getX(), this.image.getY());
+    }
+
+    public void clearNeeds(){
+        need.clearNeed();
     }
 }

@@ -42,7 +42,7 @@ public class Vomit extends MyActor {
 
     @Override
     public void setImages() {
-        super.setImages("Other/Other.pack", "table1");
+        super.setImages("Other/Other.pack", "rzygi_notify");
     }
 
 

@@ -184,7 +184,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width,height);
     }
 
     @Override
@@ -363,7 +363,6 @@ public class InSide extends MyScreen implements Screen {
     }
 
     // kieryunek lewy dol -> prawy dol ->_prawa gora -> lewa gora
-
     private void createDemFuckingWalls(){
         new JustABodyWall(100,100,140,138,45);
         new JustABodyWall(80,110,220,175,0);
@@ -388,7 +387,6 @@ public class InSide extends MyScreen implements Screen {
         new JustLights(1250,730,800,Color.WHITE);
         new JustLights(700,730,800,Color.WHITE);
         new JustLights(50,300,250,Color.WHITE);
-
 
 
 //        Disco Ligths
