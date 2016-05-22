@@ -45,6 +45,9 @@ public class OutSide extends MyScreen implements Screen{
         Gdx.input.setInputProcessor(inputMultiplexer);
         action = 10  + (root.getSecurityInt()*2);
         persons = QueueCreator.CreateQueue(persons, game, root);
+        Statics.playMusic("inside");
+        Statics.now.setVolume(0.2f);
+
     }
 
     public OutSide(MyGdxGame root) {

@@ -137,6 +137,8 @@ public class InSide extends MyScreen implements Screen {
     public void show() {
         time = 60;
         Gdx.input.setInputProcessor(inputMultiplexer);
+        Statics.playMusic("inside");
+        Statics.now.setVolume(1.0f);
     }
 
     @Override
@@ -192,12 +194,10 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override

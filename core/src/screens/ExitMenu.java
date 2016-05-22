@@ -37,6 +37,7 @@ public class ExitMenu extends MyScreen implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
+        Statics.playMusic("end");
     }
 
     @Override
