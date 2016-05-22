@@ -31,7 +31,7 @@ public class Vectors {
         return new Vector2(math.random(500,700),math.random(250,350));
     }
 
-    public float vectorLength(Vector2 start, Vector2 end){
+    public static float vectorLength(Vector2 start, Vector2 end){
         Vector2 newVewctor = new Vector2(end.x - start.x, end.y - start.y);
         return  newVewctor.len();
     }
