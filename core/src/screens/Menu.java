@@ -122,10 +122,13 @@ public class Menu extends MyScreen implements Screen {
 
         butStart.setPosition(100,500);
         butQuit.setPosition(100,400);
+
+        butStart.image.setScale(.4f);
+        butQuit.image.setScale(.4f);
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);
-        start = new ActorString(font, "START GAME", 140,550,game);
-        end = new ActorString(font, "END GAME", 140,450,game);
+        start = new ActorString(font, "START GAME", 130,550,game);
+        end = new ActorString(font, "SHOW INTRO", 130,450,game);
         game.addActor(start);
         game.addActor(end);
 
