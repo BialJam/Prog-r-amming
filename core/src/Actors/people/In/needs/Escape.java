@@ -32,23 +32,21 @@ public class Escape extends Need {
 
             if (Vectors.vectorLength(p.getPersonVector(), target) < 100 && !step) {
                 step = true;
-                target = new Vector2(0, 210);
+                target = new Vector2(-200, 120);
             }
             if (Vectors.vectorLength(p.getPersonVector(), target) < 100 && step) {
                 remove = true;
             }
-            ((Fight)p.allNeeds.get(3)).ico.setVisible(false);
-            ((Fight)p.allNeeds.get(3)).ico.image.setVisible(false);
             p.moveTotarget(target);
             if (remove) {
                 ((Fight)p.allNeeds.get(3)).ico.setVisible(false);
                 ((Fight)p.allNeeds.get(3)).ico.image.setVisible(false);
-                p.image.remove();
-                p.remove();
+//                p.image.remove();
+//                p.remove();
 //                InSide.persons.removeValue(p,true);
-                Statics.world.destroyBody(p.body.body);
-                p.body = null;
-                p = null;
+//                Statics.world.destroyBody(p.body.body);
+//                p.body = null;
+//                p = null;
             }
 
     }

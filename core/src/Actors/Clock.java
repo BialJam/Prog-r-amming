@@ -48,7 +48,7 @@ public class Clock extends MyActor{
 
     @Override
     public void act (float delta) {
-        float degre =  360/ InSide.maxtime;
+        float degre =  360/ 15;
         arrow.rotateBy(-degre);
     }
 }
