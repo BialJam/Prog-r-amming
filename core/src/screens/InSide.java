@@ -9,6 +9,7 @@ import Actors.people.In.AbstractInPerson;
 import Actors.Background;
 
 import Actors.people.In.BadassIn;
+import Actors.people.In.CleanWoman;
 import Utils.JustABodyWall;
 import Utils.JustLights;
 import box2dLight.Light;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -63,6 +65,8 @@ public class InSide extends MyScreen implements Screen {
     BitmapFont font, font_bttn;
 
     static public Array<AbstractInPerson> persons;
+    static private Array<CleanWoman> cleanWomans;
+    static private int nowCleanWoman = 0;
     Array<JustLights> parket = new Array<JustLights>();
     Array<JustLights> parket2 = new Array<JustLights>();
 
@@ -104,12 +108,13 @@ public class InSide extends MyScreen implements Screen {
         gui.addActor(moneyString);
 
         persons = new Array<AbstractInPerson>();
+        cleanWomans = new Array<CleanWoman>();
 
         if (Statics.debug) {
             Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             newPoints = game.getViewport().unproject(newPoints);
             String toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
-            mousePosition = new ActorString(font, toWrite, (int)newPoints.x, (int)newPoints.y, game);
+            mousePosition = new ActorString(font, toWrite, (int) newPoints.x, (int) newPoints.y, game);
             game.addActor(mousePosition);
         }
 
@@ -159,13 +164,13 @@ public class InSide extends MyScreen implements Screen {
         Statics.rayHandler.setCombinedMatrix(game.getCamera().combined);
         Statics.rayHandler.updateAndRender();
 
-        if(Statics.debug){
+        if (Statics.debug) {
             Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             newPoints = game.getViewport().unproject(newPoints);
             String toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
             mousePosition.changeString(toWrite);
-            mousePosition.x = (int)newPoints.x;
-            mousePosition.y = (int)newPoints.y;
+            mousePosition.x = (int) newPoints.x;
+            mousePosition.y = (int) newPoints.y;
         }
 
         SwitchLights();
@@ -283,7 +288,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś alco");
                 root.setMoney(-50);
-                if (root.getMoneyInt()>=0)  root.setAlco(10);
+                if (root.getMoneyInt() >= 0) root.setAlco(10);
                 else root.setMoney(50);
             }
         });
@@ -294,7 +299,7 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś żarcie");
                 root.setMoney(-50);
-                if (root.getMoneyInt()>=0)  root.setFood(10);
+                if (root.getMoneyInt() >= 0) root.setFood(10);
                 else root.setMoney(50);
             }
         });
@@ -304,9 +309,9 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś guarda");
-                root.setMoney(-(root.getSecurityInt()+1)*20);
-                if (root.getMoneyInt()>=0)  root.setSecurity(1);
-                else root.setMoney((root.getSecurityInt()+1)*20);
+                root.setMoney(-(root.getSecurityInt() + 1) * 20);
+                if (root.getMoneyInt() >= 0) root.setSecurity(1);
+                else root.setMoney((root.getSecurityInt() + 1) * 20);
             }
         });
 
@@ -315,9 +320,18 @@ public class InSide extends MyScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś sprzatanie");
-                root.setMoney(-(root.getCleanerInt()+1)*20);
-                if (root.getMoneyInt()>=0)  root.setCleaner(1);
-                else root.setMoney((root.getSecurityInt()+1)*20);
+                root.setMoney(-(root.getCleanerInt() + 1) * 20);
+                if (root.getMoneyInt() >= 0) {
+                    root.setCleaner(1);
+                    CleanWoman cw = new CleanWoman(game);
+                    cleanWomans.add(cw);
+                    cw.image.setX(MathUtils.random(80,150));
+                    cw.image.setY(MathUtils.random(400,700));
+                    game.addActor(cw);
+
+                } else {
+                    root.setMoney((root.getSecurityInt() + 1) * 20);
+                }
             }
         });
     }
@@ -413,5 +427,14 @@ public class InSide extends MyScreen implements Screen {
 
     public static int getTime() {
         return time;
+    }
+
+    public static CleanWoman getFreeCleanWoman(){
+        for(CleanWoman cw: cleanWomans){
+            if(cw.free){
+                return cw;
+            }
+        }
+        return null;
     }
 }

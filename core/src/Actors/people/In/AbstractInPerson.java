@@ -52,13 +52,13 @@ public class AbstractInPerson extends MyActor {
     public PersonBody body;
 
     private MathUtils math = new MathUtils();
-    private int animate = 0;
+
     private float deltatime;
     private boolean tick = false;
-    private int rotate = 1;
+
 
     protected boolean moveRotate = true;
-    public float speedX = 0.5f, speedY = 0.5f, angle = 0.0f, prev_angle, maxSpeed;
+
 
     // DEBUG
     BitmapFont font;
@@ -189,16 +189,7 @@ public class AbstractInPerson extends MyActor {
 
     }
 
-    private void animate() {
-        animate++;
 
-        image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
-
-        if (animate == 13)
-            animate = -12;
-        if (animate % 3 == 0)
-            image.rotateBy(animate);
-    }
 
     public void move() {
         animate();
@@ -213,22 +204,7 @@ public class AbstractInPerson extends MyActor {
         }
     }
 
-    public void setAngle(Vector2 way) {
-        double theta = Math.atan2(-way.y, way.x);
-        theta += Math.PI / 2.0;
-        prev_angle = angle;
-        angle = (float) Math.toDegrees(theta);
 
-        if (angle < 0) {
-            angle += 360;
-        }
-
-        rotate = (int) prev_angle - (int) angle;
-        if (rotate < 0) {
-            rotate += 360;
-        }
-        image.rotateBy(rotate);
-    }
 
     public void setPosition(int x, int y) {
         image.setPosition(x, y);
