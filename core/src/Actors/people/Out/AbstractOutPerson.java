@@ -50,14 +50,14 @@ public class AbstractOutPerson extends MyActor {
         if (image.getActions().size == 0){
             if (allowed){
                 isAllowedIn = true;
-                image.addAction(Actions.sequence(Actions.fadeOut(0.4f),Actions.moveBy(1500,0.05f)));
+                image.addAction(Actions.sequence(Actions.color(new Color(0,.9f,0,1)), Actions.fadeOut(0.4f),Actions.moveBy(1500,0.05f)));
                 QueueCreator.addPersonIn(this);
             }else{
                 MathUtils math = new MathUtils();
                 if(math.random(0,1) == 0)
-                    image.addAction(Actions.parallel(Actions.fadeOut(0.8f),Actions.moveBy(400,200,1f)));
+                    image.addAction(Actions.parallel(Actions.color(new Color(.9f,0,0,1)), Actions.fadeOut(0.8f),Actions.moveBy(400,200,1f)));
                 else
-                    image.addAction(Actions.parallel(Actions.fadeOut(0.8f),Actions.moveBy(-400,200,1f)));
+                    image.addAction(Actions.parallel(Actions.color(new Color(.9f,0,0,1)), Actions.fadeOut(0.8f),Actions.moveBy(-400,200,1f)));
             }
             QueueCreator.MoveQueue();
         }
