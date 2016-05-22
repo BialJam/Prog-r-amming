@@ -46,9 +46,11 @@ public class Drink extends Need {
                 p.happines += 20;
                 MyGdxGame.alco--;
                 MyGdxGame.food--;
+                MyGdxGame.money += 7;
             }else if(MyGdxGame.alco > 0){
                 p.drunk += 30;
                 MyGdxGame.alco--;
+                MyGdxGame.money += 7;
             }else{
                 p.happines -= 20;
                 p.angry += 40;

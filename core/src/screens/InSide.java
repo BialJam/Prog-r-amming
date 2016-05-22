@@ -103,7 +103,7 @@ public class InSide extends MyScreen implements Screen {
 
         clock = new Clock(gui);
         deltatime = 0;
-        time = 15;
+        time = 7;
 
         font = new BitmapFont();
         font.setColor(Color.GREEN);
@@ -137,7 +137,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-        time = 15;
+        time = 7;
         Gdx.input.setInputProcessor(inputMultiplexer);
         Statics.playMusic("inside");
         Statics.now.setVolume(1.0f);
@@ -160,14 +160,14 @@ public class InSide extends MyScreen implements Screen {
         securityString.changeString(root.getSecurity());
 
         if(MyGdxGame.alco == 0){
-            noalco.setVisible(true);
+            noalco.image.setVisible(true);
         }else{
-            noalco.setVisible(false);
+            noalco.image.setVisible(false);
         }
         if(MyGdxGame.food == 0){
-            nofood.setVisible(true);
+            nofood.image.setVisible(true);
         }else{
-            nofood.setVisible(false);
+            nofood.image.setVisible(false);
         }
 
         game.act();

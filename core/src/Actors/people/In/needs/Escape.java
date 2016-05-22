@@ -15,41 +15,46 @@ public class Escape extends Need {
     public Escape(AbstractInPerson person) {
         super(person);
     }
+
     public Array<AbstractInPerson> list;
     private boolean step = false;
-    private  boolean remove = false;
+    private boolean remove = false;
+
     @Override
     public void doIt() {
 
-        if(!step){
-            target = Vectors.getQuit();
-        }else{
-            target = new Vector2(0,210);
-        }
+        try {
+            if (!step) {
+                target = Vectors.getQuit();
+            } else {
+                target = new Vector2(0, 210);
+            }
+            if (Vectors.vectorLength(p.getPersonVector(), target) < 100 && !step) {
+                step = true;
+                target = new Vector2(0, 210);
+                System.out.println("lazi se");
+            }
+            if (Vectors.vectorLength(p.getPersonVector(), target) < 100 && step) {
+                System.out.println("wukurwiaj");
+                InSide.persons.removeValue(p, true);
+                remove = true;
+            }
 
-        if(Vectors.vectorLength(p.getPersonVector(), target) < 100 && !step){
-            step = true;
-            target = new Vector2(0,210);
-            System.out.println("lazi se");
-        }
-        if(Vectors.vectorLength(p.getPersonVector(), target) < 100 && step){
-            System.out.println("wukurwiaj");
-            InSide.persons.removeValue(p, true);
-            remove = true;
-        }
+            p.moveTotarget(target);
+            if (remove) {
+                p.image.remove();
+                p.remove();
+                Statics.world.destroyBody(p.body.body);
+                p.body = null;
+                p = null;
 
-        p.moveTotarget(target);
-        if(remove){
-            p.image.remove();
-            p.remove();
-            Statics.world.destroyBody(p.body.body);
-            p.body = null;
-            p = null;
-
+            }
+        } catch (NullPointerException ex) {
+            System.out.println("Czegos nie ma");
         }
     }
 
-    public String toString(){
+    public String toString() {
         return "escape";
     }
 }
