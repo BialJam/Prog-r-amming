@@ -47,7 +47,8 @@ public class Smoke extends MyActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        image.setPosition(target.image.getX()+20,target.image.getY()+20);
+        if(target!=null)
+            image.setPosition(target.image.getX()+20,target.image.getY()+20);
     }
 
     @Override

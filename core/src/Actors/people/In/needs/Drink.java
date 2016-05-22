@@ -11,7 +11,7 @@ import screens.InSide;
  * Created by Marcin on 2016-05-21.
  */
 public class Drink extends Need {
-    DrinkIco ico;
+    public DrinkIco ico;
     public Drink(AbstractInPerson person) {
         super(person);
         count = 5;
@@ -34,11 +34,8 @@ public class Drink extends Need {
         }else{
             p.moveTotarget(target);
         }
-        if(count == 5 && !ico.isVisible()){
-            ico.setVisible(true);
-        }
+
         if(count == 0){
-            ico.setVisible(false);
             count = 5;
             p.finishedWant = true;
             if (MyGdxGame.food>0 && MyGdxGame.alco>0){

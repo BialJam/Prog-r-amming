@@ -32,7 +32,7 @@ import java.util.List;
 public class OutSide extends MyScreen implements Screen{
     MyGdxGame root;
     private List<AbstractPerson> animate;
-    public int action = 5;
+    public int action = 12;
     double deltatime=0;
     int frame=0;
     ActorString moneyString, pointString;
@@ -43,7 +43,7 @@ public class OutSide extends MyScreen implements Screen{
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputMultiplexer);
-        action = 5 + (root.getSecurityInt()*2);
+        action = 12 + (root.getSecurityInt()*2);
         persons = QueueCreator.CreateQueue(persons, game, root);
         Statics.playMusic("inside");
         Statics.now.setVolume(0.2f);

@@ -11,6 +11,7 @@ import Actors.Background;
 import Actors.people.In.BadassIn;
 import Actors.people.In.CleanWoman;
 import Actors.people.In.SecurityGuard;
+import Actors.people.In.needs.Dance;
 import Utils.JustABodyWall;
 import Utils.JustLights;
 import box2dLight.Light;
@@ -43,7 +44,6 @@ import com.badlogic.gdx.utils.Array;
 
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
-import com.sun.prism.j2d.paint.MultipleGradientPaint;
 
 /**
  * Created by Marcin on 2016-05-21.
@@ -513,4 +513,7 @@ public class InSide extends MyScreen implements Screen {
         }
         return null;
     }
+
+
+
 }

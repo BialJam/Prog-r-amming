@@ -43,26 +43,11 @@ public class Escape extends Need {
 
             p.moveTotarget(target);
             if (remove) {
-                p.clearNeeds();
+                InSide.persons.removeValue(p,true);
                 p.image.remove();
                 p.remove();
                 Statics.world.destroyBody(p.body.body);
                 p.body = null;
-                p.need.clearNeed();
-                p = null;
-
-
-            }
-
-            p.moveTotarget(target);
-            if (remove) {
-                p.clearAllNeeds();
-                p.image.remove();
-                p.remove();
-
-                Statics.world.destroyBody(p.body.body);
-                p.body = null;
-                p.need.clearNeed();
                 p = null;
             }
         } catch (NullPointerException ex) {
