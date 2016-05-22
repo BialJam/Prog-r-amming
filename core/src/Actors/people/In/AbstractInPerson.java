@@ -152,12 +152,12 @@ public class AbstractInPerson extends MyActor {
 
     public void randomizeWant() {
         refreshChances();
-        if (finishedWant) { // jeżeli poprzednia potrzeba nie jest spełniona to nie losujemy następnej.
+        if (finishedWant || need == null) { // jeżeli poprzednia potrzeba nie jest spełniona to nie losujemy następnej.
             int rand = MathUtils.random(0, 100);
             int sumChance = 0;
 
             for (int i = 0; i < chances.size; i++) {
-                if (rand >= sumChance && rand < sumChance + chances.get(i)) {
+                if (rand >= sumChance && rand <= sumChance + chances.get(i)) {
                     want = i;
                     finishedWant = false;
                     need = allNeeds.get(i);
