@@ -30,6 +30,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -288,8 +289,14 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś alco");
                 root.setMoney(-50);
-                if (root.getMoneyInt() >= 0) root.setAlco(10);
-                else root.setMoney(50);
+                if (root.getMoneyInt() >= 0) {
+                    root.setAlco(10);
+                    alcoBtn.image.addAction(Actions.sequence(Actions.color(new Color(0,1,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
+                }
+                else {
+                    root.setMoney(50);
+                    alcoBtn.image.addAction(Actions.sequence(Actions.color(new Color(1, 0, 0, 1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1, 1, 1, 1))));
+                }
             }
         });
 
@@ -299,8 +306,14 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś żarcie");
                 root.setMoney(-50);
-                if (root.getMoneyInt() >= 0) root.setFood(10);
-                else root.setMoney(50);
+                if (root.getMoneyInt() >= 0){
+                    root.setFood(10);
+                    foodBtn.image.addAction(Actions.sequence(Actions.color(new Color(0,1,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
+                }
+                else {
+                    root.setMoney(50);
+                    foodBtn.image.addAction(Actions.sequence(Actions.color(new Color(1,0,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
+                }
             }
         });
 
@@ -310,8 +323,14 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś guarda");
                 root.setMoney(-(root.getSecurityInt() + 1) * 20);
-                if (root.getMoneyInt() >= 0) root.setSecurity(1);
-                else root.setMoney((root.getSecurityInt() + 1) * 20);
+                if (root.getMoneyInt() >= 0) {
+                    root.setSecurity(1);
+                    securityBtn.image.addAction(Actions.sequence(Actions.color(new Color(0,1,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
+                }
+                else {
+                    root.setMoney((root.getSecurityInt() + 1) * 20);
+                    securityBtn.image.addAction(Actions.sequence(Actions.color(new Color(1,0,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
+                }
             }
         });
 
@@ -328,9 +347,11 @@ public class InSide extends MyScreen implements Screen {
                     cw.image.setX(MathUtils.random(80,150));
                     cw.image.setY(MathUtils.random(400,700));
                     game.addActor(cw);
+                    cleanerBtn.image.addAction(Actions.sequence(Actions.color(new Color(0,1,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
 
                 } else {
-                    root.setMoney((root.getSecurityInt() + 1) * 20);
+                    root.setMoney((root.getCleanerInt() + 1) * 20);
+                    cleanerBtn.image.addAction(Actions.sequence(Actions.color(new Color(1,0,0,1)), Actions.fadeOut(.5f), Actions.fadeIn(.1f), Actions.color(new Color(1,1,1,1))));
                 }
             }
         });
