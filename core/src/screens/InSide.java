@@ -10,6 +10,7 @@ import Actors.Background;
 
 import Actors.people.In.BadassIn;
 import Actors.people.In.CleanWoman;
+import Actors.people.In.SecurityGuard;
 import Utils.JustABodyWall;
 import Utils.JustLights;
 import box2dLight.Light;
@@ -66,7 +67,7 @@ public class InSide extends MyScreen implements Screen {
 
     static public Array<AbstractInPerson> persons;
     static private Array<CleanWoman> cleanWomans;
-    static private int nowCleanWoman = 0;
+    static private Array<SecurityGuard> securityGuards;
     Array<JustLights> parket = new Array<JustLights>();
     Array<JustLights> parket2 = new Array<JustLights>();
 
@@ -109,6 +110,7 @@ public class InSide extends MyScreen implements Screen {
 
         persons = new Array<AbstractInPerson>();
         cleanWomans = new Array<CleanWoman>();
+        securityGuards = new Array<>();
 
         if (Statics.debug) {
             Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -312,8 +314,17 @@ public class InSide extends MyScreen implements Screen {
                 super.clicked(event, x, y);
                 System.out.println("Kupiłeś guarda");
                 root.setMoney(-(root.getSecurityInt() + 1) * 20);
-                if (root.getMoneyInt() >= 0) root.setSecurity(1);
-                else root.setMoney((root.getSecurityInt() + 1) * 20);
+                if (root.getMoneyInt() >= 0) {
+                    root.setSecurity(1);
+                    SecurityGuard sg = new SecurityGuard(game);
+                    securityGuards.add(sg);
+                    sg.image.setX(MathUtils.random(80,150));
+                    sg.image.setY(MathUtils.random(400,700));
+                    game.addActor(sg);
+
+                } else {
+                    root.setMoney((root.getSecurityInt() + 1) * 20);
+                }
             }
         });
 
@@ -332,7 +343,7 @@ public class InSide extends MyScreen implements Screen {
                     game.addActor(cw);
 
                 } else {
-                    root.setMoney((root.getSecurityInt() + 1) * 20);
+                    root.setMoney((root.getCleanerInt() + 1) * 20);
                 }
             }
         });
@@ -435,6 +446,14 @@ public class InSide extends MyScreen implements Screen {
         for(CleanWoman cw: cleanWomans){
             if(cw.free){
                 return cw;
+            }
+        }
+        return null;
+    }
+    public static SecurityGuard getFreeGuard(){
+        for(SecurityGuard sg: securityGuards){
+            if(sg.free){
+                return sg;
             }
         }
         return null;

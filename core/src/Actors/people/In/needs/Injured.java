@@ -11,7 +11,8 @@ public class Injured extends Need {
     }
 
     public void doIt(){
-        p.moveTotarget(p.getPersonVector());
+        p.body.body.setLinearVelocity(0,0);
+        p.isAnimate = false;
     }
 
     public String toString(){

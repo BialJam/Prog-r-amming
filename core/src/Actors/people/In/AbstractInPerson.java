@@ -111,10 +111,8 @@ public class AbstractInPerson extends MyActor {
     }
 
     public void randomize_direct() {
-        System.out.println(Math.random() % 20);
         speedX = (float) ((Math.random() * (Math.sqrt(maxSpeed)) * 2) - (Math.sqrt(maxSpeed)));
         speedY = (float) Math.sqrt((maxSpeed - speedX * speedX));
-        System.out.println(maxSpeed + "+" + speedX + " " + speedY);
     }
 
     protected Array<Integer> newChances(Integer... coll) {
@@ -162,7 +160,6 @@ public class AbstractInPerson extends MyActor {
                     want = i;
                     finishedWant = false;
                     need = allNeeds.get(i);
-                    System.out.println(i);
                     break;
                 } else {
                     sumChance += chances.get(i);
@@ -196,8 +193,11 @@ public class AbstractInPerson extends MyActor {
         randomizeWant();
         need.doIt();
         if (Statics.debug) {
-            if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER))
-                health = -10;
+            if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER)){
+                health = 100;
+                need = allNeeds.get(3);
+            }
+
             debugNeedString.changeString(makeDebugString());
             debugNeedString.x = (int) image.getX() + 30;
             debugNeedString.y = (int) image.getY();
