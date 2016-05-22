@@ -44,11 +44,13 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 import com.sun.prism.j2d.paint.MultipleGradientPaint;
+import javafx.scene.media.VideoTrack;
 
 /**
  * Created by Marcin on 2016-05-21.
  */
 public class InSide extends MyScreen implements Screen {
+
     MyGdxGame root;
 
     AbstractButton fadeIn, fadeOut, bodyBtn, alcoBtn, cleanerBtn, foodBtn, securityBtn, noalco, nofood;

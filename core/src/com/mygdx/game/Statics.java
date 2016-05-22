@@ -42,6 +42,8 @@ public class Statics {
         assetManager.load("Characters_out/Characters_out.pack", TextureAtlas.class);
         assetManager.load("Other/Other.pack", TextureAtlas.class);
         assetManager.load("Other/Gui.pack", TextureAtlas.class);
+        assetManager.load("Intro/bg.png", Texture.class);
+        assetManager.load("buttons/menu_button.png", Texture.class);
 
 
         menu = Gdx.audio.newMusic(Gdx.files.getFileHandle("sound/menu.ogg", Files.FileType.Internal));
