@@ -31,4 +31,5 @@ public class BadassIn extends AbstractInPerson {
             initChances();
         }
     }
+
 }
