@@ -150,11 +150,6 @@ public class InSide extends MyScreen implements Screen {
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Statics.world.step(1 / 60f, 6, 2);
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
-            for (AbstractInPerson per : persons) {
-                per.applyForce();
-            }
-        }
         timer();
         game.act();
         gui.act();
@@ -202,7 +197,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width,height);
     }
 
     @Override
@@ -391,28 +386,30 @@ public class InSide extends MyScreen implements Screen {
     }
 
     // kieryunek lewy dol -> prawy dol ->_prawa gora -> lewa gora
-    private void createDemFuckingWalls() {
-        new JustABodyWall(100, 100, 140, 138, 45);
-        new JustABodyWall(80, 110, 220, 175, 0);
-        new JustABodyWall(40, 40, 300, 60, -45);
-        new JustABodyWall(280, 25, 610, 30, 0);
-        new JustABodyWall(110, 60, 988, 72, 45);
-        new JustABodyWall(180, 60, 1270, 190, 45);
-        new JustABodyWall(50, 70, 1363, 422, 45);
-        new JustABodyWall(10, 140, 1353, 640, 0);
-        new JustABodyWall(20, 230, 15, 535, 0);
-        new JustABodyWall(670, 10, 690, 760, 0);
-        new JustABodyWall(155, 40, 1123, 330, 45, true);
+    private void createDemFuckingWalls(){
+        new JustABodyWall(100,100,140,138,45);
+        new JustABodyWall(80,110,220,175,0);
+        new JustABodyWall(40,40,300,60,-45);
+        new JustABodyWall(280,25,610,30,0);
+        new JustABodyWall(110,60,988,72,45);
+        new JustABodyWall(180,60,1270,190,45);
+        new JustABodyWall(50,70,1363,422,45);
+        new JustABodyWall(10,140,1353,640,0);
+        new JustABodyWall(20,230,15,535,0);
+        new JustABodyWall(670,10,690,760,0);
+        new JustABodyWall(155,70,1150,335,45,true);
+        new JustABodyWall(45,45,145,595,0,true);
+        new JustABodyWall(45,45,1245,595,0,true);
 
     }
 
-    private void createDemLights() {
-        new JustLights(1100, 150, 400, Color.RED);
-        new JustLights(1300, 350, 400, Color.RED);
-        new JustLights(80, 730, 800, Color.WHITE);
-        new JustLights(1250, 730, 800, Color.WHITE);
-        new JustLights(700, 730, 800, Color.WHITE);
-        new JustLights(50, 300, 250, Color.WHITE);
+    private void createDemLights(){
+        new JustLights(1100,150,400,Color.RED);
+        new JustLights(1300,350,400,Color.RED);
+        new JustLights(80,730,800,Color.WHITE);
+        new JustLights(1250,730,800,Color.WHITE);
+        new JustLights(700,730,800,Color.WHITE);
+        new JustLights(50,300,250,Color.WHITE);
 
 
 //        Disco Ligths
@@ -467,10 +464,20 @@ public class InSide extends MyScreen implements Screen {
         TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");//table1
         Skin skin = new Skin(atlas);
         Image image = new Image(skin.getDrawable("table1"));
+
         image.setPosition(1050, 190);
         image.rotateBy(45);
         image.scaleBy(1.0f, 0.2f);
         stage.addActor(image);
+
+        Image image2 = new Image(skin.getDrawable("table2"));
+        image2.setPosition(100,550);
+        stage.addActor(image2);
+
+        Image image3 = new Image(skin.getDrawable("table2"));
+        image3.setPosition(1200,550);
+        stage.addActor(image3);
+
     }
 
     public static int getTime() {

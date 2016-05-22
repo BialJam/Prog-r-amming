@@ -15,7 +15,7 @@ public class SecurityGuard extends AbstractPersonel {
     }
 
     public void setImages(){
-        setImages("Characters_in/Characters_in.pack", "dres1");
+        setImages("Characters_in/Characters_in.pack", "security");
     }
 
     public void move(){

@@ -14,7 +14,7 @@ public class CleanWoman extends AbstractPersonel {
     }
 
     public void setImages(){
-        setImages("Characters_in/Characters_in.pack", "loszka1");
+        setImages("Characters_in/Characters_in.pack", "cleaner");
     }
 
     public void move(){

@@ -26,7 +26,7 @@ public class Puke extends Need {
                 }
                 p.finishedWant = true;
                 Vomit vomit = new Vomit(p.stageIBelongTo);
-                vomit.image.setScale(0.2f);
+
                 vomit.image.setX(p.image.getX());
                 vomit.image.setY(p.image.getY());
                 p.stageIBelongTo.addActor(vomit);

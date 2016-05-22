@@ -27,7 +27,6 @@ public class Fight extends Need {
                 try {
                     targetPerson = InSide.persons.get(1);
                 }catch (IndexOutOfBoundsException ex){
-                    System.out.println("Pierdol sie");
                     p.finishedWant = true;
                 }
             }
@@ -37,14 +36,14 @@ public class Fight extends Need {
         if (Vectors.vectorLength(p.getPersonVector(), targetPerson.getPersonVector()) < 100) {
             if (time != InSide.getTime()) {
                 targetPerson.finishedWant = false;
+                targetPerson.clearNeeds();
                 targetPerson.need = targetPerson.allNeeds.get(3);
+
                 Fight f = (Fight) targetPerson.need;
                 f.targetPerson = p;
                 time = InSide.getTime();
                 if (count == 5) {
-                    System.out.println("count3");
                     if(smoke == null) {
-                        System.out.println("smokenull");
                         smoke = new Smoke(p.stageIBelongTo);
                         smoke.target = p;
                         smoke.secondTarget = targetPerson;
@@ -62,7 +61,6 @@ public class Fight extends Need {
                     person.happines -= 5;
                 }
                 if (count == 0) {
-                    System.out.println("jestem");
                     count = 6;
                     p.finishedWant = true;
                     if (smoke != null) {

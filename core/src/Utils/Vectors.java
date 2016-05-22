@@ -13,7 +13,7 @@ public class Vectors {
     private static MathUtils math = new MathUtils();
 
     public static Vector2 getEat() {
-        return new Vector2(500 + math.random(-120, 120), 500 + math.random(-120, 120));
+        return new Vector2(1000 + math.random(-120, 120), 400 + math.random(-120, 120));
     }
 
     public static Vector2 getDance() {
@@ -31,6 +31,7 @@ public class Vectors {
     public static Vector2 goFight() {
         return new Vector2(math.random(1000, 1200), math.random(500, 600));
     }
+
 
     public static float vectorLength(Vector2 start, Vector2 end) {
         Vector2 newVewctor = new Vector2(end.x - start.x, end.y - start.y);

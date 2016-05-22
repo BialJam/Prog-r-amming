@@ -6,6 +6,7 @@ package Actors;
 
 import Actors.people.In.AbstractInPerson;
 import Actors.people.In.SecurityGuard;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -36,11 +37,17 @@ public class Smoke extends MyActor {
     }
 
     public void setImages() {
-        super.setImages("Other/Other.pack", "table2");
+        super.setImages("Other/Other.pack", "wykrz_notify");
     }
     @Override
     public void setMyOwnClickListener(ClickListener listener) {
 
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
+        image.setPosition(target.image.getX()+20,target.image.getY()+20);
     }
 
     @Override

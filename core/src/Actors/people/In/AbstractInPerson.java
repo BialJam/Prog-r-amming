@@ -243,4 +243,8 @@ public class AbstractInPerson extends MyActor {
     public Vector2 getPersonVector() {
         return new Vector2(this.image.getX(), this.image.getY());
     }
+
+    public void clearNeeds(){
+        need.clearNeed();
+    }
 }
