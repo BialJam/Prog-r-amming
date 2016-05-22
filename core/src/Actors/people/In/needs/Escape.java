@@ -24,6 +24,7 @@ public class Escape extends Need {
         if(!step){
             target = Vectors.getQuit();
         }else{
+            p.clearNeeds();
             target = new Vector2(0,210);
         }
 
@@ -44,10 +45,12 @@ public class Escape extends Need {
             p.remove();
             Statics.world.destroyBody(p.body.body);
             p.body = null;
+            p.need.clearNeed();
             p = null;
 
         }
     }
+
 
     public String toString(){
         return "escape";

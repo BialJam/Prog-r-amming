@@ -58,7 +58,7 @@ public class Fight extends Need {
                 targetPerson.health -= 5;
                 p.angry -= 5;
                 for (AbstractInPerson person : InSide.persons) {
-                    person.happines -= 10;
+                    person.angry += 1;
                 }
                 if (count == 0) {
                     count = 6;

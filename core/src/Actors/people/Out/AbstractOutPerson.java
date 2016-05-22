@@ -86,6 +86,6 @@ public class AbstractOutPerson extends MyActor {
     }
 
     public void moveFront(){
-        image.addAction(Actions.moveBy(30,-70,0.2f));
+        image.addAction(Actions.moveBy(30,-70,0.1f));
     }
 }
