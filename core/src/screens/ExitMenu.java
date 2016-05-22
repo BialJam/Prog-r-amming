@@ -3,7 +3,7 @@ package screens;
 import Actors.buttons.AbstractButton;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,18 +14,19 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
 
 /**
- * Created by Marcin on 2016-05-20.
+ * Created by Michalina on 2016-05-22.
  */
-public class Menu extends MyScreen implements Screen {
+public class ExitMenu extends MyScreen implements Screen {
+
     MyGdxGame root;
 
     TextureAtlas atlas = null;
     Skin skin = null;
-    AbstractButton butStart;
+
+    AbstractButton butBack;
     AbstractButton butQuit;
 
-
-    public Menu(MyGdxGame root) {
+    public ExitMenu(MyGdxGame root) {
         super();
         this.root = root;
         atlas = Statics.assetManager.get("buttons/MenueButton.atlas");
@@ -40,7 +41,7 @@ public class Menu extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
 
@@ -50,7 +51,7 @@ public class Menu extends MyScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width,height);
+        viewport.update(width, height);
     }
 
 
@@ -75,37 +76,27 @@ public class Menu extends MyScreen implements Screen {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-//--------------------------------------------CRAP ---------------------------------------------
+    //--------------------------------------------CRAP ---------------------------------------------
 //     INIT BUttons
 //     Set Position
 //     Only look at clicked after super
-    private void initButtons(){
-        butStart = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
-        butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")),game);
+    private void initButtons() {
+        butBack = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")), game);
+        butQuit = new AbstractButton(new Image(skin.getDrawable("ButtonUp9")), game);
 
-        butStart.setPosition(500,500);
-        butQuit.setPosition(500,400);
+        butBack.setPosition(500, 500);
+        butQuit.setPosition(500, 400);
 
-        butStart.setMyOwnClickListener(new ClickListener(){
+        butBack.setMyOwnClickListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 root.outside.action = 2;
-                ((Game) Gdx.app.getApplicationListener()).setScreen(root.outside);
+                ((Game) Gdx.app.getApplicationListener()).setScreen(root.menu);
             }
         });
 
-        butQuit.setMyOwnClickListener(new ClickListener(){
+        butQuit.setMyOwnClickListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
