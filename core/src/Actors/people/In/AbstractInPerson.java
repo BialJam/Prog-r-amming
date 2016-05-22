@@ -247,4 +247,9 @@ public class AbstractInPerson extends MyActor {
     public void clearNeeds(){
         need.clearNeed();
     }
+    public void clearAllNeeds(){
+        for (Need ne : allNeeds){
+            ne.clearNeed();
+        }
+    }
 }
