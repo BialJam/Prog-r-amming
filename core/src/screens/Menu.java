@@ -147,7 +147,7 @@ public class Menu extends MyScreen implements Screen {
                 try {
                     ClassLoader loader = this.getClass().getClassLoader();
                     String directory = System.getProperty("user.dir");
-                    FileHandle fh = Gdx.files.absolute(directory+"/film.mp4");
+                    FileHandle fh = Gdx.files.absolute(directory+"/film.avi");
                     Process run = Runtime.getRuntime().exec("powershell.exe " + fh.path());
                     run.waitFor();
                 } catch (IOException e) {
