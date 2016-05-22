@@ -14,10 +14,6 @@ public class AbstractPerson extends MyActor {
     protected Image head;
     protected Image body;
     protected Image legs;
-    protected int health;
-    protected int happines;
-    protected int drunk;
-    protected int angry;
 
     public AbstractPerson(Image image, Stage stage) {
         super(image, stage);
@@ -25,15 +21,15 @@ public class AbstractPerson extends MyActor {
 
 
     public void setMyOwnClickListener(ClickListener listener){
-        head.addListener(listener);
-        body.addListener(listener);
-        legs.addListener(listener);
+        //head.addListener(listener);
+        //body.addListener(listener);
+        //legs.addListener(listener);
     }
 
     public void setPosition(int x, int y){
-        head.setPosition(x,y);
-        body.setPosition(x,y);
-        legs.setPosition(x,y);
+     //   head.setPosition(x,y);
+     //   body.setPosition(x,y);
+      //  legs.setPosition(x,y);
     }
 
     @Override

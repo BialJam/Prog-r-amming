@@ -22,7 +22,7 @@ public class BadassIn extends AbstractInPerson {
     }
     public void refreshChances(){
         if(happines < 10){
-            chances = newChances(0,0,0,30,0,70);
+            chances = newChances(0,30,0,60,0,10);
         }else if(drunk > 75){
             chances = newChances(0,30,0,30,30,10);
         }else if(angry > 80){

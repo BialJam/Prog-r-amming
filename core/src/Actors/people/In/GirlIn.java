@@ -17,7 +17,7 @@ public class GirlIn extends AbstractInPerson {
         setImages("dres1");
     }
     public void initChances(){
-        chances = newChances(15,20,45,0,0,20);
+        chances = newChances(25,30,45,0,0,0);
     }
     public void refreshChances(){
         if(happines < 10){
