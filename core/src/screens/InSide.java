@@ -142,7 +142,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-        time = maxtime;
+        time = 15;
 
         Gdx.input.setInputProcessor(inputMultiplexer);
         Statics.playMusic("inside");
@@ -152,10 +152,7 @@ public class InSide extends MyScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        if(persons.size >= 30){
-            time = 25;
-            maxtime = 25;
-        }
+
         moneyString.changeString(root.getMoney());
         personNumber.changeString("Party size: "+persons.size);
 
@@ -185,7 +182,7 @@ public class InSide extends MyScreen implements Screen {
         game.act();
         game.draw();
         gui.draw();
-        debugRenderer.render(world, debugMatrix);
+//        debugRenderer.render(world, debugMatrix);
         Statics.rayHandler.setCombinedMatrix(game.getCamera().combined);
         Statics.rayHandler.updateAndRender();
 
@@ -414,10 +411,10 @@ public class InSide extends MyScreen implements Screen {
     private void createDemLights(){
         new JustLights(1100,150,400,Color.RED);
         new JustLights(1300,350,400,Color.RED);
-        new JustLights(80,730,800,Color.WHITE);
+        new JustLights(400,730,500,Color.WHITE);
         new JustLights(1250,730,800,Color.WHITE);
-        new JustLights(700,730,800,Color.WHITE);
-        new JustLights(50,300,250,Color.WHITE);
+        new JustLights(850,730,800,Color.WHITE);
+//        new JustLights(50,300,250,Color.WHITE);
 
 
 //        Disco Ligths
