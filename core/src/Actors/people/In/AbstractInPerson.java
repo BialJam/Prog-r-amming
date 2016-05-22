@@ -6,6 +6,7 @@ import Actors.people.In.needs.*;
 import Utils.PersonBody;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ai.btree.decorator.Random;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -63,8 +64,8 @@ public class AbstractInPerson extends MyActor {
     BitmapFont font;
     private ActorString debugNeedString;
 
-    private String makeDebugString(){
-        return  "Type:" + ((need==null)?"null":need.toString()) + "\n" +
+    private String makeDebugString() {
+        return "Type:" + ((need == null) ? "null" : need.toString()) + "\n" +
                 "Happ: " + happines + "\n" +
                 "Najeb:" + drunk + "\n" +
                 "angry:" + angry + "\n" +
@@ -101,7 +102,7 @@ public class AbstractInPerson extends MyActor {
         allNeeds.add(new Escape(this));
         allNeeds.add(new Injured(this));
 
-        if(Statics.debug) {
+        if (Statics.debug) {
             font = new BitmapFont();
             font.setColor(Color.BLACK);
             debugNeedString = new ActorString(font, makeDebugString(), (int) (image.getX() + 10), (int) (image.getY()), stageIBelongTo);
@@ -168,11 +169,11 @@ public class AbstractInPerson extends MyActor {
                 }
             }
         }
-        if(health<0){
+        if (health < 0) {
             finishedWant = false;
             need = allNeeds.get(6);
         }
-        if(drunk>100){
+        if (drunk > 100) {
             finishedWant = false;
             need = allNeeds.get(4);
         }
@@ -194,16 +195,13 @@ public class AbstractInPerson extends MyActor {
         animate();
         randomizeWant();
         need.doIt();
-
-        if(Statics.debug){
+        if (Statics.debug) {
+            if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER))
+                health = -10;
             debugNeedString.changeString(makeDebugString());
-            debugNeedString.x = (int)image.getX()+30;
-            debugNeedString.y = (int)image.getY();
+            debugNeedString.x = (int) image.getX() + 30;
+            debugNeedString.y = (int) image.getY();
         }
-
-
-//        setPosition(x, y);
-
     }
 
 
@@ -233,16 +231,16 @@ public class AbstractInPerson extends MyActor {
 
     }
 
-    public void moveTotarget(Vector2 target){
+    public void moveTotarget(Vector2 target) {
         Vector2 start = body.body.getPosition();
-        Vector2 vector = new Vector2(target.x - start.x,target.y - start.y);
+        Vector2 vector = new Vector2(target.x - start.x, target.y - start.y);
         vector.nor();
         vector.x = vector.x * 10000000;
         vector.y = vector.y * 10000000;
         body.body.setLinearVelocity(vector);
     }
 
-    public Vector2 getPersonVector(){
+    public Vector2 getPersonVector() {
         return new Vector2(this.image.getX(), this.image.getY());
     }
 }

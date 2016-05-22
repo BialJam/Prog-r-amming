@@ -21,15 +21,15 @@ public class AbstractPerson extends MyActor {
 
 
     public void setMyOwnClickListener(ClickListener listener){
-        head.addListener(listener);
-        body.addListener(listener);
-        legs.addListener(listener);
+        //head.addListener(listener);
+        //body.addListener(listener);
+        //legs.addListener(listener);
     }
 
     public void setPosition(int x, int y){
-        head.setPosition(x,y);
-        body.setPosition(x,y);
-        legs.setPosition(x,y);
+     //   head.setPosition(x,y);
+     //   body.setPosition(x,y);
+      //  legs.setPosition(x,y);
     }
 
     @Override

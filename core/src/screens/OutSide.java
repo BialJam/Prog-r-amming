@@ -23,13 +23,18 @@ import com.mygdx.game.Statics;
 import com.badlogic.gdx.utils.Array;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Michalina on 2016-05-20.
  */
 public class OutSide extends MyScreen implements Screen{
     MyGdxGame root;
+    private List<AbstractPerson> animate;
     public int action = 10;
+    double deltatime=0;
+    int frame=0;
     ActorString moneyString, pointString;
     BitmapFont font = new BitmapFont();
 
@@ -44,8 +49,18 @@ public class OutSide extends MyScreen implements Screen{
 
     public OutSide(MyGdxGame root) {
         super();
+        animate = new ArrayList<>();
         TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");
         Skin skin = new Skin(atlas);
+
+        animate.add(new AbstractPerson(new Image( skin.getDrawable("table1")), gui));
+        animate.add(new AbstractPerson(new Image( skin.getDrawable("table2")), gui));
+        animate.add(new AbstractPerson(new Image( skin.getDrawable("clockBody")), gui));
+
+        for(AbstractPerson ab: animate) {
+            gui.addActor(ab);
+        }
+
         new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
         persons = QueueCreator.CreateQueue(persons, game, root);
@@ -59,10 +74,25 @@ public class OutSide extends MyScreen implements Screen{
         gui.addActor(pointString);
     }
 
+    public void timer() {
+        deltatime += Gdx.graphics.getDeltaTime();
+        if (deltatime > 1) {
+            deltatime = 0;
+            Random rand = new Random();
+            int  n = rand.nextInt(3);
+            for(AbstractPerson ab: animate) {
+                ab.image.setVisible(false);
+            }
+            animate.get(n).image.setVisible(true);
+            System.out.println(n);
+        }
+    }
+
     @Override
     public void render(float delta) {
         moneyString.changeString(root.getMoney());
         pointString.changeString("Move: "+root.outside.action);
+        timer();
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.act();
