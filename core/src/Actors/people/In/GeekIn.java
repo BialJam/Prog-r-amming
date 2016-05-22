@@ -17,7 +17,7 @@ public class GeekIn extends AbstractInPerson {
         setImages("dres1");
     }
     public void initChances(){
-        chances = newChances(40,10,10,0,0,40);
+        chances = newChances(40,20,20,0,0,20);
     }
     public void refreshChances(){
         if(happines < 10){
