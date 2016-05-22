@@ -97,7 +97,7 @@ public class AbstractInPerson extends MyActor {
         allNeeds.add(new Drink(this));
         allNeeds.add(new Dance(this));
         allNeeds.add(new Fight(this));
-        allNeeds.add(new Vomit(this));
+        allNeeds.add(new Puke(this));
         allNeeds.add(new Escape(this));
         allNeeds.add(new Injured(this));
 
@@ -167,6 +167,14 @@ public class AbstractInPerson extends MyActor {
                     sumChance += chances.get(i);
                 }
             }
+        }
+        if(health<0){
+            finishedWant = false;
+            need = allNeeds.get(6);
+        }
+        if(drunk>100){
+            finishedWant = false;
+            need = allNeeds.get(4);
         }
     }
 

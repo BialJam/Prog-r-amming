@@ -11,6 +11,10 @@ public class Injured extends Need {
     }
 
     public void doIt(){
-        
+        p.moveTotarget(p.getPersonVector());
+    }
+
+    public String toString(){
+        return "injured";
     }
 }

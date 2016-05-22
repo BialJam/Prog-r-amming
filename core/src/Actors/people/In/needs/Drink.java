@@ -45,9 +45,6 @@ public class Drink extends Need {
                 p.angry += 40;
             }
         }
-        if(p.drunk > 90){
-            p.need = p.allNeeds.get(6);
-        }
     }
 
     public String toString(){

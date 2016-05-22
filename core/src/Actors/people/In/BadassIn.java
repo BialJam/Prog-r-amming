@@ -12,6 +12,7 @@ public class BadassIn extends AbstractInPerson {
 
     public BadassIn(Stage stage) {
         super(stage);
+        drunk = 110;
     }
 
     public void setImages(){
