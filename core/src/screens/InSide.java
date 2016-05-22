@@ -173,9 +173,7 @@ public class InSide extends MyScreen implements Screen {
         gui.draw();
 
         if(persons.size == 0){
-            // Koniec gry gdy 0 ludzi w srodku.
-            Gdx.app.exit();
-            // Zamienic na GameOver napis
+            ((Game) Gdx.app.getApplicationListener()).setScreen(root.exit);
         }
     }
 

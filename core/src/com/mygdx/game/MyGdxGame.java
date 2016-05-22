@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sun.org.apache.xpath.internal.SourceTree;
+import screens.ExitMenu;
 import screens.InSide;
 import screens.Menu;
 import screens.OutSide;
@@ -16,6 +17,7 @@ public class MyGdxGame extends Game {
     public Menu menu;
     public OutSide outside;
     public InSide inside;
+    public ExitMenu exit;
 
     static public int money = 0;
     static public int alco = 0, food = 0, security = 0, cleaner = 0;
@@ -27,7 +29,8 @@ public class MyGdxGame extends Game {
         menu = new Menu(this);
         outside = new OutSide(this);
         inside = new InSide(this);
-        setScreen(outside);
+        exit = new ExitMenu(this);
+        setScreen(menu);
     }
 
 
