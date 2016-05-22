@@ -65,7 +65,7 @@ public class OutSide extends MyScreen implements Screen{
 
         font.setColor(Color.GREEN);
         font.getData().setScale(3,3);
-        moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        moneyString = new ActorString(font, root.getMoney(), 1150, 700, gui);
         pointString = new ActorString(font, "Move: " + 10, 1150, 640, gui);
         gui.addActor(moneyString);
         gui.addActor(pointString);

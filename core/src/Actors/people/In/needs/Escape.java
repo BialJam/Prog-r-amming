@@ -41,9 +41,11 @@ public class Escape extends Need {
             ((Fight)p.allNeeds.get(3)).ico.image.setVisible(false);
             p.moveTotarget(target);
             if (remove) {
+                ((Fight)p.allNeeds.get(3)).ico.setVisible(false);
+                ((Fight)p.allNeeds.get(3)).ico.image.setVisible(false);
                 p.image.remove();
                 p.remove();
-                InSide.persons.removeValue(p,true);
+//                InSide.persons.removeValue(p,true);
                 Statics.world.destroyBody(p.body.body);
                 p.body = null;
                 p = null;

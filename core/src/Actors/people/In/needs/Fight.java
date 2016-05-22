@@ -51,6 +51,10 @@ public class Fight extends Need {
                         ico.image.setScale(0.57f);
                     }
                 }
+                if(p.health <= 0){
+                    ico.setVisible(false);
+                    ico.image.setVisible(false);
+                }
 
                 p.health -= 5;
                 targetPerson.health -= 5;

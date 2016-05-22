@@ -126,7 +126,6 @@ public class InSide extends MyScreen implements Screen {
             newPoints = game.getViewport().unproject(newPoints);
             String toWrite = "X:" + newPoints.x + " Y: " + newPoints.y;
             mousePosition = new ActorString(font, toWrite, (int) newPoints.x, (int) newPoints.y, game);
-            game.addActor(mousePosition);
         }
 
         initBox2d();
@@ -152,13 +151,8 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(persons.size >= 100){
-            time = 60;
-            maxtime = 60;
-        }else if(persons.size >= 50){
-            time = 30;
-            maxtime = 30;
-        }else if(persons.size >= 25){
+
+        if(persons.size >= 30){
             time = 25;
             maxtime = 25;
         }
