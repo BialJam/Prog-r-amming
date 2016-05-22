@@ -5,43 +5,71 @@ filter: Nearest,Nearest
 repeat: none
 bg_in
   rotate: false
-  xy: 1, 203
+  xy: 1, 255
   size: 1366, 768
   orig: 1366, 768
   offset: 0, 0
   index: -1
 bg_out
   rotate: false
-  xy: 1369, 203
+  xy: 1369, 255
   size: 1366, 768
   orig: 1366, 768
   offset: 0, 0
   index: -1
 clockArrow
   rotate: false
-  xy: 1, 1
+  xy: 1, 53
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 clockBody
   rotate: false
-  xy: 2737, 771
+  xy: 2737, 823
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 table1
   rotate: false
-  xy: 203, 116
+  xy: 203, 168
   size: 160, 85
   orig: 160, 85
   offset: 0, 0
   index: -1
 table2
   rotate: false
-  xy: 2737, 684
+  xy: 2737, 736
   size: 87, 85
   orig: 87, 85
+  offset: 0, 0
+  index: -1
+rzygi_notify
+  rotate: false
+  xy: 1, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+taniec_notify
+  rotate: false
+  xy: 53, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+vodka_notify
+  rotate: false
+  xy: 105, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+wykrz_notify
+  rotate: false
+  xy: 157, 1
+  size: 18, 50
+  orig: 18, 50
   offset: 0, 0
   index: -1

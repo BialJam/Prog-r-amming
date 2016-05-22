@@ -3,65 +3,79 @@ Characters_in.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-dres1
+cleaner
   rotate: false
   xy: 1, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-dres2
+dres1
   rotate: false
   xy: 53, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-dres3
+dres2
   rotate: false
   xy: 105, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-geek1
+dres3
   rotate: false
   xy: 157, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-geek2
+geek1
   rotate: false
   xy: 209, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-loszka1
+geek2
   rotate: false
   xy: 261, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-loszka2
+loszka1
   rotate: false
   xy: 313, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-ziomek1
+loszka2
   rotate: false
   xy: 365, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
   index: -1
-ziomek2
+security
   rotate: false
   xy: 417, 1
+  size: 50, 26
+  orig: 50, 26
+  offset: 0, 0
+  index: -1
+ziomek1
+  rotate: false
+  xy: 469, 1
+  size: 50, 26
+  orig: 50, 26
+  offset: 0, 0
+  index: -1
+ziomek2
+  rotate: false
+  xy: 521, 1
   size: 50, 26
   orig: 50, 26
   offset: 0, 0
