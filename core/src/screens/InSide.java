@@ -114,7 +114,7 @@ public class InSide extends MyScreen implements Screen {
         font.setColor(Color.GREEN);
         font.getData().setScale(3, 3);
         moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
-        personNumber = new ActorString(font, "Liczba osob: "+persons.size, 400, 50, gui);
+        personNumber = new ActorString(font, "Party size: "+persons.size, 400, 50, gui);
         gui.addActor(moneyString);
         gui.addActor(personNumber);
 
@@ -149,8 +149,15 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        if(persons.size >= 100){
+            time = 60;
+        }else if(persons.size >= 50){
+            time = 30;
+        }else if(persons.size >= 25){
+            time = 25;
+        }
         moneyString.changeString(root.getMoney());
-        personNumber.changeString("Liczba osob: "+persons.size);
+        personNumber.changeString("Party size: "+persons.size);
 
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
