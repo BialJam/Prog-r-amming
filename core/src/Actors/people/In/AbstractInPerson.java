@@ -195,7 +195,7 @@ public class AbstractInPerson extends MyActor {
         if (Statics.debug) {
             if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER)){
                 health = 100;
-                need = allNeeds.get(3);
+                need = allNeeds.get(4);
             }
 
             debugNeedString.changeString(makeDebugString());

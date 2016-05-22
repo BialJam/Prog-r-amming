@@ -43,6 +43,7 @@ import com.badlogic.gdx.utils.Array;
 
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Statics;
+import com.sun.prism.j2d.paint.MultipleGradientPaint;
 
 /**
  * Created by Marcin on 2016-05-21.
@@ -50,7 +51,7 @@ import com.mygdx.game.Statics;
 public class InSide extends MyScreen implements Screen {
     MyGdxGame root;
 
-    AbstractButton fadeIn, fadeOut, bodyBtn, alcoBtn, cleanerBtn, foodBtn, securityBtn;
+    AbstractButton fadeIn, fadeOut, bodyBtn, alcoBtn, cleanerBtn, foodBtn, securityBtn, noalco, nofood;
 
     Clock clock;
 
@@ -94,6 +95,7 @@ public class InSide extends MyScreen implements Screen {
         securityString.setVisible(false);
         cleanerString.setVisible(false);
 
+
         gui.addActor(alcoString);
         gui.addActor(foodString);
         gui.addActor(cleanerString);
@@ -101,7 +103,7 @@ public class InSide extends MyScreen implements Screen {
 
         clock = new Clock(gui);
         deltatime = 0;
-        time = 60;
+        time = 15;
 
         font = new BitmapFont();
         font.setColor(Color.GREEN);
@@ -135,7 +137,7 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-        time = 60;
+        time = 15;
         Gdx.input.setInputProcessor(inputMultiplexer);
         Statics.playMusic("inside");
         Statics.now.setVolume(1.0f);
@@ -161,6 +163,17 @@ public class InSide extends MyScreen implements Screen {
         foodString.changeString(root.getFood());
         cleanerString.changeString(root.getCleaner());
         securityString.changeString(root.getSecurity());
+
+        if(MyGdxGame.alco == 0){
+            noalco.setVisible(true);
+        }else{
+            noalco.setVisible(false);
+        }
+        if(MyGdxGame.food == 0){
+            nofood.setVisible(true);
+        }else{
+            nofood.setVisible(false);
+        }
 
         game.act();
         game.draw();
@@ -225,9 +238,19 @@ public class InSide extends MyScreen implements Screen {
         alcoBtn.setPosition(946 + 491, 578); //491
         alcoBtn.image.setScale(.3f);
 
+        noalco = new AbstractButton(new Image(skin.getDrawable("guiAlcoBtn")), gui);
+        noalco.image.setColor(Color.RED);
+        noalco.setPosition(700,10);
+        noalco.image.setScale(.3f);
+
         foodBtn = new AbstractButton(new Image(skin.getDrawable("guiFoodBtn")), gui);
         foodBtn.setPosition(946 + 491, 477); //491
         foodBtn.image.setScale(.3f);
+
+        nofood = new AbstractButton(new Image(skin.getDrawable("guiFoodBtn")), gui);
+        nofood.image.setColor(Color.RED);
+        nofood.setPosition(1000,10);
+        nofood.image.setScale(.3f);
 
         cleanerBtn = new AbstractButton(new Image(skin.getDrawable("guiCleanerBtn")), gui);
         cleanerBtn.setPosition(946 + 491, 275); //491
