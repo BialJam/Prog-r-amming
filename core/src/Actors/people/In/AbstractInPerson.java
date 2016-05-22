@@ -36,7 +36,7 @@ public class AbstractInPerson extends MyActor {
     public int happines;
     public int drunk;
     public int angry;
-    protected int want = 0;
+    public int want = 0;
     public boolean finishedWant = true;
     public Need need;
     public Array<Need> allNeeds;
@@ -195,7 +195,8 @@ public class AbstractInPerson extends MyActor {
         if (Statics.debug) {
             if (Gdx.app.getInput().isKeyJustPressed(Input.Keys.ENTER)){
                 health = 100;
-                need = allNeeds.get(4);
+                need = allNeeds.get(3);
+                want = 3;
             }
 
             debugNeedString.changeString(makeDebugString());
@@ -221,6 +222,7 @@ public class AbstractInPerson extends MyActor {
         image.setPosition(position.x - image.getWidth() / 2, position.y - image.getHeight() / 3);
         setAngle(body.body.getLinearVelocity());
         move();
+        drawIcons();
 
 
     }
@@ -250,6 +252,29 @@ public class AbstractInPerson extends MyActor {
     public void clearAllNeeds(){
         for (Need ne : allNeeds){
             ne.clearNeed();
+        }
+    }
+
+    public void drawIcons(){
+        ((Drink) allNeeds.get(1)).ico.setVisible(false);
+        ((Dance) allNeeds.get(2)).ico.setVisible(false);
+        ((Fight) allNeeds.get(3)).ico.setVisible(false);
+        ((Fight) allNeeds.get(3)).ico.image.setVisible(false);
+        ((Fight) allNeeds.get(3)).ico.setVisible(false);
+
+        if (want == 1){
+            ((Drink) allNeeds.get(1)).ico.setVisible(true);
+        }
+        if (want == 2){
+            ((Dance) allNeeds.get(2)).ico.setVisible(true);
+        }
+        if (want == 3) {
+            ((Fight) allNeeds.get(3)).ico.image.setVisible(true);
+            ((Fight) allNeeds.get(3)).ico.setVisible(true);
+        }
+        if (want != 3 ) {
+            ((Fight) allNeeds.get(3)).ico.image.setVisible(false);
+            ((Fight) allNeeds.get(3)).ico.setVisible(false);
         }
     }
 }

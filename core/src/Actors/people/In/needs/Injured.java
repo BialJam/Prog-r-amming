@@ -9,9 +9,12 @@ import screens.InSide;
 public class Injured extends Need {
     public Injured(AbstractInPerson person) {
         super(person);
+
     }
 
     public void doIt(){
+        ((Fight)p.allNeeds.get(3)).ico.setVisible(false);
+        ((Fight)p.allNeeds.get(3)).ico.image.setVisible(false);
         p.body.body.setLinearVelocity(0,0);
         p.isAnimate = false;
         if(time != InSide.getTime()){

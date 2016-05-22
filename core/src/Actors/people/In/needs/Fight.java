@@ -1,7 +1,6 @@
 package Actors.people.In.needs;
 
 import Actors.Smoke;
-import Actors.Vomit;
 import Actors.people.In.AbstractInPerson;
 import Utils.Vectors;
 import screens.InSide;
@@ -10,11 +9,15 @@ import screens.InSide;
  * Created by Marcin on 2016-05-21.
  */
 public class Fight extends Need {
-    Smoke smoke;
+    public Smoke ico;
 
     public Fight(AbstractInPerson person) {
         super(person);
         count = 5;
+        ico = new Smoke(p.stageIBelongTo);
+        p.stageIBelongTo.addActor(ico);
+        ico.setVisible(false);
+//        ico.target.setVisible(false);
     }
 
     public AbstractInPerson targetPerson;
@@ -36,21 +39,16 @@ public class Fight extends Need {
         if (Vectors.vectorLength(p.getPersonVector(), targetPerson.getPersonVector()) < 100) {
             if (time != InSide.getTime()) {
                 targetPerson.finishedWant = false;
-                targetPerson.clearNeeds();
                 targetPerson.need = targetPerson.allNeeds.get(3);
 
                 Fight f = (Fight) targetPerson.need;
                 f.targetPerson = p;
                 time = InSide.getTime();
                 if (count == 5) {
-                    if(smoke == null) {
-                        smoke = new Smoke(p.stageIBelongTo);
-                        smoke.target = p;
-                        smoke.secondTarget = targetPerson;
-                        smoke.image.setScale(0.5f);
-                        smoke.image.setX(p.image.getX());
-                        smoke.image.setY(p.image.getY());
-                        p.stageIBelongTo.addActor(smoke);
+                    if(ico.target == null) {
+                        ico.target = p;
+                        ico.secondTarget = targetPerson;
+                        ico.image.setScale(0.57f);
                     }
                 }
 
@@ -63,11 +61,8 @@ public class Fight extends Need {
                 if (count == 0) {
                     count = 6;
                     p.finishedWant = true;
-                    if (smoke != null) {
-                        smoke.image.remove();
-                        smoke.remove();
-                        smoke = null;
-                    }
+                    ico.setVisible(false);
+//                    ico.target.setVisible(false);
                 }
 
                 count --;
