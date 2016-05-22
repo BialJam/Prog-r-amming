@@ -259,7 +259,8 @@ public class AbstractInPerson extends MyActor {
         ((Drink) allNeeds.get(1)).ico.setVisible(false);
         ((Dance) allNeeds.get(2)).ico.setVisible(false);
         ((Fight) allNeeds.get(3)).ico.setVisible(false);
-
+        ((Fight) allNeeds.get(3)).ico.image.setVisible(false);
+        ((Fight) allNeeds.get(3)).ico.setVisible(false);
 
         if (want == 1){
             ((Drink) allNeeds.get(1)).ico.setVisible(true);
@@ -268,8 +269,12 @@ public class AbstractInPerson extends MyActor {
             ((Dance) allNeeds.get(2)).ico.setVisible(true);
         }
         if (want == 3) {
+            ((Fight) allNeeds.get(3)).ico.image.setVisible(true);
             ((Fight) allNeeds.get(3)).ico.setVisible(true);
-            System.out.println("gohashdas");
+        }
+        if (want != 3 ) {
+            ((Fight) allNeeds.get(3)).ico.image.setVisible(false);
+            ((Fight) allNeeds.get(3)).ico.setVisible(false);
         }
     }
 }

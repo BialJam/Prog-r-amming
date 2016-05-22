@@ -17,6 +17,7 @@ public class Fight extends Need {
         ico = new Smoke(p.stageIBelongTo);
         p.stageIBelongTo.addActor(ico);
         ico.setVisible(false);
+//        ico.target.setVisible(false);
     }
 
     public AbstractInPerson targetPerson;
@@ -45,7 +46,6 @@ public class Fight extends Need {
                 time = InSide.getTime();
                 if (count == 5) {
                     if(ico.target == null) {
-                        System.out.print(p.want);
                         ico.target = p;
                         ico.secondTarget = targetPerson;
                         ico.image.setScale(0.57f);
@@ -62,6 +62,7 @@ public class Fight extends Need {
                     count = 6;
                     p.finishedWant = true;
                     ico.setVisible(false);
+//                    ico.target.setVisible(false);
                 }
 
                 count --;

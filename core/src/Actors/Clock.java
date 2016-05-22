@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Statics;
 import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
+import screens.InSide;
 
 /**
  * Created by Michalina on 2016-05-21.
@@ -47,6 +48,7 @@ public class Clock extends MyActor{
 
     @Override
     public void act (float delta) {
-        arrow.rotateBy(-6);
+        float degre =  360/ InSide.maxtime;
+        arrow.rotateBy(-degre);
     }
 }

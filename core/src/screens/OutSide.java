@@ -56,13 +56,7 @@ public class OutSide extends MyScreen implements Screen{
         TextureAtlas atlas = Statics.assetManager.get("Other/Other.pack");
         Skin skin = new Skin(atlas);
 
-        animate.add(new AbstractPerson(new Image( skin.getDrawable("table1")), gui));
-        animate.add(new AbstractPerson(new Image( skin.getDrawable("table2")), gui));
-        animate.add(new AbstractPerson(new Image( skin.getDrawable("clockBody")), gui));
 
-        for(AbstractPerson ab: animate) {
-            gui.addActor(ab);
-        }
 
         new Background(new Image(skin.getDrawable("bg_out")),game);
         this.root = root;
@@ -86,8 +80,7 @@ public class OutSide extends MyScreen implements Screen{
             for(AbstractPerson ab: animate) {
                 ab.image.setVisible(false);
             }
-            animate.get(n).image.setVisible(true);
-            System.out.println(n);
+
         }
     }
 

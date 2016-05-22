@@ -54,8 +54,8 @@ public class InSide extends MyScreen implements Screen {
     AbstractButton fadeIn, fadeOut, bodyBtn, alcoBtn, cleanerBtn, foodBtn, securityBtn, noalco, nofood;
 
     Clock clock;
-
-    static int time;
+    static public int maxtime;
+    static public int time;
     float timeLights = 0;
 
     double deltatime;
@@ -105,6 +105,7 @@ public class InSide extends MyScreen implements Screen {
         clock = new Clock(gui);
         deltatime = 0;
         time = 7;
+        maxtime = 7;
 
         persons = new Array<AbstractInPerson>();
         cleanWomans = new Array<CleanWoman>();
@@ -141,7 +142,8 @@ public class InSide extends MyScreen implements Screen {
 
     @Override
     public void show() {
-        time = 7;
+        time = maxtime;
+
         Gdx.input.setInputProcessor(inputMultiplexer);
         Statics.playMusic("inside");
         Statics.now.setVolume(1.0f);
@@ -151,10 +153,13 @@ public class InSide extends MyScreen implements Screen {
     public void render(float delta) {
         if(persons.size >= 100){
             time = 60;
+            maxtime = 60;
         }else if(persons.size >= 50){
             time = 30;
+            maxtime = 30;
         }else if(persons.size >= 25){
             time = 25;
+            maxtime = 25;
         }
         moneyString.changeString(root.getMoney());
         personNumber.changeString("Party size: "+persons.size);
@@ -319,7 +324,6 @@ public class InSide extends MyScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                System.out.println("Kupiłeś alco");
                 root.setMoney(-50);
                 if (root.getMoneyInt() >= 0) {
                     root.setAlco(10);
@@ -335,7 +339,6 @@ public class InSide extends MyScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                System.out.println("Kupiłeś żarcie");
                 root.setMoney(-50);
                 if (root.getMoneyInt() >= 0) {
                     root.setFood(10);
@@ -351,7 +354,6 @@ public class InSide extends MyScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                System.out.println("Kupiłeś guarda");
                 root.setMoney(-(root.getSecurityInt() + 1) * 20);
                 if (root.getMoneyInt() >= 0) {
                     root.setSecurity(1);
@@ -372,7 +374,6 @@ public class InSide extends MyScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                System.out.println("Kupiłeś sprzatanie");
                 root.setMoney(-(root.getCleanerInt() + 1) * 20);
                 if (root.getMoneyInt() >= 0) {
                     root.setCleaner(1);
