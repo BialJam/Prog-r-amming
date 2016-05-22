@@ -1,6 +1,8 @@
 package Actors.people.In;
 
 import Actors.Vomit;
+import Utils.Vectors;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 /**
@@ -13,6 +15,20 @@ public class CleanWoman extends AbstractPersonel {
 
     public void setImages(){
         setImages("Characters_in/Characters_in.pack", "loszka1");
+    }
+
+    public void move(){
+        animate();
+        if(target != null){
+            if(Vectors.vectorLength(new Vector2(image.getX(), image.getY()), new Vector2(target.image.getX(), target.image.getY()))<50){
+                target.image.remove();
+                target.remove();
+                target = null;
+                free = true;
+            }else{
+                moveTotarget(new Vector2(target.image.getX(), target.image.getY()));
+            }
+        }
     }
 
 

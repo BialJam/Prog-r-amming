@@ -2,7 +2,6 @@ package Actors.people.In;
 
 import Actors.ActorString;
 import Actors.MyActor;
-import Actors.Smoke;
 import Actors.Vomit;
 import Actors.people.AbstractPerson;
 import Utils.PersonBody;
@@ -61,11 +60,6 @@ public class AbstractPersonel extends MyActor {
         animate();
         if(target != null){
             if(Vectors.vectorLength(new Vector2(image.getX(), image.getY()), new Vector2(target.image.getX(), target.image.getY()))<50){
-                Smoke smoke = (Smoke) target;
-                smoke.target.finishedWant = false;
-                smoke.target.need = smoke.target.allNeeds.get(5);
-                smoke.secondTarget.finishedWant = false;
-                smoke.secondTarget.need = smoke.target.allNeeds.get(5);
                 target.image.remove();
                 target.remove();
                 target = null;
