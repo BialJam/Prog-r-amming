@@ -65,6 +65,7 @@ public class InSide extends MyScreen implements Screen {
     Matrix4 debugMatrix;
     World world;
     ActorString moneyString;
+    ActorString personNumber;
     BitmapFont font, font_bttn;
 
     static public Array<AbstractInPerson> persons;
@@ -105,15 +106,18 @@ public class InSide extends MyScreen implements Screen {
         deltatime = 0;
         time = 7;
 
+        persons = new Array<AbstractInPerson>();
+        cleanWomans = new Array<CleanWoman>();
+        securityGuards = new Array<>();
+
         font = new BitmapFont();
         font.setColor(Color.GREEN);
         font.getData().setScale(3, 3);
         moneyString = new ActorString(font, root.getMoney(), 1250, 740, gui);
+        personNumber = new ActorString(font, "Liczba osob: "+persons.size, 400, 50, gui);
         gui.addActor(moneyString);
+        gui.addActor(personNumber);
 
-        persons = new Array<AbstractInPerson>();
-        cleanWomans = new Array<CleanWoman>();
-        securityGuards = new Array<>();
 
         if (Statics.debug) {
             Vector3 newPoints = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -146,6 +150,7 @@ public class InSide extends MyScreen implements Screen {
     @Override
     public void render(float delta) {
         moneyString.changeString(root.getMoney());
+        personNumber.changeString("Liczba osob: "+persons.size);
 
         Gdx.gl.glClearColor(1, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -235,7 +240,7 @@ public class InSide extends MyScreen implements Screen {
 
         noalco = new AbstractButton(new Image(skin.getDrawable("guiAlcoBtn")), gui);
         noalco.image.setColor(Color.RED);
-        noalco.setPosition(700,10);
+        noalco.setPosition(1000,10);
         noalco.image.setScale(.3f);
 
         foodBtn = new AbstractButton(new Image(skin.getDrawable("guiFoodBtn")), gui);
@@ -244,7 +249,7 @@ public class InSide extends MyScreen implements Screen {
 
         nofood = new AbstractButton(new Image(skin.getDrawable("guiFoodBtn")), gui);
         nofood.image.setColor(Color.RED);
-        nofood.setPosition(1000,10);
+        nofood.setPosition(1200,10);
         nofood.image.setScale(.3f);
 
         cleanerBtn = new AbstractButton(new Image(skin.getDrawable("guiCleanerBtn")), gui);

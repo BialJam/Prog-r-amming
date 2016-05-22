@@ -22,13 +22,14 @@ public class Escape extends Need {
 
     @Override
     public void doIt() {
-
         try {
             if (!step) {
                 target = Vectors.getQuit();
             } else {
+                p.clearNeeds();
                 target = new Vector2(0, 210);
             }
+
             if (Vectors.vectorLength(p.getPersonVector(), target) < 100 && !step) {
                 step = true;
                 target = new Vector2(0, 210);
@@ -42,17 +43,21 @@ public class Escape extends Need {
 
             p.moveTotarget(target);
             if (remove) {
+                p.clearNeeds();
                 p.image.remove();
                 p.remove();
                 Statics.world.destroyBody(p.body.body);
                 p.body = null;
+                p.need.clearNeed();
                 p = null;
+
 
             }
         } catch (NullPointerException ex) {
-            System.out.println("Czegos nie ma");
+            System.out.println("CO SIE ZJEBALO");
         }
     }
+
 
     public String toString() {
         return "escape";
